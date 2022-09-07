@@ -6,8 +6,4 @@ Suite Teardown     Stop Remote Server
 
 *** Test Cases ***
 Run Login
-    Login EBS
-
-*** Keywords ***
-Login EBS
-    Login
+    Login    ${login_username}    ${login_password}

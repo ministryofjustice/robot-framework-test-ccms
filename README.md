@@ -36,3 +36,5 @@ The scripts are meant to be modular i.e this is not an automation suite that can
 VsCode has great support for Robot Framework. You may also use Robot IDE (RIDE) or any other editor for this project.
 
 Find the files in the robot_scripts folder. Script name starting with 'task' are meant to be run to achieve that task. The browser is then left open for follow up manual actions by the user.
+
+For Sikuli OCR use Windows 'Snipping Tool' to take images of the screen you want to use in your scripts.

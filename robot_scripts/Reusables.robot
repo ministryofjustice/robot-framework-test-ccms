@@ -1,13 +1,18 @@
 *** Settings ***
 Resource   settings.robot
+Resource   PageObjects/login.robot
+Resource    PageObjects/dashboard.robot
+Library    String
 
 *** Keywords ***
 Ensure EBS Web Screen
+    [Arguments]  ${login_username}  ${login_password}
+
     ${exists}=  Win Exists   Internet Explorer
     Log To Console    InternetExplorer - Value of exists is: ${exists}
     IF  ${exists} == 0
         Close IE
-        Login
+        Login.Login    ${login_username}    ${login_password}
     END
 
     Win Activate  Oracle
@@ -15,6 +20,8 @@ Ensure EBS Web Screen
     sleep  1s
 
 Ensure EBS Forms Screen
+    [Arguments]  ${login_username}  ${login_password}
+    
     ${exists}=  Win Exists  Oracle Applications - UAT
 
     Log To Console    OracleApplicationsUAT - Value of exists is: ${exists}
@@ -22,8 +29,8 @@ Ensure EBS Forms Screen
     IF  ${exists} == 0
         Log To Console    "EBS forms not open, starting up from beginning."
         Close IE
-        Login
-        Start EBS merits
+        Login.Login    ${login_username}    ${login_password}
+        Dashboard.Start EBS merits
     END
 
     Win Activate  Oracle Applications - UAT
@@ -32,68 +39,36 @@ Ensure EBS Forms Screen
 Close IE
     Close Application    Internet Explorer
 
-Login
-    IF  "${login_password}" == "" or "${login_username}" == ""
-        Fail  The username and password must be set in the secrets file.
-    END
-
-    Auto It Set Option   WinTitleMatchMode   2
-    Send    \#r
-    Win Wait   Run
-    Send    "C:/Program Files/Internet Explorer/iexplore.exe" "https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/OA.jsp?OAFunc=OAHOMEPAGE{#}"{ENTER}
-    Wait For Active Window    Internet Explorer
-
-    Wait Until Screen Contain    ${IMG_PATH}browser.png    10
-    sleep   2s
-    Wait Until Screen Contain    ${IMG_PATH}EBSLoginScreen.png    30
-    Win Exists    Login
-    
-    Send    ${login_username}{TAB}${login_password}{ENTER}
-
-    Win Exists  Oracle Applications Home Page
-    Wait Until Screen Contain    ${IMG_PATH}EBSWebLoggedInScreen.png    30
-    
-Start EBS merits
-    Auto It Set Option   WinTitleMatchMode   2
-
-    ${exists}=  If On EBS Forms
-
-    Log To Console    EBS Forms - Value of exists is: ${exists}
-
-    IF  ${exists} == 0
-        Log To Console    "EBS forms are not open, opening now."
-        Ensure EBS Web Screen
-
-        Wait Until Screen Contain    ${IMG_PATH}MeritsCaseWorkerLink.PNG    10
-        Click    ${IMG_PATH}MeritsCaseWorkerLink.PNG
-
-        Wait Until Screen Contain    ${IMG_PATH}MeritsCasesAndClientsLink.PNG    10
-        Click    ${IMG_PATH}MeritsCasesAndClientsLink.PNG
-    END
-
-    Wait For Active Window    Oracle Applications - UAT
-    Back To Case Search
-
-Choose Group and Role
-    ${exists}=  Image With Text Exists On Screen    ${IMG_PATH}ChooseRoleUserDialogue.PNG    Choose Role and Group
-
-    IF  "${exists}" == "True"
-        Log To Console    Role group exists, dealing with it.
-        Click    ${IMG_PATH}RoleGroupInputBox.png
-        Click    ${IMG_PATH}MoreMenuButton.png
-        Click    ${IMG_PATH}OkButtonSmall.png
-        Click    ${IMG_PATH}RoleAndGroupOkButton.png
-    END
-
 Image With Text Exists On Screen
-    [Arguments]  ${img}  ${text}
+    [Arguments]  ${img}  ${text}  ${expect_unique}=FALSE  ${strict}=FALSE
+
     ${foundText}=  Get Text From Image Matching    ${img}
     ${result}=  Set Variable  False
 
-    Log To Console    Found text: ${foundText}
+    ${foundText}=  Replace String    "${foundText}"    ${\n}    ${EMPTY}
 
-    IF  "${foundText}".find("${text}") != -1
+    IF  "${DEBUG}" == "TRUE"
+        Highlight    ${img}  1
+        ${matches}=  Get Match Score    ${img}
+
+        Log To Console    Found text: ${foundText}
+        Log To Console    Match score ${matches}
+    END
+
+    IF  "${expect_unique}" == "TRUE"
+        ${count}=  Image Count    ${img}
+        
+        Log To Console    Number of times image found on screen ${count}
+        IF  "${count}" != "1"
+            Fail   Expected the image to appear once on the screen, got ${count} times.
+        END
+    END
+
+    IF  '''${foundText}'''.find("${text}") != -1
+        Log To Console    Yes we have found the text in the image ${text}
         ${result}=  Set Variable  True
+    ELSE IF  "${strict}" == "TRUE"
+        Fail   Expected image was found, but text did not match. Expected '${text}', Found '${foundText}'.
     END
 
     RETURN  ${result}
@@ -110,28 +85,87 @@ Get Text From Image Matching
 
     RETURN  ${text}
 
-Back To Case Search
-    ${exists}=  If On Universal Search
-
-    Log To Console    UniversalSearch The value of exists is: ${exists}
-
-    IF  "${exists}" == "False"
-        Log To Console    "We are not on universal search dialogue, going to it now."
-        Send  {ALT}w2
-        Click    ${IMG_PATH}ReturnToSearchButton.png
-        Click    ${IMG_PATH}ClearButton.png
-    END
-
-If On Universal Search
-    [Documentation]  returns True or False
-    
-    ${exists}=  Image With Text Exists On Screen    ${IMG_PATH}UniversalSearchDialogue.png    Universal Search
-
-    RETURN  ${exists}
-
 If On EBS Forms
     [Documentation]  returns 0 or 1
     
     ${exists}=  Win Exists  Oracle Applications - UAT  
 
     RETURN  ${exists}
+
+Wait Until Screen Contains
+    [Arguments]  ${img}  ${timeout}
+    Wait Until Screen Contain    ${img}    ${timeout}
+
+    IF  "${DEBUG}" == "TRUE"
+        Highlight    ${img}  1
+        ${count}=  Image Count    ${img}
+        Log To Console    After - Count of Image: ${count}
+    END
+
+Wait Until Screen Contains With Text
+    [Arguments]  ${img}  ${text}  ${timeout}=3  ${strict}=TRUE
+
+    ${result}=  Set Variable  FALSE
+    FOR    ${i}    IN RANGE    ${timeout}
+        Log   Try ${i}
+        TRY
+            Image With Text Exists On Screen    ${img}    ${text}  strict=TRUE
+            ${result}=  Set Variable  TRUE
+            Exit For Loop
+        EXCEPT  AS    ${error_message}
+            Log To Console    ${error_message}
+        END
+    END
+
+    IF  "${strict}" == "TRUE" and "${result}" != "TRUE"
+        Fail   Waited for '${timeout}' tries, but could not find '${img}' with text '${text}'
+    END
+
+    RETURN  ${result}
+
+Wait Until Dialogue With Text
+    [Arguments]  ${text}  ${timeout}=3  ${strict}=TRUE
+
+    Wait Until Screen Contains With Text    ${DIALOGUE_IMAGE}    ${text}  ${timeout}  ${strict}
+
+Input Text Until Appears
+    [Arguments]  ${img}  ${text}  ${timeout}=3
+
+    ${result}=  Set Variable  FALSE
+    FOR    ${i}    IN RANGE    ${timeout}
+        Log   Try ${i}
+        TRY
+            IF  "${DEBUG}" == "TRUE"
+                Highlight    ${img}  1
+                Log To Console    Looking for ${img} on screen.
+            END
+
+            Input Text    ${img}    ${text}
+            ${result}=  Set Variable  TRUE
+            Exit For Loop
+        EXCEPT  AS    ${error_message}
+            Log To Console    ${error_message}
+        END
+    END
+
+    IF  "${result}" != "TRUE"
+        Fail   Waited for '${timeout}' tries, but could not find input '${img}'.
+    END
+
+Input Text Where Label Is
+    [Documentation]  Under development, does not work yet. Need to figure out how to match on all images.
+    [Arguments]  ${label}  ${text}
+
+    Highlight  ${input_box_image}   1
+
+    ${label_with_input}=  Get Extended Region From Image    ${input_box_image}    left    1
+
+    Log To Console    found image regions ${label_with_input}
+
+    ${matching_text}=  Get Text From Image Matching    ${label_with_input}
+
+    Log To Console    Matching text: ${matching_text}
+
+    IF  "${matching_text}" == "${text}"
+        Input Text    ${label_with_input}   ${text}
+    END
