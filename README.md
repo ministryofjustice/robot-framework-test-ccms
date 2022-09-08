@@ -5,7 +5,8 @@ EBS automated tasks (RPA) to facilitate testing of EBS using Robot framework uti
 
 Setup
 ====
-*Note due to dependency on AutoIT this is only expected to work on Windows OS*
+- *Note due to dependency on AutoIT this is only expected to work on Windows OS*
+- *Installation has been tested using standard Windows CMD terminal. It is unclear if other ways work*
 
 Download and install Java 8 (tested with 1.8.0_202).    
 Download and install Python 3 (tested with 3.10).    
