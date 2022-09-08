@@ -8,8 +8,14 @@ ${merits_case_work_link_element}  ${IMG_PATH}MeritsCaseWorkerLink.PNG
 ${merits_case_and_clients_link_element}  ${IMG_PATH}MeritsCasesAndClientsLink.png
 ${return_to_search_button}  ${IMG_PATH}ReturnToSearchButton.png
 ${clear_form_values_button}  ${IMG_PATH}ClearButton.png
+${dashboard_image}  ${IMG_PATH}EBSWebLoggedInScreen.png
 
 *** Keywords ***
+On Dashboard
+    ${exists}=  Window With Title Exists  Oracle Applications Home Page
+
+    RETURN  ${exists}
+
 Start EBS merits
     Auto It Set Option   WinTitleMatchMode   2
 

@@ -4,6 +4,11 @@ Resource   PageObjects/login.robot
 Resource    PageObjects/dashboard.robot
 Library    String
 
+*** Variables ***
+${file_menu_shortcut}   !f
+${exit_option_shortcut}   x
+${ok_button_shortcut}   !o
+
 *** Keywords ***
 Ensure EBS Web Screen
     [Arguments]  ${login_username}  ${login_password}
@@ -15,8 +20,16 @@ Ensure EBS Web Screen
         Login.Login    ${login_username}    ${login_password}
     END
 
-    Win Activate  Oracle
+    Focus Browser
     Send  ^+r
+
+    ${exists}=  Dashboard.On Dashboard
+
+    # We may be logged out now...
+    IF  "${exists}" == "False" 
+        Fail  "Expected to be on dashboard, but not."
+    END
+
     sleep  1s
 
 Ensure EBS Forms Screen
@@ -28,16 +41,18 @@ Ensure EBS Forms Screen
     
     IF  ${exists} == 0
         Log To Console    "EBS forms not open, starting up from beginning."
-        Close IE
-        Login.Login    ${login_username}    ${login_password}
+        Ensure EBS Web Screen    ${login_username}    ${login_password}
         Dashboard.Start EBS merits
     END
 
-    Win Activate  Oracle Applications - UAT
+    Focus EBS Forms
     sleep  1s
 
-Close IE
-    Close Application    Internet Explorer
+Focus EBS Forms
+    Win Activate  Oracle Applications - UAT
+
+Focus Browser
+    Win Activate  Oracle
 
 Image With Text Exists On Screen
     [Arguments]  ${img}  ${text}  ${expect_unique}=FALSE  ${strict}=FALSE
@@ -93,6 +108,7 @@ If On EBS Forms
     RETURN  ${exists}
 
 Wait Until Screen Contains
+    [Documentation]  Use in favour of Wait Until Screen Contain so Debug can be used.
     [Arguments]  ${img}  ${timeout}=${GLOBAL_WAIT_TIMEOUT}
     Wait Until Screen Contain    ${img}    ${timeout}
 
@@ -169,3 +185,22 @@ Input Text Where Label Is
     IF  "${matching_text}" == "${text}"
         Input Text    ${label_with_input}   ${text}
     END
+
+Window With Title Exists
+    [Documentation]  Returns True or False.
+    [Arguments]  ${title}
+    ${exists}=  Win Exists  ${title}
+
+    Log To Console    Value for win exists ${title} is ${exists}
+
+    IF  "${exists}" == "0"
+        RETURN  FALSE
+    END
+
+    RETURN  TRUE
+
+Close EBS Forms
+    Send  ${file_menu_shortcut}${exit_option_shortcut}${ok_button_shortcut}
+
+Close IE
+    Close Application    Internet Explorer
