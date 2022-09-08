@@ -1,6 +1,6 @@
 *** Settings ***
 Resource   ../settings.robot
-Resource   ../reusables.robot
+Resource   ../Common.robot
 Resource    session_expired_dialogue.robot
 
 *** Variables ***
@@ -30,9 +30,9 @@ Start EBS merits
     Wait For Active Window    Oracle Applications - UAT
 
 Click Merits Link When Visible
-    Wait Until Screen Contains    ${merits_case_work_link_element}    10
+    Wait Until Screen Contains    ${merits_case_work_link_element}    ${GLOBAL_WAIT_TIMEOUT}
     Click    ${merits_case_work_link_element}
 
 Click Merits Case Search Link When Visible
-    Wait Until Screen Contains    ${merits_case_and_clients_link_element}    10
+    Wait Until Screen Contains    ${merits_case_and_clients_link_element}    ${GLOBAL_WAIT_TIMEOUT}
     Click    ${merits_case_and_clients_link_element}

@@ -1,6 +1,6 @@
 *** Settings ***
 Resource   ../settings.robot
-Resource   ../reusables.robot
+Resource   ../Common.robot
 
 *** Variables ***
 ${choose_role_user_dialogue_title_bar}  ${IMG_PATH}ChooseRoleUserDialogue.png

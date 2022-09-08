@@ -1,6 +1,6 @@
 *** Settings ***
 Resource   ../settings.robot
-Resource   ../reusables.robot
+Resource   ../Common.robot
 
 *** Variables ***
 ${merits_case_work_link_element}  MeritsCaseWorkerLink.PNG
@@ -29,7 +29,7 @@ Back To Case Search
     IF  "${exists}" == "False"
         Log To Console    "We are not on universal search dialogue, going to it now."
         Send  ${universal_search_shortcut}
-        Wait Until Screen Contains    ${navigator_dialgue}    5
+        Wait Until Screen Contains    ${navigator_dialgue}    ${GLOBAL_WAIT_TIMEOUT}
         Send  ${open_search_shortcut}
     END
 

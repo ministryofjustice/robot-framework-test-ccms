@@ -124,12 +124,12 @@ Wait Until Screen Contains With Text
     RETURN  ${result}
 
 Wait Until Dialogue With Text
-    [Arguments]  ${text}  ${timeout}=3  ${strict}=TRUE
+    [Arguments]  ${text}  ${timeout}=${GLOBAL_WAIT_TIMEOUT}  ${strict}=TRUE
 
     Wait Until Screen Contains With Text    ${DIALOGUE_IMAGE}    ${text}  ${timeout}  ${strict}
 
 Input Text Until Appears
-    [Arguments]  ${img}  ${text}  ${timeout}=3
+    [Arguments]  ${img}  ${text}  ${timeout}=${GLOBAL_WAIT_TIMEOUT}
 
     ${result}=  Set Variable  FALSE
     FOR    ${i}    IN RANGE    ${timeout}
