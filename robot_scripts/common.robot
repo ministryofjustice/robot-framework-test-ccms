@@ -93,7 +93,7 @@ If On EBS Forms
     RETURN  ${exists}
 
 Wait Until Screen Contains
-    [Arguments]  ${img}  ${timeout}
+    [Arguments]  ${img}  ${timeout}=${GLOBAL_WAIT_TIMEOUT}
     Wait Until Screen Contain    ${img}    ${timeout}
 
     IF  "${DEBUG}" == "TRUE"
@@ -103,10 +103,10 @@ Wait Until Screen Contains
     END
 
 Wait Until Screen Contains With Text
-    [Arguments]  ${img}  ${text}  ${timeout}=3  ${strict}=TRUE
+    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
 
     ${result}=  Set Variable  FALSE
-    FOR    ${i}    IN RANGE    ${timeout}
+    FOR    ${i}    IN RANGE    ${tries}
         Log   Try ${i}
         TRY
             Image With Text Exists On Screen    ${img}    ${text}  strict=TRUE
@@ -118,21 +118,21 @@ Wait Until Screen Contains With Text
     END
 
     IF  "${strict}" == "TRUE" and "${result}" != "TRUE"
-        Fail   Waited for '${timeout}' tries, but could not find '${img}' with text '${text}'
+        Fail   Waited for '${tries}' tries, but could not find '${img}' with text '${text}'
     END
 
     RETURN  ${result}
 
 Wait Until Dialogue With Text
-    [Arguments]  ${text}  ${timeout}=${GLOBAL_WAIT_TIMEOUT}  ${strict}=TRUE
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
 
-    Wait Until Screen Contains With Text    ${DIALOGUE_IMAGE}    ${text}  ${timeout}  ${strict}
+    Wait Until Screen Contains With Text    ${DIALOGUE_IMAGE}    ${text}  ${tries}  ${strict}
 
 Input Text Until Appears
-    [Arguments]  ${img}  ${text}  ${timeout}=${GLOBAL_WAIT_TIMEOUT}
+    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}
 
     ${result}=  Set Variable  FALSE
-    FOR    ${i}    IN RANGE    ${timeout}
+    FOR    ${i}    IN RANGE    ${tries}
         Log   Try ${i}
         TRY
             IF  "${DEBUG}" == "TRUE"
@@ -149,7 +149,7 @@ Input Text Until Appears
     END
 
     IF  "${result}" != "TRUE"
-        Fail   Waited for '${timeout}' tries, but could not find input '${img}'.
+        Fail   Waited for '${tries}' tries, but could not find input '${img}'.
     END
 
 Input Text Where Label Is
@@ -158,7 +158,7 @@ Input Text Where Label Is
 
     Highlight  ${input_box_image}   1
 
-    ${label_with_input}=  Get Extended Region From Image    ${input_box_image}    left    1
+    ${label_with_input}=  Get Extended Region From Image    ${input_box_image}   left    1
 
     Log To Console    found image regions ${label_with_input}
 
