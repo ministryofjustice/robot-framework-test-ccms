@@ -21,7 +21,7 @@ Ensure EBS Web Screen
     END
 
     Focus Browser
-    Send  ^+r
+    Send Keys  ^+r
 
     ${exists}=  Dashboard.On Dashboard
 
@@ -200,7 +200,16 @@ Window With Title Exists
     RETURN  TRUE
 
 Close EBS Forms
-    Send  ${file_menu_shortcut}${exit_option_shortcut}${ok_button_shortcut}
+    Send Keys  ${file_menu_shortcut}${exit_option_shortcut}${ok_button_shortcut}
 
 Close IE
     Close Application    Internet Explorer
+
+Send Keys
+    [Arguments]  ${keys}  ${raw}=0
+    
+    Log To Console    Sending keys ${keys}
+
+    Sleep  1s
+
+    Send  ${keys}  ${raw}

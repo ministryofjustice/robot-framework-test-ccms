@@ -18,5 +18,5 @@ Choose Group and Role If Presented
     IF  "${exists}" == "True"
         Log To Console    Role group exists, dealing with it.
         Click    ${role_group_input_box}
-        Send     ${role_group}${ok_button_shortcut}
+        Send Keys     ${role_group}${ok_button_shortcut}
     END

@@ -28,18 +28,18 @@ Back To Case Search
 
     IF  "${exists}" == "False"
         Log To Console    "We are not on universal search dialogue, going to it now."
-        Send  ${universal_search_shortcut}
+        Send Keys  ${universal_search_shortcut}
         Wait Until Dialogue With Text    Navigator
-        Send  ${open_search_shortcut}
+        Send Keys  ${open_search_shortcut}
     END
 
 Search Case
     [Arguments]  ${case_reference}
     Wait Until Dialogue With Text    Universal Search
-    Send    ${back_to_search_shortcut}
-    Send    ${clear_button_shortcut}
+    Send Keys   ${back_to_search_shortcut}
+    Send Keys    ${clear_button_shortcut}
     Input Text Until Appears    ${organisation_input_box}    ${case_reference}
-    Send   ${search_button_shortcut}
+    Send Keys   ${search_button_shortcut}
     Wait Until Screen Contains    ${search_results_dialogue}
     Click   ${search_ok_button}
     Wait Until Dialogue With Text   eBusiness Center

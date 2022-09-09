@@ -21,9 +21,9 @@ Login
 
 Open Browser
     Auto It Set Option   WinTitleMatchMode   2
-    Send    \#r
+    Send Keys    \#r
     Win Wait   Run
-    Send    "${ie_path}" "${base_url}"{ENTER}
+    Send Keys    "${ie_path}" "${base_url}"{ENTER}
     Wait For Active Window    Internet Explorer
 
     Wait Until Screen Contains    ${login_screen}    ${GLOBAL_WAIT_TIMEOUT}
@@ -33,6 +33,6 @@ Navigate To Login
 
 Enter Credentials And Login
     [Arguments]  ${login_username}  ${login_password}
-    Send    ${login_username}{TAB}${login_password}{ENTER}
+    Send Keys    ${login_username}{TAB}${login_password}{ENTER}
     Win Exists  Oracle Applications Home Page
     Wait Until Screen Contain    ${logged_in_screen}    timeout=${GLOBAL_LONG_WAIT_TIMEOUT}
