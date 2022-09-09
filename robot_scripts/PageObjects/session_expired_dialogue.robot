@@ -9,7 +9,7 @@ ${dialogue}    ${IMG_PATH}
 *** Keywords ***
 Re Login
     [Documentation]  Not tested
-    Click  ${ok_button}
+    Click On  ${ok_button}
     Login.Login   ${login_username}  ${login_password}
 
 Dialogue Exists
