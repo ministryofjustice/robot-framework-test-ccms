@@ -10,6 +10,7 @@ ${DIALOGUE_IMAGE}  ${IMG_PATH}ChooseRoleUserDialogue.png
 ${DEBUG}        FALSE
 ${input_box_image}  ${IMG_PATH}GenericInputBox.png
 ${GLOBAL_WAIT_TIMEOUT}  10
+${GLOBAL_LONG_WAIT_TIMEOUT}  30
 ${GLOBAL_RETRY_TIME}  3
 
 *** Keywords ***

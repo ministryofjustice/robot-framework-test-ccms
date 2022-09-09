@@ -35,4 +35,4 @@ Enter Credentials And Login
     [Arguments]  ${login_username}  ${login_password}
     Send    ${login_username}{TAB}${login_password}{ENTER}
     Win Exists  Oracle Applications Home Page
-    Wait Until Screen Contain    ${logged_in_screen}    timeout=30
+    Wait Until Screen Contain    ${logged_in_screen}    timeout=${GLOBAL_LONG_WAIT_TIMEOUT}
