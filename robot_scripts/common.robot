@@ -4,6 +4,11 @@ Resource   PageObjects/login.robot
 Resource    PageObjects/dashboard.robot
 Library    String
 
+*** Variables ***
+${file_menu_shortcut}   !f
+${exit_option_shortcut}   x
+${ok_button_shortcut}   !o
+
 *** Keywords ***
 Ensure EBS Web Screen
     [Arguments]  ${login_username}  ${login_password}
@@ -15,8 +20,16 @@ Ensure EBS Web Screen
         Login.Login    ${login_username}    ${login_password}
     END
 
-    Win Activate  Oracle
-    Send  ^+r
+    Focus Browser
+    Send Keys  ^+r
+
+    ${exists}=  Dashboard.On Dashboard
+
+    # We may be logged out now...
+    IF  "${exists}" == "False" 
+        Fail  "Expected to be on dashboard, but not."
+    END
+
     sleep  1s
 
 Ensure EBS Forms Screen
@@ -28,16 +41,18 @@ Ensure EBS Forms Screen
     
     IF  ${exists} == 0
         Log To Console    "EBS forms not open, starting up from beginning."
-        Close IE
-        Login.Login    ${login_username}    ${login_password}
+        Ensure EBS Web Screen    ${login_username}    ${login_password}
         Dashboard.Start EBS merits
     END
 
-    Win Activate  Oracle Applications - UAT
+    Focus EBS Forms
     sleep  1s
 
-Close IE
-    Close Application    Internet Explorer
+Focus EBS Forms
+    Win Activate  Oracle Applications - UAT
+
+Focus Browser
+    Win Activate  Oracle
 
 Image With Text Exists On Screen
     [Arguments]  ${img}  ${text}  ${expect_unique}=FALSE  ${strict}=FALSE
@@ -93,7 +108,8 @@ If On EBS Forms
     RETURN  ${exists}
 
 Wait Until Screen Contains
-    [Arguments]  ${img}  ${timeout}
+    [Documentation]  Use in favour of Wait Until Screen Contain so Debug can be used.
+    [Arguments]  ${img}  ${timeout}=${GLOBAL_WAIT_TIMEOUT}
     Wait Until Screen Contain    ${img}    ${timeout}
 
     IF  "${DEBUG}" == "TRUE"
@@ -103,10 +119,10 @@ Wait Until Screen Contains
     END
 
 Wait Until Screen Contains With Text
-    [Arguments]  ${img}  ${text}  ${timeout}=3  ${strict}=TRUE
+    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
 
     ${result}=  Set Variable  FALSE
-    FOR    ${i}    IN RANGE    ${timeout}
+    FOR    ${i}    IN RANGE    ${tries}
         Log   Try ${i}
         TRY
             Image With Text Exists On Screen    ${img}    ${text}  strict=TRUE
@@ -118,21 +134,21 @@ Wait Until Screen Contains With Text
     END
 
     IF  "${strict}" == "TRUE" and "${result}" != "TRUE"
-        Fail   Waited for '${timeout}' tries, but could not find '${img}' with text '${text}'
+        Fail   Waited for '${tries}' tries, but could not find '${img}' with text '${text}'
     END
 
     RETURN  ${result}
 
 Wait Until Dialogue With Text
-    [Arguments]  ${text}  ${timeout}=3  ${strict}=TRUE
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
 
-    Wait Until Screen Contains With Text    ${DIALOGUE_IMAGE}    ${text}  ${timeout}  ${strict}
+    Wait Until Screen Contains With Text    ${DIALOGUE_IMAGE}    ${text}  ${tries}  ${strict}
 
 Input Text Until Appears
-    [Arguments]  ${img}  ${text}  ${timeout}=3
+    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}
 
     ${result}=  Set Variable  FALSE
-    FOR    ${i}    IN RANGE    ${timeout}
+    FOR    ${i}    IN RANGE    ${tries}
         Log   Try ${i}
         TRY
             IF  "${DEBUG}" == "TRUE"
@@ -149,7 +165,7 @@ Input Text Until Appears
     END
 
     IF  "${result}" != "TRUE"
-        Fail   Waited for '${timeout}' tries, but could not find input '${img}'.
+        Fail   Waited for '${tries}' tries, but could not find input '${img}'.
     END
 
 Input Text Where Label Is
@@ -158,7 +174,7 @@ Input Text Where Label Is
 
     Highlight  ${input_box_image}   1
 
-    ${label_with_input}=  Get Extended Region From Image    ${input_box_image}    left    1
+    ${label_with_input}=  Get Extended Region From Image    ${input_box_image}   left    1
 
     Log To Console    found image regions ${label_with_input}
 
@@ -169,3 +185,31 @@ Input Text Where Label Is
     IF  "${matching_text}" == "${text}"
         Input Text    ${label_with_input}   ${text}
     END
+
+Window With Title Exists
+    [Documentation]  Returns True or False.
+    [Arguments]  ${title}
+    ${exists}=  Win Exists  ${title}
+
+    Log To Console    Value for win exists ${title} is ${exists}
+
+    IF  "${exists}" == "0"
+        RETURN  FALSE
+    END
+
+    RETURN  TRUE
+
+Close EBS Forms
+    Send Keys  ${file_menu_shortcut}${exit_option_shortcut}${ok_button_shortcut}
+
+Close IE
+    Close Application    Internet Explorer
+
+Send Keys
+    [Arguments]  ${keys}  ${raw}=0
+    
+    Log To Console    Sending keys ${keys}
+
+    Sleep  1s
+
+    Send  ${keys}  ${raw}

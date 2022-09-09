@@ -1,6 +1,6 @@
 *** Settings ***
 Resource   ../settings.robot
-Resource   ../reusables.robot
+Resource   ../Common.robot
 
 *** Variables ***
 ${merits_case_work_link_element}  MeritsCaseWorkerLink.PNG
@@ -16,7 +16,7 @@ ${navigator_dialgue}  NavigatorDialogue.png
 ${ok_button_shortcut}   !k
 ${clear_button_shortcut}  !c
 ${search_button_shortcut}  !s
-${open_search_shortcut}   c
+${open_search_shortcut}   {UP}{UP}{DOWN}{ENTER}
 ${back_to_search_shortcut}  !n
 ${universal_search_shortcut}  !w1
 
@@ -28,18 +28,19 @@ Back To Case Search
 
     IF  "${exists}" == "False"
         Log To Console    "We are not on universal search dialogue, going to it now."
-        Send  ${universal_search_shortcut}
-        Wait Until Screen Contains    ${navigator_dialgue}    5
-        Send  ${open_search_shortcut}
+        Send Keys  ${universal_search_shortcut}
+        Wait Until Dialogue With Text    Navigator
+        Send Keys  ${open_search_shortcut}
     END
 
 Search Case
     [Arguments]  ${case_reference}
-    Send    ${back_to_search_shortcut}
-    Send    ${clear_button_shortcut}
+    Wait Until Dialogue With Text    Universal Search
+    Send Keys   ${back_to_search_shortcut}
+    Send Keys    ${clear_button_shortcut}
     Input Text Until Appears    ${organisation_input_box}    ${case_reference}
-    Send   ${search_button_shortcut}
-    Wait Until Screen Contains    ${search_results_dialogue}   timeout=10
+    Send Keys   ${search_button_shortcut}
+    Wait Until Screen Contains    ${search_results_dialogue}
     Click   ${search_ok_button}
     Wait Until Dialogue With Text   eBusiness Center
 

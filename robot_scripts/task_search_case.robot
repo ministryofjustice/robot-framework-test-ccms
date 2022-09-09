@@ -1,7 +1,7 @@
 *** Settings ***
 Library             Dialogs
 Resource            settings.robot
-Resource            reusables.robot
+Resource            Common.robot
 Resource            PageObjects/group_and_role.robot
 Resource            PageObjects/universal_search.robot
 Resource            PageObjects/case_details.robot
@@ -16,10 +16,10 @@ Search For Case
 
     ${case_reference}=    Get Value From User    Case reference number
 
-    Ensure EBS Forms Screen    ${login_username}    ${login_password}
-    Group_And_Role.Choose Group and Role If Presented
+    Common.Ensure EBS Forms Screen    ${login_username}    ${login_password}
+    Group_And_Role.Choose Group and Role If Presented   role_group=General Administration
     Universal_Search.Back To Case Search
 
     Universal_Search.Search Case    ${case_reference}
-    Group_And_Role.Choose Group and Role If Presented
+    Group_And_Role.Choose Group and Role If Presented   role_group=General Administration
     Case_Details.Refresh Case

@@ -8,10 +8,12 @@ ${dialogue}    ${IMG_PATH}
 
 *** Keywords ***
 Re Login
+    [Documentation]  Not tested
     Click  ${ok_button}
     Login.Login   ${login_username}  ${login_password}
 
 Dialogue Exists
+    [Documentation]  Not tested
     Exists    ${dialogue}
 
     RETURN   False
