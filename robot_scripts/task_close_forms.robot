@@ -1,8 +1,13 @@
 *** Settings ***
 Resource  Common.robot
 
-*** Test Cases ***
-Close
+*** Tasks ***
+Close Forms
     Common.Focus EBS Forms
     Common.Close EBS Forms
     Common.Focus Browser
+
+Close IE
+    Common.Focus Browser
+    Dashboard.Logout
+    Common.Close IE

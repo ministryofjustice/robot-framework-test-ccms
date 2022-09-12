@@ -1,6 +1,7 @@
 *** Settings ***
 Resource   ../settings.robot
 Resource   ../Common.robot
+Library    Dialogs
 
 *** Variables ***
 ${merits_case_work_link_element}  MeritsCaseWorkerLink.PNG
@@ -19,6 +20,7 @@ ${search_button_shortcut}  !s
 ${open_search_shortcut}   {UP}{UP}{DOWN}{ENTER}
 ${back_to_search_shortcut}  !n
 ${universal_search_shortcut}  !w1
+${case_reference}
 
 *** Keywords ***
 Back To Case Search
@@ -42,7 +44,6 @@ Search Case
     Send Keys   ${search_button_shortcut}
     Wait Until Screen Contains    ${search_results_dialogue}
     Click On  ${search_ok_button}
-    Wait Until Dialogue With Text   eBusiness Center
 
 If On Universal Search
     [Documentation]  returns True or False
@@ -50,3 +51,10 @@ If On Universal Search
     ${exists}=  Image With Text Exists On Screen    ${dialogue_title_bar}    Universal Search
 
     RETURN  ${exists}
+
+Get Case Reference
+    IF  "${case_reference}" == ""
+        ${case_reference}=    Get Value From User    Case reference number
+    END
+
+    RETURN  ${case_reference}

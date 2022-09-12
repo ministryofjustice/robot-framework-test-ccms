@@ -1,9 +1,10 @@
 *** Settings ***
 Resource   settings.robot
 Resource   PageObjects/login.robot
-Resource    PageObjects/dashboard.robot
+Resource   PageObjects/dashboard.robot
 Library    String
 Library    Screenshot
+Library    ./Support/Speaker.py
 
 *** Variables ***
 ${file_menu_shortcut}   !f
@@ -58,11 +59,11 @@ Image With Text Exists On Screen
     [Arguments]  ${img}  ${text}  ${expect_unique}=FALSE  ${strict}=FALSE
 
     ${foundText}=  Get Text From Image Matching    ${img}
-#    ${foundText}=  Replace String   ${foundText}    ${\n}
     ${foundText}=  Encode String To Bytes    ${foundText}    ASCII  errors=replace
+
     IF  """${foundText}""" == "False"
         ${Screenshot}=  Take Screenshot
-        Fail  No text Found Inside Image ${img} ${Screenshot}
+        Fail  No text Found Inside Image ${img}, screenshot: ${Screenshot}
     END
     ${result}=  Set Variable  False
 
@@ -238,3 +239,13 @@ Click On
     Log To Console    Clicking on ${img}
 
     Click    ${img}
+
+Fail With Voice
+    [Arguments]  ${msg}  ${voiceMsg}=
+
+    IF  "${voiceMsg}" == ""
+        ${voiceMsg}     Set Variable  ${msg}
+    END
+
+    Say  ${voiceMsg}
+    Fail  ${msg}

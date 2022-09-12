@@ -18,6 +18,7 @@ Use pip to install the following Python packages:
 ```
 pip install --user robotframework
 pip install --user robotframework-SikuliLibrary
+pip install --user pyttsx3
 ```
 
 As administrator
@@ -40,12 +41,12 @@ Running a script
 If the robot executable is included in your path, run as follows:
 
 ```
-robot <script_path>
+robot --task search_for_case robot_scripts
 ```
 Otherwise can use the below:
 
 ```
-python -m robot <script_path>
+python -m robot --task search_for_case robot_scripts
 ```
 
 

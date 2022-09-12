@@ -26,7 +26,7 @@ Open Browser
     Send Keys    "${ie_path}" "${base_url}"{ENTER}
     Wait For Active Window    Internet Explorer
 
-    Wait Until Screen Contains    ${login_screen}    ${GLOBAL_WAIT_TIMEOUT}
+    Wait Until Screen Contains    ${login_screen}    ${GLOBAL_LONG_WAIT_TIMEOUT}
 
 Navigate To Login
     Win Exists    Login
