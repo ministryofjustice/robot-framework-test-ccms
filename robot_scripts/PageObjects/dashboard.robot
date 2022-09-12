@@ -1,5 +1,4 @@
 *** Settings ***
-Resource   ../settings.robot
 Resource   ../Common.robot
 Resource    session_expired_dialogue.robot
 
@@ -9,6 +8,8 @@ ${merits_case_and_clients_link_element}  ${IMG_PATH}MeritsCasesAndClientsLink.pn
 ${return_to_search_button}  ${IMG_PATH}ReturnToSearchButton.png
 ${clear_form_values_button}  ${IMG_PATH}ClearButton.png
 ${dashboard_image}  ${IMG_PATH}EBSWebLoggedInScreen.png
+${logout_image}   ${IMG_PATH}Logout.png
+${expanded_menu_item}  ${IMG_PATH}ExpandedMenuItem.png
 
 *** Keywords ***
 On Dashboard
@@ -27,6 +28,7 @@ Start EBS merits
         Log To Console    "EBS forms are not open, opening now."
         Ensure EBS Web Screen    ${login_username}    ${login_password}
 
+        Send Keys  ^+r
         Click Merits Link When Visible
         Click Merits Case Search Link When Visible
     END
@@ -37,8 +39,18 @@ Start EBS merits
 
 Click Merits Link When Visible
     Wait Until Screen Contains    ${merits_case_work_link_element}    ${GLOBAL_WAIT_TIMEOUT}
-    Click    ${merits_case_work_link_element}
+
+    ${exists}=  Exists    ${expanded_menu_item}
+
+    IF  "${exists}" == "True"
+        Common.Click On   ${merits_case_work_link_element}
+    END
+
+    Common.Click On   ${merits_case_work_link_element}
 
 Click Merits Case Search Link When Visible
     Wait Until Screen Contains    ${merits_case_and_clients_link_element}    ${GLOBAL_WAIT_TIMEOUT}
-    Click    ${merits_case_and_clients_link_element}
+    Common.Click On    ${merits_case_and_clients_link_element}
+
+Logout
+    Common.Click On    ${logout_image}

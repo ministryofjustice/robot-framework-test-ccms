@@ -41,7 +41,7 @@ Search Case
     Input Text Until Appears    ${organisation_input_box}    ${case_reference}
     Send Keys   ${search_button_shortcut}
     Wait Until Screen Contains    ${search_results_dialogue}
-    Click   ${search_ok_button}
+    Click On  ${search_ok_button}
     Wait Until Dialogue With Text   eBusiness Center
 
 If On Universal Search
