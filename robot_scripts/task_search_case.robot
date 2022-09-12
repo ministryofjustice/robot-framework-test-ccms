@@ -1,6 +1,5 @@
 *** Settings ***
 Library             Dialogs
-# Library             ./Support/StringCleanse.py
 Resource            settings.robot
 Resource            Common.robot
 Resource            PageObjects/group_and_role.robot
