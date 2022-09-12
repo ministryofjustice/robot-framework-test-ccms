@@ -4,6 +4,6 @@ Resource    Common.robot
 Suite Setup       Start Sikuli Process
 Suite Teardown     Stop Remote Server
 
-*** Test Cases ***
+*** Tasks ***
 Run Login
     Login    ${login_username}    ${login_password}
