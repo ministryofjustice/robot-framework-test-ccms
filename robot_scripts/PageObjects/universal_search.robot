@@ -1,6 +1,6 @@
 *** Settings ***
-Resource   ../settings.robot
 Resource   ../Common.robot
+Resource    Navigator.robot
 Library    Dialogs
 
 *** Variables ***
@@ -17,9 +17,7 @@ ${navigator_dialgue}  NavigatorDialogue.png
 ${ok_button_shortcut}   !k
 ${clear_button_shortcut}  !c
 ${search_button_shortcut}  !s
-${open_search_shortcut}   {UP}{UP}{DOWN}{ENTER}
 ${back_to_search_shortcut}  !n
-${universal_search_shortcut}  !w1
 ${case_reference}
 
 *** Keywords ***
@@ -30,10 +28,8 @@ Back To Case Search
 
     IF  "${exists}" == "False"
         Log To Console    "We are not on universal search dialogue, going to it now."
-        Send Keys  ${universal_search_shortcut}
-        # Wait Until Navigator Window With Title Appears    Navigator
-        Sleep  2
-        Send Keys  ${open_search_shortcut}
+        Back To Navigator
+        Open Universal Search
     END
 
 Search Case
@@ -49,7 +45,7 @@ Search Case
 If On Universal Search
     [Documentation]  returns True or False
     
-    ${exists}=  Image With Text Exists On Screen    ${dialogue_title_bar}    Universal Search
+    ${exists}=  Wait Until Window With Title Appears   Universal Search
 
     RETURN  ${exists}
 

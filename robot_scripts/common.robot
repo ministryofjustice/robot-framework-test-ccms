@@ -2,7 +2,9 @@
 Resource   settings.robot
 Resource   PageObjects/login.robot
 Resource   PageObjects/dashboard.robot
+Resource    PageObjects/group_and_role.robot
 Library    String
+Library    ./Support/StringUtils.py
 Library    Screenshot
 Library    ./Support/Speaker.py
 
@@ -83,7 +85,11 @@ Image With Text Exists On Screen
         END
     END
 
-    IF  '''${foundText}'''.find("${text}") != -1
+    ${contains}=  String Contains  ${foundText}  ${text}
+
+    Log To Console    CONTAINS RESULT: ${contains}
+
+    IF  ${contains}
         LogV               Yes we have found the text in the image ${text}
         ${result}=  Set Variable  True
     ELSE IF  "${strict}" == "TRUE"
@@ -258,4 +264,17 @@ LogV
         IF  "${DEBUG}" == "TRUE"
             Say  ${text}
         END
+    END
+
+Deal With Popups
+    [Arguments]  ${foundTitle}
+
+    # For Group And Role.
+
+    ${title}=   group_and_role.Dialogue Title
+    ${contains}=  String Contains  ${foundTitle}  ${title}
+    Log To Console    Checking if we're at popup: ${title} ${foundTitle}, contains: ${contains}
+
+    IF  ${contains}
+        group_and_role.Fill And Submit  General Administration
     END
