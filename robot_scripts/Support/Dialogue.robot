@@ -27,7 +27,7 @@ Find Dialogue With Title
         EXCEPT  AS    ${error_message}
             LogV  ${error_message}  False
             ${foundText}=   Get Text From Image Matching    ${img}
-            Deal With Popups    ${foundText}
+            On Dialogue Title Search Fail    ${foundText}
         END
 
         Sleep  ${GLOBAL_RETRY_WAIT_INTERVAL}

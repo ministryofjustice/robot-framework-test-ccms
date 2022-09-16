@@ -265,16 +265,3 @@ LogV
             Say  ${text}
         END
     END
-
-Deal With Popups
-    [Arguments]  ${foundTitle}
-
-    # For Group And Role.
-
-    ${title}=   group_and_role.Dialogue Title
-    ${contains}=  String Contains  ${foundTitle}  ${title}
-    Log To Console    Checking if we're at popup: ${title} ${foundTitle}, contains: ${contains}
-
-    IF  ${contains}
-        group_and_role.Fill And Submit  General Administration
-    END
