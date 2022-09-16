@@ -1,5 +1,5 @@
 *** Settings ***
-Resource  Common.robot
+Resource  ../Common.robot
 
 *** Tasks ***
 Close Forms
@@ -8,6 +8,4 @@ Close Forms
     Common.Focus Browser
 
 Close IE
-    Common.Focus Browser
-    Dashboard.Logout
     Common.Close IE

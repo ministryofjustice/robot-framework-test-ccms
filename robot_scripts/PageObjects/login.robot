@@ -19,6 +19,8 @@ Login
     Navigate To Login
     Enter Credentials And Login  ${login_username}  ${login_password}
 
+    Wait Until Screen Contains    ${logged_in_screen}   ${GLOBAL_LONG_WAIT_TIMEOUT}
+
 Open Browser
     Auto It Set Option   WinTitleMatchMode   2
     Send Keys    \#r

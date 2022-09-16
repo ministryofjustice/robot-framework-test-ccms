@@ -31,13 +31,14 @@ Back To Case Search
     IF  "${exists}" == "False"
         Log To Console    "We are not on universal search dialogue, going to it now."
         Send Keys  ${universal_search_shortcut}
-        Wait Until Dialogue With Text    Navigator
+        # Wait Until Navigator Window With Title Appears    Navigator
+        Sleep  2
         Send Keys  ${open_search_shortcut}
     END
 
 Search Case
     [Arguments]  ${case_reference}
-    Wait Until Dialogue With Text    Universal Search
+    Wait Until Window With Title Appears    Universal Search
     Send Keys   ${back_to_search_shortcut}
     Send Keys    ${clear_button_shortcut}
     Input Text Until Appears    ${organisation_input_box}    ${case_reference}
@@ -54,6 +55,7 @@ If On Universal Search
 
 Get Case Reference
     IF  "${case_reference}" == ""
+        Speaker.Say    Please enter case reference number
         ${case_reference}=    Get Value From User    Case reference number
     END
 

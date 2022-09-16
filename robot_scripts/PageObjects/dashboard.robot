@@ -1,6 +1,7 @@
 *** Settings ***
 Resource   ../Common.robot
 Resource    session_expired_dialogue.robot
+Resource    ../Support/Dialogue.robot
 
 *** Variables ***
 ${merits_case_work_link_element}  ${IMG_PATH}MeritsCaseWorkerLink.PNG
@@ -10,6 +11,11 @@ ${clear_form_values_button}  ${IMG_PATH}ClearButton.png
 ${dashboard_image}  ${IMG_PATH}EBSWebLoggedInScreen.png
 ${logout_image}   ${IMG_PATH}Logout.png
 ${expanded_menu_item}  ${IMG_PATH}ExpandedMenuItem.png
+${menu_item_ccms_batch_user}  ${IMG_PATH}MenuItemCcmsBatchUser.png
+${menu_item_rquests}  ${IMG_PATH}MenuItemRequests.png
+${region_requests_menu_items}  ${IMG_PATH}RegionRequestsMenuItems.png
+${menu_item_requests}  ${IMG_PATH}MenuItemRequests.png
+${menu_item_run}  ${IMG_PATH}MenuItemRun.png
 
 *** Keywords ***
 On Dashboard
@@ -54,3 +60,11 @@ Click Merits Case Search Link When Visible
 
 Logout
     Common.Click On    ${logout_image}
+
+Open Batch Runner
+    Wait Until Screen Contains    ${menu_item_ccms_batch_user}
+    Click On    ${menu_item_ccms_batch_user}
+    Click On    ${menu_item_requests}
+    Click In    ${region_requests_menu_items}    ${menu_item_requests}
+    Click On    ${menu_item_run}
+    Wait Until Window With Title Appears    Submit a New Request  tries=10

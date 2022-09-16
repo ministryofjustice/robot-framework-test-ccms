@@ -1,6 +1,5 @@
 *** Settings ***
-Resource    settings.robot
-Resource    Common.robot
+Resource    ../Common.robot
 Suite Setup       Start Sikuli Process
 Suite Teardown     Stop Remote Server
 
