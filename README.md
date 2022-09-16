@@ -36,6 +36,23 @@ ${login_username}  TEST_USER1
 ${login_password}  abc123
 ```
 
+### Cypress Setup (for case creation in Apply)
+Download and install install **npm** (and nodejs too?)
+
+Install Cypress in the project top directory by running the below. Note `npm init` will ask several questions. Can respond with default or blank answers.
+
+```
+npm init
+npm install cypress --save-dev
+```
+
+Update the `robot_scripts/secrets.robot` file (already created above) and add username and password values for the Apply application.
+
+```
+${apply_login_username}  APPLY_USER1
+${apply_login_password}  abc123
+```
+
 Running a script
 ====
 If the robot executable is included in your path, run as follows:
