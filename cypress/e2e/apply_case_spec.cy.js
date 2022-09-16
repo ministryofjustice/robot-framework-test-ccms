@@ -1,4 +1,4 @@
-describe('Doing a thing in Apply', () => {
+describe('Cypress Apply Script', () => {
 
 	it('Make a case in Apply to use in CCMS', () => {
 
@@ -55,6 +55,7 @@ describe('Doing a thing in Apply', () => {
 		///	cy.get('input').click()
 		///})
 		// Alternative quick bodge
+		cy.wait(1000);
 		cy.get('#id-da004-field').click()
 		cy.get('#continue').click();
 

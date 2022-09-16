@@ -21,16 +21,20 @@ Cypress runner
     # Other things to note:
     # The cwd=..\\ is important because Cypress has trouble with spec paths if invoked from robot_scripts dir
     # The shell=True needed for paths to work (seems to be a Windows thing)
-    ${result} =    Run Process  ${cypress_executable_path} run --config-file ${cypress_config_file} --spec ${cypress_script_path}  cwd=..\\  stderr=STDOUT  stdout=PIPE  shell=True  output_encoding=UTF-8
+    # Using '--browser chrome' cypress option because Apply script fails with default cypress electron headless browser
+    ${result} =    Run Process  ${cypress_executable_path} run --config-file ${cypress_config_file} --spec ${cypress_script_path} --browser chrome  cwd=..\\  stderr=STDOUT  stdout=PIPE  shell=True  output_encoding=UTF-8
     [return]    ${result}
 
 
 *** Tasks ***
-Cypress simple 
+
+Cypress Appply Case Submission 
     # Cypress runner working directory is root directory of project, 
     # so cypress script path relative to that
-    ${response} =  Cypress runner  quick_spec.cy.js
-    Log To Console    ${response.stdout}
+    Log To Console  \nNote nothing displayed for a while - cypress output only shows upon completion
+    ${response} =  Cypress runner  cypress\\e2e\\apply_case_spec.cy.js
+    #${response} =  Cypress runner  cypress\\e2e\\quick_spec.cy.js
     
+    Log To Console    ${response.stdout}
 
 
