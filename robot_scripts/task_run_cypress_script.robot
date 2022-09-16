@@ -1,6 +1,6 @@
 *** Settings ***
-Library  Process
-Resource   secrets.robot
+Library     Process
+Library    ./Support/case_reference_locator.py
 
 *** Variables ***
 # Note the two Cypress paths are relative to the project
@@ -8,7 +8,7 @@ Resource   secrets.robot
 # from robot scripts dir (even with correct paths specified)
 ${cypress_executable_path}    node_modules\\.bin\\cypress
 ${cypress_config_file}  cypress.config.js
-# Note ${apply_username} and ${apply_password} are imported from secrets.robot
+
 
 *** Keywords ***
 Cypress runner
@@ -33,8 +33,13 @@ Cypress Appply Case Submission
     # so cypress script path relative to that
     Log To Console  \nNote nothing displayed for a while - cypress output only shows upon completion
     ${response} =  Cypress runner  cypress\\e2e\\apply_case_spec.cy.js
-    #${response} =  Cypress runner  cypress\\e2e\\quick_spec.cy.js
-    
+    ##${response} =  Cypress runner  cypress\\e2e\\quick_spec.cy.js
+    # Full cypress output
     Log To Console    ${response.stdout}
-
+    # Using custom Python fuction to extract the case reference from the chunk of text returned by cypress
+    ${apply_reference} =  case_reference_locator.extract_reference_number  ${response.stdout}  LAA Reference
+    ${ccms_case_reference} =  case_reference_locator.extract_reference_number  ${response.stdout}
+    Log To Console  \nNew Apply Reference: ${apply_reference}
+    Log To Console  \nNew Case Reference: ${ccms_case_reference}\n 
+    
 

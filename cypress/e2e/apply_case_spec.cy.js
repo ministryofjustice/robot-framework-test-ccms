@@ -169,12 +169,20 @@ describe('Cypress Apply Script', () => {
 		  const text = $el.text();
 		  cy.log("LAA Reference");
 		  cy.log(text);
+		  // Below depends on 'log' task defined in cypress.config.js
+		  // Unlike cy.log, it writes to the actual terminal
+		  cy.task('log', 'LAA Reference');
+		  cy.task('log', text);
 		});
 		const description_list_item2 = cy.get('dl dd').eq(2);
 		description_list_item2.then(($el) => {
 		  const text = $el.text();
 		  cy.log("CCMS Reference");
 		  cy.log(text);
+		  // Below depends on 'log' task defined in cypress.config.js
+		  // Unlike cy.log, it writes to the actual terminal
+		  cy.task('log', 'CCMS Reference');
+		  cy.task('log', text);
 		});
 
 	})
