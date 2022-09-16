@@ -1,4 +1,5 @@
 import pyttsx3
+from robot.libraries.BuiltIn import BuiltIn
 
 class Speaker:
     def say(self, text):
@@ -17,3 +18,11 @@ class Speaker:
         narrator.runAndWait()
 
         narrator.stop()
+
+    def say_if_human(self, text):
+        """ Works out if task is being executed by human or machine based on the setting EXECUTION_MODE."""
+
+        mode = BuiltIn().get_variable_value("${EXECUTION_MODE}")
+
+        if (mode == 'Human'):
+            self.say(text)

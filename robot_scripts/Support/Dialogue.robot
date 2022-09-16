@@ -1,0 +1,58 @@
+*** Settings ***
+Resource  ../Common.robot
+
+*** Keywords ***
+Press Dialogue OK
+    Send Keys    !o
+
+Press Dialogue Cancel
+    Send Keys    !c
+
+Press Dialogue Yes
+    Send Keys    !y
+
+Press Dialogue No
+    Send Keys    !n
+
+Find Dialogue With Title
+    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+    
+    ${result}=  Set Variable  FALSE
+    FOR    ${i}    IN RANGE    ${tries}
+        LogV   Try ${i}
+        TRY
+            Image With Text Exists On Screen    ${img}    ${text}  strict=TRUE
+            ${result}=  Set Variable  TRUE
+            Exit For Loop
+        EXCEPT  AS    ${error_message}
+            LogV  ${error_message}  False
+            ${foundText}=   Get Text From Image Matching    ${img}
+            On Dialogue Title Search Fail    ${foundText}
+        END
+
+        Sleep  ${GLOBAL_RETRY_WAIT_INTERVAL}
+    END
+
+    IF  "${strict}" == "TRUE" and "${result}" != "TRUE"
+        Fail   Waited for '${tries}' tries, but could not find '${img}' with text '${text}'
+    END
+
+    RETURN  ${result}
+
+Wait Until Navigator Window With Title Appears
+    [Documentation]  Expects the window to have the navigator icon.
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+
+    Find Dialogue With Title    ${NAVIGATOR_TITLE_IMAGE}    ${text}  ${tries}  ${strict}
+
+Wait Until Window With Title Appears
+    [Documentation]  Expects the window to have the red oracle icon.
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+
+    Find Dialogue With Title    ${WINDOW_TITLE_IMAGE}    ${text}  ${tries}  ${strict}
+
+Wait Until Dialogue With Title Appears
+    [Documentation]  Expects the window to have no icon but close button on the right.
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+
+    Find Dialogue With Title    ${DIALOGUE_TITLE_IMAGE}    ${text}  ${tries}  ${strict}

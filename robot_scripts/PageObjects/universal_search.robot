@@ -1,6 +1,6 @@
 *** Settings ***
-Resource   ../settings.robot
 Resource   ../Common.robot
+Resource    Navigator.robot
 Library    Dialogs
 
 *** Variables ***
@@ -17,9 +17,7 @@ ${navigator_dialgue}  NavigatorDialogue.png
 ${ok_button_shortcut}   !k
 ${clear_button_shortcut}  !c
 ${search_button_shortcut}  !s
-${open_search_shortcut}   {UP}{UP}{DOWN}{ENTER}
 ${back_to_search_shortcut}  !n
-${universal_search_shortcut}  !w1
 ${case_reference}
 
 *** Keywords ***
@@ -30,14 +28,13 @@ Back To Case Search
 
     IF  "${exists}" == "False"
         Log To Console    "We are not on universal search dialogue, going to it now."
-        Send Keys  ${universal_search_shortcut}
-        Wait Until Dialogue With Text    Navigator
-        Send Keys  ${open_search_shortcut}
+        Back To Navigator
+        Open Universal Search
     END
 
 Search Case
     [Arguments]  ${case_reference}
-    Wait Until Dialogue With Text    Universal Search
+    Wait Until Window With Title Appears    Universal Search
     Send Keys   ${back_to_search_shortcut}
     Send Keys    ${clear_button_shortcut}
     Input Text Until Appears    ${organisation_input_box}    ${case_reference}
@@ -48,12 +45,13 @@ Search Case
 If On Universal Search
     [Documentation]  returns True or False
     
-    ${exists}=  Image With Text Exists On Screen    ${dialogue_title_bar}    Universal Search
+    ${exists}=  Wait Until Window With Title Appears   Universal Search
 
     RETURN  ${exists}
 
 Get Case Reference
     IF  "${case_reference}" == ""
+        Speaker.Say    Please enter case reference number
         ${case_reference}=    Get Value From User    Case reference number
     END
 
