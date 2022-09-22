@@ -10,6 +10,7 @@ ${IMG_PATH}     ${CURDIR}\\Images\\
 ${DIALOGUE_TITLE_IMAGE}  ${IMG_PATH}DialogueTitleBar.png
 ${NAVIGATOR_TITLE_IMAGE}  ${IMG_PATH}NavigatorTitle.png
 ${WINDOW_TITLE_IMAGE}  ${IMG_PATH}WindowTitleBar.png
+${DECISION_TITLE_IMAGE}  ${IMG_PATH}DecisionTitleBar.png
 ${DEBUG}        False
 ${DEBUG_HIGHLIGHT_TIME}  1
 ${input_box_image}  ${IMG_PATH}GenericInputBox.png

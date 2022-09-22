@@ -56,3 +56,9 @@ Wait Until Dialogue With Title Appears
     [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
 
     Find Dialogue With Title    ${DIALOGUE_TITLE_IMAGE}    ${text}  ${tries}  ${strict}
+
+Wait Until Decision Dialogue Appears
+    [Documentation]  Expects the window to have no icon but close button on the right.
+    [Arguments]  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+
+    Find Dialogue With Title    ${DECISION_TITLE_IMAGE}    Decision  ${tries}  ${strict}

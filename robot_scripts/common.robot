@@ -7,6 +7,7 @@ Library    String
 Library    ./Support/StringUtils.py
 Library    Screenshot
 Library    ./Support/Speaker.py
+Library    Dialogs
 
 *** Variables ***
 ${file_menu_shortcut}   !f
@@ -265,3 +266,13 @@ LogV
             Say  ${text}
         END
     END
+
+Get User Input If Not Exists
+    [Arguments]  ${input}  ${input_name}
+
+    IF  "${input}" == ""
+        Speaker.Say    Please enter ${input_name}
+        ${input}=    Get Value From User    ${input_name}
+    END
+
+    RETURN  ${input}
