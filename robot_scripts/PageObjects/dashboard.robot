@@ -52,8 +52,6 @@ Click Merits Link When Visible
         Common.Click On   ${merits_case_work_link_element}
     END
 
-    Common.Click On   ${merits_case_work_link_element}
-
 Click Merits Case Search Link When Visible
     Wait Until Screen Contains    ${merits_case_and_clients_link_element}    ${GLOBAL_WAIT_TIMEOUT}
     Common.Click On    ${merits_case_and_clients_link_element}

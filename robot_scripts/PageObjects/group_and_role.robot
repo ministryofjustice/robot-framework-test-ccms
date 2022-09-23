@@ -18,6 +18,7 @@ Choose Group and Role If Presented
     [Arguments]  ${role_group}
     ${title}=  Dialogue Title
     ${exists}=  Image With Text Exists On Screen    ${choose_role_user_dialogue_title_bar}    ${title}
+    Log    exists value is ${exists}
 
     IF  "${exists}" == "True"
         Fill And Submit    ${role_group}

@@ -2,7 +2,8 @@
 Resource   settings.robot
 Resource   PageObjects/login.robot
 Resource   PageObjects/dashboard.robot
-Resource    PageObjects/group_and_role.robot
+Resource   PageObjects/group_and_role.robot
+Resource   PageObjects/universal_search.robot
 Library    String
 Library    ./Support/StringUtils.py
 Library    Screenshot
@@ -62,7 +63,7 @@ Image With Text Exists On Screen
 
     ${foundText}=  Get Text From Image Matching    ${img}
     ${foundText}=  Encode String To Bytes    ${foundText}    ASCII  errors=replace
-    
+
     IF  "${DEBUG}" == "TRUE"
         Highlight    ${img}  ${DEBUG_HIGHLIGHT_TIME}
         ${matches}=  Get Match Score    ${img}

@@ -1,10 +1,12 @@
 *** Settings ***
+Resource   ../settings.robot
 Resource   ../Common.robot
 Resource    Navigator.robot
 Library    Dialogs
 
 *** Variables ***
 ${merits_case_work_link_element}  MeritsCaseWorkerLink.PNG
+${universal_search_screen}  UniversalSearchDialogue.png
 ${merits_case_and_clients_link_element}  MeritsCasesAndClientsLink.png
 ${return_to_search_button}  ReturnToSearchButton.png
 ${clear_form_values_button}  ClearButton.png
@@ -34,9 +36,9 @@ Back To Case Search
 
 Search Case
     [Arguments]  ${case_reference}
-    Wait Until Window With Title Appears    Universal Search
-    Send Keys   ${back_to_search_shortcut}
-    Send Keys    ${clear_button_shortcut}
+    Wait Until Screen Contains    ${universal_search_screen}
+#   Send Keys   ${back_to_search_shortcut}
+#   Send Keys    ${clear_button_shortcut}
     Input Text Until Appears    ${organisation_input_box}    ${case_reference}
     Send Keys   ${search_button_shortcut}
     Wait Until Screen Contains    ${search_results_dialogue}
