@@ -21,6 +21,7 @@ ${back_to_search_shortcut}  !n
 ${universal_search_shortcut}  !w1
 ${case_reference}
 ${save_button}   ^s
+${ENTER}  {ENTER}
 
 
 *** Keywords ***
@@ -33,7 +34,7 @@ Access merits
     Send Keys  ${save_button}
     Common.Input Text Until Appears    ${decision_field_proceedings}  Grant
     Send Keys  ${save_button}
-    Send Keys ${ok_button_shortcut}
+    Send Keys  ${ENTER}
     Common.Click On    ${cost_limits_button}
     Common.Input Text Until Appears    ${decision_field_custom_application}  Grant
     Send Keys  ${save_button}
