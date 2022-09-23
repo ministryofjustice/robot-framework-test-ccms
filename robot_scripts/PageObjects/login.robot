@@ -6,7 +6,6 @@ Resource    ../Common.robot
 ${login_screen}  ${IMG_PATH}EBSLoginScreen.png
 ${logged_in_screen}   ${IMG_PATH}EBSWebLoggedInScreen.png
 ${ie_path}  C:/Program Files/Internet Explorer/iexplore.exe
-${base_url}  https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/OA.jsp?OAFunc=OAHOMEPAGE{#}
 
 *** Keywords ***
 Login
