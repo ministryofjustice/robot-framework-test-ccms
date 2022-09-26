@@ -233,12 +233,54 @@ Send Keys
 
 Click On
     [Documentation]  Use this in favour of Click to leverage logging information.
-    [Arguments]  ${img}
+    [Arguments]  ${img}  ${tries}=3
 
     Log  ${img}
     Log To Console  ${img}
 
-    Click    ${img}
+    ${result}=  Set Variable  FALSE
+    FOR    ${i}    IN RANGE    ${tries}
+        LogV   Try ${i}
+        TRY
+            Click    ${img}
+            ${result}=  Set Variable  TRUE
+            Exit For Loop
+        EXCEPT  AS    ${error_message}
+            LogV  ${error_message}
+        END
+
+        Sleep  ${GLOBAL_RETRY_WAIT_INTERVAL}
+    END
+
+    IF  "${result}" != "TRUE"
+        Fail   Waited for '${tries}' tries, but could not click on image '${img}'.
+    END
+
+Click In Until
+    [Arguments]  ${region}  ${image}  ${tries}=3
+
+    ${result}=  Set Variable  FALSE
+    FOR    ${i}    IN RANGE    ${tries}
+        LogV   Try ${i}
+        TRY
+            IF  "${DEBUG}" == "TRUE"
+                Highlight    ${region}  ${DEBUG_HIGHLIGHT_TIME}
+                LogV  Looking for ${region} on screen.  VoiceMsg=False
+            END
+
+            Click In    ${region}    ${image}
+            ${result}=  Set Variable  TRUE
+            Exit For Loop
+        EXCEPT  AS    ${error_message}
+            LogV  ${error_message}
+        END
+
+        Sleep  ${GLOBAL_RETRY_WAIT_INTERVAL}
+    END
+
+    IF  "${result}" != "TRUE"
+        Fail   Waited for '${tries}' tries, but could not click on image ${image} inside '${region}'.
+    END
 
 Fail With Voice
     [Arguments]  ${msg}  ${voiceMsg}=""
