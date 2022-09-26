@@ -59,7 +59,7 @@ Focus Browser
     Win Activate  Oracle
 
 Image With Text Exists On Screen
-    [Arguments]  ${img}  ${text}  ${expect_unique}=FALSE  ${strict}=FALSE
+    [Arguments]  ${img}  ${text}  ${expect_unique}=FALSE  ${strict}=FALSE ${GLOBAL_WAIT_TIMEOUT}
 
     ${foundText}=  Get Text From Image Matching    ${img}
     ${foundText}=  Encode String To Bytes    ${foundText}    ASCII  errors=replace
