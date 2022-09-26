@@ -304,7 +304,7 @@ LogV
     Log To Console  ${text}
 
     IF  "${voiceMsg}" != "False"
-        IF  "${DEBUG}" == "TRUE"
+        IF  "${DEBUG}" == "True"
             Say  ${text}
         END
     END

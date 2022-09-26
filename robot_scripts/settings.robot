@@ -6,7 +6,7 @@ Resource    ./Support/Hooks.robot
 
 
 *** Variables ***
-${base_url}                         https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/OA.jsp?OAFunc=OAHOMEPAGE{#}
+${base_url}                         https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/OA.jsp?OAFunc=OAHOMEPAGE#
 ${APP_PATH}                         C:\\Program Files\\Internet Explorer\\iexplore.exe
 ${IMG_PATH}                         ${CURDIR}\\Images\\
 ${DIALOGUE_TITLE_IMAGE}             ${IMG_PATH}DialogueTitleBar.png

@@ -35,37 +35,37 @@ Start EBS merits
         Log To Console    "EBS forms are not open, opening now."
         Ensure EBS Web Screen    ${login_username}    ${login_password}
 
-        Send Keys    ^+r
         Click Merits Link When Visible
         Click Merits Case Search Link When Visible
     END
-
-    # Run Keyword If    Session_Expired_Dialogue.Dialogue Exists    Session_Expired_Dialogue.Re Login
 
     Wait For Active Window    Oracle Applications - UAT
 
 Click Merits Link When Visible
     Wait Until Screen Contains    ${merits_case_work_link_element}    ${GLOBAL_WAIT_TIMEOUT}
 
-    ${exists}=    Exists    ${expanded_menu_item}
-
-    IF    "${exists}" == "True"
-        Common.Click On    ${merits_case_work_link_element}
-    END
-
-    Common.Click On    ${merits_case_work_link_element}
+    Click Link    CCMS Complex Merits Caseworker
 
 Click Merits Case Search Link When Visible
     Wait Until Screen Contains    ${merits_case_and_clients_link_element}    ${GLOBAL_WAIT_TIMEOUT}
-    Common.Click On    ${merits_case_and_clients_link_element}
+
+    Click Link    Cases and Clients
 
 Logout
-    Common.Click On    ${logout_image}
+    Click Link    Logout
 
 Open Batch Runner
     Wait Until Screen Contains    ${menu_item_ccms_batch_user}
-    Click On    ${menu_item_ccms_batch_user}
-    Click On    ${menu_item_requests}
-    Click In Until    ${region_requests_menu_items}    ${menu_item_requests}
-    Click On    ${menu_item_run}
+
+    Click Link   CCMS Batch User
+    
+    Wait Until Element Is Visible    css:li.rootMenu li.submenu
+    Click Link   Requests
+    
+    Wait Until Element Is Visible    css:li.rootMenu li.submenu li.submenu
+    Click Element    css:li.rootMenu li.submenu li.submenu
+    
+    Wait Until Element Is Visible    css:li.rootMenu li.submenu li.submenu li#requests
+    Click Link   Run
+    
     Wait Until Window With Title Appears    Submit a New Request    tries=10
