@@ -49,14 +49,14 @@ Open Batch Runner
     Wait Until Screen Contains    ${menu_item_ccms_batch_user}
 
     Click Link   CCMS Batch User
-    
-    Wait Until Element Is Visible    css:li.rootMenu li.submenu
+
+    Wait Until Element Is Visible    css:li.rootMenu li.submenu  
     Click Link   Requests
-    
+
     Wait Until Element Is Visible    css:li.rootMenu li.submenu li.submenu
     Click Element    css:li.rootMenu li.submenu li.submenu
-    
+
     Wait Until Element Is Visible    css:li.rootMenu li.submenu li.submenu li#requests
     Click Link   Run
-    
+
     Wait Until Window With Title Appears    Submit a New Request    tries=10
