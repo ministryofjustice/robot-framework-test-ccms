@@ -41,11 +41,10 @@ Download and install install **npm** (and nodejs too?)
 
 Install Google Chrome (script relies on this as it fails with Cypress electron browser emulation)
 
-Install Cypress in the project top directory by running the below. Note `npm init` will ask several questions. Can respond with default or blank answers.
+Install Cypress by running the below in the project top directory (this uses details already in `package.json`). 
 
 ```
-npm init
-npm install cypress --save-dev
+npm install
 ```
 
 Create file `cypress.env.json` in the project root directory and record username and password for Apply in format like below:
