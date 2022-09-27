@@ -26,6 +26,7 @@ Login
 
 Open Web Login
     Open Browser  ${base_url}  ie
+    Maximize Browser Window
 
 Navigate To Login
     Win Exists    Login
