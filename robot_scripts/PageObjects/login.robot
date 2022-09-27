@@ -1,15 +1,10 @@
 *** Settings ***
 Resource   ../settings.robot
-# Resource    ../Common.robot
 Library    Selenium2Library
 
 *** Variables ***
-${login_screen}  ${IMG_PATH}EBSLoginScreen.png
 ${logged_in_screen}   ${IMG_PATH}EBSWebLoggedInScreen.png
-${ie_path}  C:/Program Files/Internet Explorer/iexplore.exe
-${BROWSER}  ie
-${DELAY}   0
-${WEBAPPURL}   http://www.google.co.in/webhp?hl=en&tab=ww
+${browser}  ie
 
 *** Keywords ***
 Login
@@ -25,7 +20,7 @@ Login
     Wait Until Screen Contains    ${logged_in_screen}   ${GLOBAL_LONG_WAIT_TIMEOUT}
 
 Open Web Login
-    Open Browser  ${base_url}  ie
+    Open Browser  ${base_url}  ${browser}
     Maximize Browser Window
 
 Navigate To Login

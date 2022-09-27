@@ -6,16 +6,7 @@ Resource    ../Support/Dialogue.robot
 *** Variables ***
 ${merits_case_work_link_element}            ${IMG_PATH}MeritsCaseWorkerLink.PNG
 ${merits_case_and_clients_link_element}     ${IMG_PATH}MeritsCasesAndClientsLink.png
-${return_to_search_button}                  ${IMG_PATH}ReturnToSearchButton.png
-${clear_form_values_button}                 ${IMG_PATH}ClearButton.png
-${dashboard_image}                          ${IMG_PATH}EBSWebLoggedInScreen.png
-${logout_image}                             ${IMG_PATH}Logout.png
-${expanded_menu_item}                       ${IMG_PATH}ExpandedMenuItem.png
 ${menu_item_ccms_batch_user}                ${IMG_PATH}MenuItemCcmsBatchUser.png
-${menu_item_rquests}                        ${IMG_PATH}MenuItemRequests.png
-${region_requests_menu_items}               ${IMG_PATH}RegionRequestsMenuItems.png
-${menu_item_requests}                       ${IMG_PATH}MenuItemRequests.png
-${menu_item_run}                            ${IMG_PATH}MenuItemRun.png
 
 
 *** Keywords ***

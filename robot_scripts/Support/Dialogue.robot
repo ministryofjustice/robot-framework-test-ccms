@@ -15,14 +15,14 @@ Press Dialogue No
     Send Keys    !n
 
 Find Dialogue With Title
-    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
     
-    ${result}=  Set Variable  FALSE
+    ${result}=  Set Variable  False
     FOR    ${i}    IN RANGE    ${tries}
         LogV   Try ${i}
         TRY
-            Image With Text Exists On Screen    ${img}    ${text}  strict=TRUE
-            ${result}=  Set Variable  TRUE
+            Image With Text Exists On Screen    ${img}    ${text}  strict=True
+            ${result}=  Set Variable  True
             Exit For Loop
         EXCEPT  AS    ${error_message}
             LogV  ${error_message}  False
@@ -33,7 +33,7 @@ Find Dialogue With Title
         Sleep  ${GLOBAL_RETRY_WAIT_INTERVAL}
     END
 
-    IF  "${strict}" == "TRUE" and "${result}" != "TRUE"
+    IF  "${strict}" == "True" and "${result}" != "True"
         Fail   Waited for '${tries}' tries, but could not find '${img}' with text '${text}'
     END
 
@@ -41,24 +41,24 @@ Find Dialogue With Title
 
 Wait Until Navigator Window With Title Appears
     [Documentation]  Expects the window to have the navigator icon.
-    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
 
     Find Dialogue With Title    ${NAVIGATOR_TITLE_IMAGE}    ${text}  ${tries}  ${strict}
 
 Wait Until Window With Title Appears
     [Documentation]  Expects the window to have the red oracle icon.
-    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
 
     Find Dialogue With Title    ${WINDOW_TITLE_IMAGE}    ${text}  ${tries}  ${strict}
 
 Wait Until Dialogue With Title Appears
     [Documentation]  Expects the window to have no icon but close button on the right.
-    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
 
     Find Dialogue With Title    ${DIALOGUE_TITLE_IMAGE}    ${text}  ${tries}  ${strict}
 
 Wait Until Decision Dialogue Appears
     [Documentation]  Expects the window to have no icon but close button on the right.
-    [Arguments]  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+    [Arguments]  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
 
     Find Dialogue With Title    ${DECISION_TITLE_IMAGE}    Decision  ${tries}  ${strict}

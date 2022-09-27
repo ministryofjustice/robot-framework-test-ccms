@@ -59,12 +59,12 @@ Focus Browser
     Win Activate  Oracle
 
 Image With Text Exists On Screen
-    [Arguments]  ${img}  ${text}  ${expect_unique}=FALSE  ${strict}=FALSE
+    [Arguments]  ${img}  ${text}  ${expect_unique}=False  ${strict}=False
 
     ${foundText}=  Get Text From Image Matching    ${img}
     ${foundText}=  Encode String To Bytes    ${foundText}    ASCII  errors=replace
     
-    IF  "${DEBUG}" == "TRUE"
+    IF  "${DEBUG}" == "True"
         Highlight    ${img}  ${DEBUG_HIGHLIGHT_TIME}
         ${matches}=  Get Match Score    ${img}
 
@@ -77,7 +77,7 @@ Image With Text Exists On Screen
     END
     ${result}=  Set Variable  False
 
-    IF  "${expect_unique}" == "TRUE"
+    IF  "${expect_unique}" == "True"
         ${count}=  Image Count    ${img}
 
         LogV    Number of times image found on screen ${count}
@@ -93,7 +93,7 @@ Image With Text Exists On Screen
     IF  ${contains}
         LogV               Yes we have found the text in the image ${text}
         ${result}=  Set Variable  True
-    ELSE IF  "${strict}" == "TRUE"
+    ELSE IF  "${strict}" == "True"
         LogV   Expected image was found, but text did not match. Expected '${text}', Found '${foundText}'.
         Fail   Expected image was found, but text did not match. Expected '${text}', Found '${foundText}'.
     END
@@ -109,7 +109,7 @@ Get Text From Image Matching
         ${region}=  Get Extended Region From    ${img}    original    1
         LogV  Region to get text from: ${region}   False
 
-        IF  "${DEBUG}" == "TRUE"
+        IF  "${DEBUG}" == "True"
             Highlight Region    ${region}   ${DEBUG_HIGHLIGHT_TIME}
         END
         ${text}=  Read Text From Region     ${region}
@@ -129,21 +129,21 @@ Wait Until Screen Contains
     [Arguments]  ${img}  ${timeout}=${GLOBAL_WAIT_TIMEOUT}
     Wait Until Screen Contain    ${img}    ${timeout}
 
-    IF  "${DEBUG}" == "TRUE"
+    IF  "${DEBUG}" == "True"
         Highlight    ${img}  ${DEBUG_HIGHLIGHT_TIME}
         ${count}=  Image Count    ${img}
         LogV   Count of Image: ${count}
     END
 
 Wait Until Screen Contains With Text
-    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=TRUE
+    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
 
-    ${result}=  Set Variable  FALSE
+    ${result}=  Set Variable  False
     FOR    ${i}    IN RANGE    ${tries}
         LogV   Try ${i}
         TRY
-            Image With Text Exists On Screen    ${img}    ${text}  strict=TRUE
-            ${result}=  Set Variable  TRUE
+            Image With Text Exists On Screen    ${img}    ${text}  strict=True
+            ${result}=  Set Variable  True
             Exit For Loop
         EXCEPT  AS    ${error_message}
             LogV  ${error_message}  False
@@ -152,7 +152,7 @@ Wait Until Screen Contains With Text
         Sleep  ${GLOBAL_RETRY_WAIT_INTERVAL}
     END
 
-    IF  "${strict}" == "TRUE" and "${result}" != "TRUE"
+    IF  "${strict}" == "True" and "${result}" != "True"
         Fail   Waited for '${tries}' tries, but could not find '${img}' with text '${text}'
     END
 
@@ -161,17 +161,17 @@ Wait Until Screen Contains With Text
 Input Text Until Appears
     [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}
 
-    ${result}=  Set Variable  FALSE
+    ${result}=  Set Variable  False
     FOR    ${i}    IN RANGE    ${tries}
         LogV   Try ${i}
         TRY
-            IF  "${DEBUG}" == "TRUE"
+            IF  "${DEBUG}" == "True"
                 Highlight    ${img}  ${DEBUG_HIGHLIGHT_TIME}
                 LogV  Looking for ${img} on screen.  VoiceMsg=False
             END
 
-            Input Text    ${img}    ${text}
-            ${result}=  Set Variable  TRUE
+            SikuliLibrary.Input Text    ${img}    ${text}
+            ${result}=  Set Variable  True
             Exit For Loop
         EXCEPT  AS    ${error_message}
             LogV  ${error_message}
@@ -180,7 +180,7 @@ Input Text Until Appears
         Sleep  ${GLOBAL_RETRY_WAIT_INTERVAL}
     END
 
-    IF  "${result}" != "TRUE"
+    IF  "${result}" != "True"
         Fail   Waited for '${tries}' tries, but could not find input '${img}'.
     END
 
@@ -188,7 +188,7 @@ Input Text Where Label Is
     [Documentation]  Under development, does not work yet. Need to figure out how to match on all images.
     [Arguments]  ${label}  ${text}
 
-    IF  "${DEBUG}" == "TRUE"
+    IF  "${DEBUG}" == "True"
         Highlight  ${input_box_image}   ${DEBUG_HIGHLIGHT_TIME}
     END
 
@@ -201,7 +201,7 @@ Input Text Where Label Is
     LogV    Matching text: ${matching_text}
 
     IF  "${matching_text}" == "${text}"
-        Input Text    ${label_with_input}   ${text}
+        SikuliLibrary.Input Text    ${label_with_input}   ${text}
     END
 
 Window With Title Exists
@@ -210,10 +210,10 @@ Window With Title Exists
     ${exists}=  Win Exists  ${title}
 
     IF  "${exists}" == "0"
-        RETURN  FALSE
+        RETURN  False
     END
 
-    RETURN  TRUE
+    RETURN  True
 
 Close EBS Forms
     Send Keys  ${file_menu_shortcut}${exit_option_shortcut}${ok_button_shortcut}
@@ -238,12 +238,12 @@ Click On
     Log  ${img}
     Log To Console  ${img}
 
-    ${result}=  Set Variable  FALSE
+    ${result}=  Set Variable  False
     FOR    ${i}    IN RANGE    ${tries}
         LogV   Try ${i}
         TRY
             Click    ${img}
-            ${result}=  Set Variable  TRUE
+            ${result}=  Set Variable  True
             Exit For Loop
         EXCEPT  AS    ${error_message}
             LogV  ${error_message}
@@ -252,24 +252,24 @@ Click On
         Sleep  ${GLOBAL_RETRY_WAIT_INTERVAL}
     END
 
-    IF  "${result}" != "TRUE"
+    IF  "${result}" != "True"
         Fail   Waited for '${tries}' tries, but could not click on image '${img}'.
     END
 
 Click In Until
     [Arguments]  ${region}  ${image}  ${tries}=3
 
-    ${result}=  Set Variable  FALSE
+    ${result}=  Set Variable  False
     FOR    ${i}    IN RANGE    ${tries}
         LogV   Try ${i}
         TRY
-            IF  "${DEBUG}" == "TRUE"
+            IF  "${DEBUG}" == "True"
                 Highlight    ${region}  ${DEBUG_HIGHLIGHT_TIME}
                 LogV  Looking for ${region} on screen.  VoiceMsg=False
             END
 
             Click In    ${region}    ${image}
-            ${result}=  Set Variable  TRUE
+            ${result}=  Set Variable  True
             Exit For Loop
         EXCEPT  AS    ${error_message}
             LogV  ${error_message}
@@ -278,7 +278,7 @@ Click In Until
         Sleep  ${GLOBAL_RETRY_WAIT_INTERVAL}
     END
 
-    IF  "${result}" != "TRUE"
+    IF  "${result}" != "True"
         Fail   Waited for '${tries}' tries, but could not click on image ${image} inside '${region}'.
     END
 
