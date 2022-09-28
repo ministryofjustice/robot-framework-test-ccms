@@ -8,6 +8,9 @@ Library     Process
 # from robot scripts dir (even with correct paths specified)
 ${cypress_executable_path}    node_modules\\.bin\\cypress
 ${cypress_config_file}  cypress.config.js
+${browser}  chrome
+# shell=True needed for paths to work (seems to be a Windows thing)
+${shell_option}   True
 
 
 *** Keywords ***
@@ -18,10 +21,8 @@ Cypress runner
     ...    Plus cypress needs to be invoked from the project root directory. Use ${cwd} parameter to set this. 
     [Arguments]    ${cypress_script_path}    ${cwd}=../../
     # Take care when editing  Run Process below:
-    # (a) Some of the parameters must be separated by one character rather than the usual Robot Framework two (those that make up the command to be executed).
-    # (b) shell=True needed for paths to work (seems to be a Windows thing)
-    # (c) '--browser chrome' cypress option because Apply script fails with default cypress electron headless browser
-    ${result} =    Run Process  ${cypress_executable_path} run --config-file ${cypress_config_file} --spec ${cypress_script_path} --browser chrome  cwd=${cwd}  stderr=STDOUT  stdout=PIPE  shell=True  output_encoding=UTF-8
+    # Some of the parameters must be separated by one character rather than the usual Robot Framework two (those that make up the command to be executed).
+    ${result} =    Run Process  ${cypress_executable_path} run --config-file ${cypress_config_file} --spec ${cypress_script_path} --browser ${browser}  cwd=${cwd}  stderr=STDOUT  stdout=PIPE  shell=${shell_option}  output_encoding=UTF-8
     [return]    ${result}
 
 
