@@ -11,7 +11,10 @@ Setup
 Download and install Java 8 (tested with 1.8.0_202).    
 Download and install Python 3 (tested with 3.10).    
 Download and install AutoIt (tested with 3.3.16.0).   
-Download and install SikuliX (tested with 2.0.5).   
+Download and install SikuliX (tested with 2.0.5).
+Download and install 32 bit IEDriverServer.exe (tested with 4.3.0.0 for IE version 1607)
+
+Please include the IEDriverServer.exe in your PATH environment variable.
 
 Use pip to install the following Python packages:
 
@@ -19,6 +22,7 @@ Use pip to install the following Python packages:
 pip install --user robotframework
 pip install --user robotframework-SikuliLibrary
 pip install --user pyttsx3
+pip install --user robotframework-selenium2library
 ```
 
 As administrator

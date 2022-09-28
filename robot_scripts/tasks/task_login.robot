@@ -4,5 +4,8 @@ Suite Setup       Start Sikuli Process
 Suite Teardown     Stop Remote Server
 
 *** Tasks ***
-Run Login
+Login Caseworker
     Login    ${login_username}    ${login_password}
+
+Login Business User
+    Login    ${business_login_username}  ${business_login_password} 
