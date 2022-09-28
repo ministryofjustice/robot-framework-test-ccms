@@ -7,3 +7,5 @@ robot_scripts/secrets.robot
 __pycache__
 screenshot*.jpg
 .idea/
+selenium-screenshot*png
+geckodriver*.log

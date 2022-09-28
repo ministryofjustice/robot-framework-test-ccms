@@ -1,12 +1,10 @@
 *** Settings ***
 Resource   ../settings.robot
-Resource    ../Common.robot
+Library    Selenium2Library
 
 *** Variables ***
-${login_screen}  ${IMG_PATH}EBSLoginScreen.png
 ${logged_in_screen}   ${IMG_PATH}EBSWebLoggedInScreen.png
-${ie_path}  C:/Program Files/Internet Explorer/iexplore.exe
-${base_url}  https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/OA.jsp?OAFunc=OAHOMEPAGE{#}
+${browser}  ie
 
 *** Keywords ***
 Login
@@ -15,26 +13,27 @@ Login
         Fail  The username and password must be set in the secrets file.
     END
 
-    Open Browser
+    Open Web Login
     Navigate To Login
     Enter Credentials And Login  ${login_username}  ${login_password}
 
     Wait Until Screen Contains    ${logged_in_screen}   ${GLOBAL_LONG_WAIT_TIMEOUT}
 
-Open Browser
-    Auto It Set Option   WinTitleMatchMode   2
-    Send Keys    \#r
-    Win Wait   Run
-    Send Keys    "${ie_path}" "${base_url}"{ENTER}
-    Wait For Active Window    Internet Explorer
-
-    Wait Until Screen Contains    ${login_screen}    ${GLOBAL_LONG_WAIT_TIMEOUT}
+Open Web Login
+    Open Browser  ${base_url}  ${browser}
+    Maximize Browser Window
 
 Navigate To Login
     Win Exists    Login
 
 Enter Credentials And Login
     [Arguments]  ${login_username}  ${login_password}
-    Send Keys    ${login_username}{TAB}${login_password}{ENTER}
-    Win Exists  Oracle Applications Home Page
+    
+    Selenium2Library.Input Text    css:input[name=usernameField]    ${login_username}
+    Selenium2Library.Press Keys    css:input[name=passwordField]    ${EMPTY}
+    Sleep  1s
+    Selenium2Library.Press keys    css:input[name=passwordField]    CTRL+a+DELETE
+    Selenium2Library.Press Keys    None   ${login_password}
+    Selenium2Library.Click Button    css:#SubmitButton
+
     Wait Until Screen Contain    ${logged_in_screen}    timeout=${GLOBAL_LONG_WAIT_TIMEOUT}
