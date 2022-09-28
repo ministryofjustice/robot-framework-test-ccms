@@ -52,6 +52,14 @@ Otherwise can use the below:
 ```
 python -m robot --task search_for_case robot_scripts
 ```
+Running script using MakeFile
+====
+If we want to use Makefile to run the scripts, please follow as below.
+
+1. Install the chocolatey package manager for Windows
+
+2. Run choco install make
+3. command "make" in commmand promt will trigger the tests
 
 
 Development
