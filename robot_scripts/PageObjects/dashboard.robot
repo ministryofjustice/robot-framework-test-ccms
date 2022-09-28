@@ -50,13 +50,13 @@ Open Batch Runner
 
     Click Link   CCMS Batch User
 
-    Wait Until Element Is Visible    css:li.rootMenu li.submenu   ${GLOBAL_WAIT_TIMEOUT}
+    Wait Until Element Is Visible    css:li.rootMenu li.submenu   ${GLOBAL_WAIT_TIMEOUT}   Expected to find Requests in the menu, but not found.
     Click Link   Requests
 
-    Wait Until Element Is Visible    css:li.rootMenu li.submenu li.submenu  ${GLOBAL_WAIT_TIMEOUT}
+    Wait Until Element Is Visible    css:li.rootMenu li.submenu li.submenu  ${GLOBAL_WAIT_TIMEOUT}  Expected to find Requests within the requests menu, but not found.
     Click Element    css:li.rootMenu li.submenu li.submenu
 
-    Wait Until Element Is Visible    css:li.rootMenu li.submenu li.submenu li#requests  ${GLOBAL_WAIT_TIMEOUT}
+    Wait Until Element Is Visible    css:li.rootMenu li.submenu li.submenu li#requests  ${GLOBAL_WAIT_TIMEOUT}  Expected to find Run in the requests menu, but not found.
     Click Link   Run
 
     Wait Until Window With Title Appears    Submit a New Request    tries=10

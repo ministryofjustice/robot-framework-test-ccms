@@ -30,7 +30,9 @@ Enter Credentials And Login
     [Arguments]  ${login_username}  ${login_password}
     
     Selenium2Library.Input Text    css:input[name=usernameField]    ${login_username}
-    Selenium2Library.Press Keys    css:input[name=passwordField]   CTRL+a+DELETE
+    Selenium2Library.Press Keys    css:input[name=passwordField]    ${EMPTY}
+    Sleep  1s
+    Selenium2Library.Press keys    css:input[name=passwordField]    CTRL+a+DELETE
     Selenium2Library.Press Keys    None   ${login_password}
     Selenium2Library.Click Button    css:#SubmitButton
 
