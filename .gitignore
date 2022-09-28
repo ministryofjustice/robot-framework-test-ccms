@@ -9,3 +9,7 @@ screenshot*.jpg
 .idea/
 selenium-screenshot*png
 geckodriver*.log
+PIPE
+cypress.env.json
+package-lock.json
+package.json
