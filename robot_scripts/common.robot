@@ -3,7 +3,6 @@ Resource   settings.robot
 Resource   PageObjects/login.robot
 Resource   PageObjects/dashboard.robot
 Resource   PageObjects/group_and_role.robot
-Resource   PageObjects/universal_search.robot
 Library    String
 Library    ./Support/StringUtils.py
 Library    Screenshot

@@ -17,6 +17,8 @@ Refresh Case
     Wait Until Window With Title Appears    eBusiness Center
     Common.Click On    ${all_details_checkbox}
     Common.Click On    ${case_refresh_button}
+
+Submissions Status Check
     Common.Click On    ${submissions_text}
     Common.Click On    ${details_button}
     Common.Wait Until Screen Contains  ${drilldown_list_screen}

@@ -13,7 +13,6 @@ ${WINDOW_TITLE_IMAGE}  ${IMG_PATH}WindowTitleBar.png
 ${DEBUG}        False
 ${DEBUG_HIGHLIGHT_TIME}  1
 ${DIALOGUE_IMAGE}  ${IMG_PATH}ChooseRoleUserDialogue.png
-${DEBUG}        true
 ${input_box_image}  ${IMG_PATH}GenericInputBox.png
 ${GLOBAL_WAIT_TIMEOUT}  20
 ${GLOBAL_LONG_WAIT_TIMEOUT}  30

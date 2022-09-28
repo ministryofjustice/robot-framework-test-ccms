@@ -50,6 +50,8 @@ Click Merits Link When Visible
 
     IF  "${exists}" == "True"
         Common.Click On   ${merits_case_work_link_element}
+    ELSE
+        Log To Console    "Timed out trying to click on Merits case link"
     END
 
 Click Merits Case Search Link When Visible

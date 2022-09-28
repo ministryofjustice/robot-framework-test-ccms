@@ -17,6 +17,7 @@ ${search_ok_button}  OkButtonLarge.png
 ${search_results_dialogue}  SearchResultsDialogue.png
 ${navigator_dialgue}  NavigatorDialogue.png
 ${ok_button_shortcut}   !k
+${backspace}  !{BACKSPACE}
 ${clear_button_shortcut}  !c
 ${search_button_shortcut}  !s
 ${back_to_search_shortcut}  !n
@@ -37,8 +38,6 @@ Back To Case Search
 Search Case
     [Arguments]  ${case_reference}
     Wait Until Screen Contains    ${universal_search_screen}
-#   Send Keys   ${back_to_search_shortcut}
-#   Send Keys    ${clear_button_shortcut}
     Input Text Until Appears    ${organisation_input_box}    ${case_reference}
     Send Keys   ${search_button_shortcut}
     Wait Until Screen Contains    ${search_results_dialogue}
