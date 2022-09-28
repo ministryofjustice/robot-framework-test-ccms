@@ -17,7 +17,7 @@ ${search_ok_button}  OkButtonLarge.png
 ${search_results_dialogue}  SearchResultsDialogue.png
 ${navigator_dialgue}  NavigatorDialogue.png
 ${ok_button_shortcut}   !k
-${backspace}  !{BACKSPACE}
+${backspace}  {BACKSPACE}
 ${clear_button_shortcut}  !c
 ${search_button_shortcut}  !s
 ${back_to_search_shortcut}  !n

@@ -24,6 +24,7 @@ ${universal_search_shortcut}  !w1
 ${case_reference}
 ${save_button}   ^s
 ${ENTER}  {ENTER}
+${backspace}  {BACKSPACE}
 
 
 *** Keywords ***
@@ -40,6 +41,7 @@ Access means
     Send Keys  ${save_button}
     Send Keys  ${ok_button_shortcut}
     Common.Click On    ${cost_limits_button}
+    Send Keys  ${backspace}
     Common.Input Text Until Appears    ${decision_field_costlimit_proceedings}  ${proceeding_decision}
     Send Keys  ${save_button}
     Common.Click On    ${close_form_button}
