@@ -14,7 +14,8 @@ Search For Case
 
     Given Common.Ensure EBS Forms Screen  ${login_username}  ${login_password}
     Say If Human    Opened forms
-    Sleep    5  #This is to let EBS become stable before interaction.
+    And Universal_Search.Back To Case Search
+    Say If Human    Searching for case
     When Universal_Search.Search Case    ${case_reference}
     And Group_And_Role.Choose Group and Role If Presented   role_group=General Administration
     Say If Human    Showing case details now
