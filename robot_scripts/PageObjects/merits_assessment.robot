@@ -15,11 +15,6 @@ ${cost_limits_button}                    ${IMG_PATH}/meritsAssessment/CostLimits
 ${close_form_button}                     ${IMG_PATH}/meritsAssessment/CloseFormButton.PNG
 
 ${ok_button_shortcut}   !k
-${clear_button_shortcut}  !c
-${search_button_shortcut}  !s
-${open_search_shortcut}   {UP}{UP}{DOWN}{ENTER}
-${back_to_search_shortcut}  !n
-${universal_search_shortcut}  !w1
 ${case_reference}
 ${save_button}   ^s
 ${ENTER}  {ENTER}
@@ -28,15 +23,15 @@ ${backspace}  {BACKSPACE}
 
 
 *** Keywords ***
-Access merits
+Access Merits
     Common.Wait Until Screen Contains  ${service_request_screen}
 
-Service request task
+Service Request Task
     Common.Click On    ${subject_assess_merits}
     Common.Click On    ${toolbar_tools_button}
     Common.Click On    ${toolbar_tools_details_link}
 
-Grant proceedings
+Change Status Proceedings
     [Arguments]   ${proceeding_decision}
     Common.Input Text Until Appears    ${decision_field_custom_application}  ${proceeding_decision}
     Send Keys  ${save_button}
@@ -44,7 +39,7 @@ Grant proceedings
     Send Keys  ${save_button}
     Send Keys  ${ENTER}
 
-Grant costlimits
+Change Status Costlimits
     [Arguments]   ${proceeding_decision}
     Common.Click On    ${cost_limits_button}
     Send Keys  ${backspace}
