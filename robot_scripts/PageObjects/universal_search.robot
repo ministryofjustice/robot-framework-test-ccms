@@ -48,7 +48,11 @@ Search Case
 If On Universal Search
     [Documentation]  returns True or False
     
-    ${exists}=  Wait Until Window With Title Appears   Universal Search
+    TRY
+        ${exists}=  Wait Until Window With Title Appears   Universal Search  2
+    EXCEPT  AS    ${error_message}
+        ${exists}=  Set Variable  False
+    END
 
     RETURN  ${exists}
 
