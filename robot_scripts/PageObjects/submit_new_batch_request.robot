@@ -9,6 +9,7 @@ Submit Single Request
     [Arguments]  ${request_name}  ${business_rule_group}
     Send Keys    !o
     Wait Until Window With Title Appears   Submit Request
+    Log To Console   Inputing text: ${request_name}
     Input Text   ${case_submit_input}  ${request_name}
     Send Keys    {TAB}
     Wait Until Window With Title Appears    Parameters
@@ -16,4 +17,5 @@ Submit Single Request
     Press Dialogue OK
     Wait Until Window With Title Appears    Submit Request
     Send Keys    !m
-    Press Dialogue Yes
+    Wait Until Decision Dialogue Appears
+    Press Dialogue No
