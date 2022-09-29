@@ -2,13 +2,14 @@ describe('Cypress Apply Script', () => {
 
 	it('Make a case in Apply to use in CCMS', () => {
 
-		// Get username and password from environment varisables
+		// Get username, password and URL from environment varisables
 		// Can set in cypress.env.json (in top dir) or supply/over-ride 
 		// using --env option from command-line 
 		const username = Cypress.env('APPLY_USERNAME');
 		const password = Cypress.env('APPLY_PASSWORD');
+		const apply_url = Cypress.env('APPLY_URL');
 
-		cy.visit('https://main-applyforlegalaid-uat.cloud-platform.service.justice.gov.uk/');
+		cy.visit(apply_url);
 		
 		// "Start Now" button on the homepage
 		cy.get('#start').click()

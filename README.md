@@ -39,7 +39,7 @@ ${login_password}  abc123
 ### Cypress Setup (for case creation in Apply)
 Download and install install **npm** (and nodejs too?)
 
-Install Google Chrome (script relies on this as it fails with Cypress electron browser emulation)
+Install Google Chrome (script has failed with Cypress electron browser emulation)
 
 Install Cypress by running the below in the project top directory (this uses details already in `package.json`). 
 
@@ -47,18 +47,18 @@ Install Cypress by running the below in the project top directory (this uses det
 npm install
 ```
 
-Create file `cypress.env.json` in the project root directory and record username and password for Apply in format like below:
+Create file `cypress.env.json` in the project root directory and record username, password and URL for Apply in format as below:
 
 ```
 {
   "APPLY_USERNAME": "username",
-  "APPLY_PASSWORD": "password"
+  "APPLY_PASSWORD": "password",
+  "APPLY_URL": "https://main-applyforlegalaid-uat.cloud-platform.service.justice.gov.uk/"
 }
 ```
 
 This should automatically be picked up by Cypress, whether run via Robot Framework or run directly.
 
-*Note potentially the secrets.robot file could be used to store the Apply username and password, and then have the robot framework `Run Process` keyword supply the username and password using the Cypress `--env` option. However, trying this in practice caused `Run Process` to   fail with a `Process.Run Process' expected at least 1 non-named argument, got 0.` error.* 
 
 Running a script
 ====
