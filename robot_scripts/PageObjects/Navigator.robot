@@ -8,6 +8,7 @@ ${navigator_shortcut}     !w1
 
 *** Keywords ***
 Open Batch Request Run Window
+    Wait Until Navigator Window With Title Appears    CCMS Batch User
     Send Keys   rrr
 
 Back To Navigator
