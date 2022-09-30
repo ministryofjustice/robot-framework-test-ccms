@@ -10,6 +10,7 @@ Resource            ../PageObjects/means_assessment.robot
 
 *** Tasks ***
 Propagate Case Status
+    Focus EBS Forms
     And Group_And_Role.Choose Group and Role If Presented  role_group=General Administration
     And case_details.Submissions Status Check
     When merits_assessment.Access Merits

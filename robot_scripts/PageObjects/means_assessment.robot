@@ -28,15 +28,23 @@ ${backspace}  {BACKSPACE}
 *** Keywords ***
 Access Means
     [Arguments]  ${proceeding_decision}
+    
+    Log To Console    Access Means
+
     Common.Wait Until Screen Contains  ${service_request_screen}
 
 Service Request Task
+    Log To Console    Service Request Task
+
     Common.Click On    ${subject_assess_means}
     Common.Click On    ${toolbar_tools_button}
     Common.Click On    ${toolbar_tools_details_link}
 
 Change Status Proceedings
     [Arguments]   ${proceeding_decision}
+
+    Log To Console    Change Status Proceedings
+
     Common.Input Text Until Appears    ${decision_field_custom_application}  ${proceeding_decision}
     Send Keys  ${save_button}
     Send Keys    ${ok_button_shortcut}
@@ -45,6 +53,9 @@ Change Status Proceedings
 
 Change Status Costlimits
     [Arguments]   ${proceeding_decision}
+
+    Log To Console    Change Status Costlimits
+
     Send Keys  ${ok_button_shortcut}
     Common.Click On    ${cost_limits_button}
     Send Keys  ${backspace}

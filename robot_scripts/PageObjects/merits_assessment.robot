@@ -27,15 +27,22 @@ ${backspace}  {BACKSPACE}
 
 *** Keywords ***
 Access Merits
+    Log To Console    Access merits
+
     Common.Wait Until Screen Contains  ${service_request_screen}
 
 Service Request Task
+    Log To Console    Service request task
+
     Common.Click On    ${subject_assess_merits}
     Common.Click On    ${toolbar_tools_button}
     Common.Click On    ${toolbar_tools_details_link}
 
 Change Status Proceedings
     [Arguments]   ${proceeding_decision}
+
+    Log To Console    Change Status Proceedings
+
     Common.Input Text Until Appears    ${decision_field_custom_application}  ${proceeding_decision}
     Send Keys  ${save_button}
     Common.Input Text Until Appears    ${decision_field_proceedings}  ${proceeding_decision}
@@ -44,6 +51,9 @@ Change Status Proceedings
 
 Change Status Costlimits
     [Arguments]   ${proceeding_decision}
+
+    Log To Console    Change Status Costlimits
+
     Common.Click On    ${cost_limits_button}
     Send Keys  ${backspace}
     Common.Input Text Until Appears    ${decision_field_custom_application}  ${proceeding_decision}
