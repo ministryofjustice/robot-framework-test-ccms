@@ -40,6 +40,30 @@ ${login_username}  TEST_USER1
 ${login_password}  abc123
 ```
 
+### Cypress Setup (for case creation in Apply)
+Download and install install **npm** (and nodejs too?)
+
+Install Google Chrome (script has failed with Cypress electron browser emulation)
+
+Install Cypress by running the below in the project top directory (this uses details already in `package.json`). 
+
+```
+npm install
+```
+
+Create file `cypress.env.json` in the project root directory and record username, password and URL for Apply in format as below:
+
+```
+{
+  "APPLY_USERNAME": "username",
+  "APPLY_PASSWORD": "password",
+  "APPLY_URL": "https://main-applyforlegalaid-uat.cloud-platform.service.justice.gov.uk/"
+}
+```
+
+This should automatically be picked up by Cypress, whether run via Robot Framework or run directly.
+
+
 Running a script
 ====
 If the robot executable is included in your path, run as follows:

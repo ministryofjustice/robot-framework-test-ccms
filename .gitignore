@@ -6,5 +6,8 @@ sikuli_captured/
 robot_scripts/secrets.robot
 __pycache__
 screenshot*.jpg
+node_modules/
+cypress.env.json
 selenium-screenshot*png
 geckodriver*.log
+PIPE
