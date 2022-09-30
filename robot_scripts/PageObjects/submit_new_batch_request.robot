@@ -10,7 +10,7 @@ Submit Single Request
     Send Keys    !o
     Wait Until Window With Title Appears   Submit Request
     Log To Console   Inputing text: ${request_name}
-    Input Text   ${case_submit_input}  ${request_name}
+    SikuliLibrary.Input Text   ${case_submit_input}  ${request_name}
     Send Keys    {TAB}
     Wait Until Window With Title Appears    Parameters
     Send Keys    ${business_rule_group}
