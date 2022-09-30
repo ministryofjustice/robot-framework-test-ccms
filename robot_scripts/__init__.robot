@@ -11,5 +11,3 @@ Suite Teardown      Run Keywords    Stop Remote Server
                     ...  AND    Speaker.Say If Human  Done
 
 Test Teardown       Run Keyword If Test Failed    Failure Hook
-
-
