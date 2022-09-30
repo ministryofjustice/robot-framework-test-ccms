@@ -16,7 +16,7 @@ ${DECISION_TITLE_IMAGE}             ${IMG_PATH}DecisionTitleBar.png
 ${DEBUG}                            False
 ${DEBUG_HIGHLIGHT_TIME}             1
 ${input_box_image}                  ${IMG_PATH}GenericInputBox.png
-${GLOBAL_WAIT_TIMEOUT}              10
+${GLOBAL_WAIT_TIMEOUT}              20
 ${GLOBAL_LONG_WAIT_TIMEOUT}         30
 ${GLOBAL_RETRY_TIME}                3
 ${GLOBAL_RETRY_WAIT_INTERVAL}       2

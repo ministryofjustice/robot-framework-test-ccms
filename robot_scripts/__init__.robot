@@ -9,4 +9,5 @@ Suite Setup         Run Keywords    Start Sikuli Process
                     ...  AND    Speaker.Say If Human  Launching
 Suite Teardown      Run Keywords    Stop Remote Server
                     ...  AND    Speaker.Say If Human  Done
+
 Test Teardown       Run Keyword If Test Failed    Failure Hook

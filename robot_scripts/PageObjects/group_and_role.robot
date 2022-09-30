@@ -16,9 +16,11 @@ Dialogue Title
 
 Choose Group and Role If Presented
     [Arguments]  ${role_group}
+    
+    Log To Console    Checking if Choose group and role dialogue is presented.
+
     ${title}=  Dialogue Title
     ${exists}=  Image With Text Exists On Screen    ${choose_role_user_dialogue_title_bar}    ${title}
-
     IF  "${exists}" == "True"
         Fill And Submit    ${role_group}
     END
