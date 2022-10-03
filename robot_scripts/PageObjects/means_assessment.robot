@@ -4,7 +4,6 @@ Resource   ../Common.robot
 Resource   case_details.robot
 Library    Dialogs
 
-
 *** Variables ***
 ${subject_assess_means}                  ${IMG_PATH}/meansAssessment/meansCaseDetails.PNG
 ${toolbar_tools_button}                  ${IMG_PATH}/meritsAssessment/ToolbarToolsButton.PNG
@@ -20,9 +19,6 @@ ${case_reference}
 ${save_button}   ^s
 ${ENTER}  {ENTER}
 ${backspace}  {BACKSPACE}
-
-${means_proceeding_decision}     Grant
-
 
 *** Keywords ***
 Access Means
