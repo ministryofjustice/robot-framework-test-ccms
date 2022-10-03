@@ -12,14 +12,53 @@ Setup
 ====
 - *Note due to dependency on AutoIT this is only expected to work on Windows OS*
 - *Installation has been tested using standard Windows CMD terminal. It is unclear if other ways work*
+- *Install using choco found here https://chocolatey.org/install#individual.
 
 Download and install Java 8 (tested with 1.8.0_202).    
 Download and install Python 3 (tested with 3.10).    
 Download and install AutoIt (tested with 3.3.16.0).   
 Download and install SikuliX (tested with 2.0.5).
 Download and install 32 bit IEDriverServer.exe (tested with 4.3.0.0 for IE version 1607)
+Download and install npm (node v16)
 
 Please include the IEDriverServer.exe in your PATH environment variable.
+
+Quick install:
+====
+
+```
+choco install make
+make install
+```
+
+Open the `robot_scripts/secrets.robot` and fill in details. Note Robot Framework enforces 2 spaces after each keyword. Values are assigned in the file like this:
+
+```
+${login_username}  TEST_USER1
+${login_password}  abc123
+```
+
+Open file `cypress.env.json` in the project root directory and record username, password and URL for Apply in format as below:
+
+```
+{
+  "APPLY_USERNAME": "username",
+  "APPLY_PASSWORD": "password",
+  "APPLY_URL": "https://main-applyforlegalaid-uat.cloud-platform.service.justice.gov.uk/"
+}
+```
+
+This should automatically be picked up by Cypress, whether run via Robot Framework or run directly.
+
+Verify your installation
+====
+
+```
+make -i verify
+```
+
+Step by step
+====
 
 Use pip to install the following Python packages:
 
@@ -29,20 +68,10 @@ pip install --user robotframework-SikuliLibrary
 pip install --user pyttsx3
 pip install --user robotframework-selenium2library
 ```
-
 As administrator
-  
+
 ```
 pip install --user robotframework-autoitlibrary
-```
-
-Use any editor of choice to edit .robot files.
-
-Copy the `robot_scripts/secrets.robot.template` file to `robot_scripts/secrets.robot` and fill in details. Note Robot Framework enforces 2 spaces after each keyword. Values are assigned in the file like this:
-
-```
-${login_username}  TEST_USER1
-${login_password}  abc123
 ```
 
 ### Cypress Setup (for case creation in Apply)
@@ -56,32 +85,17 @@ Install Cypress by running the below in the project top directory (this uses det
 npm install
 ```
 
-Create file `cypress.env.json` in the project root directory and record username, password and URL for Apply in format as below:
-
-```
-{
-  "APPLY_USERNAME": "username",
-  "APPLY_PASSWORD": "password",
-  "APPLY_URL": "https://main-applyforlegalaid-uat.cloud-platform.service.justice.gov.uk/"
-}
-```
-
-This should automatically be picked up by Cypress, whether run via Robot Framework or run directly.
-
-
 Running a script
 ====
-If the robot executable is included in your path, run as follows:
 
 ```
-robot --task search_for_case robot_scripts
-```
-Otherwise can use the below:
-
-```
-python -m robot --task search_for_case robot_scripts
+make list
+make run task=<task name from above command>
 ```
 
+Raw version:
+
+robot --task <task name> robot_scripts
 
 Development
 =====

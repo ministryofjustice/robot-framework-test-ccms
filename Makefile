@@ -39,6 +39,18 @@ install:
 	cmd /c robot_scripts\secrets.robot
 	cmd /c cypress.env.json
 
+verify:
+	python --version
+	make --version
+	choco --version
+	python -m robot --version
+	robot --version
+	cmd /c IEDriverServer.exe --version
+	npm --version
+
+	dir cypress.config.js
+	dir robot_scripts\secrets.robot
+
 report:
 	cmd /c report.html
 
