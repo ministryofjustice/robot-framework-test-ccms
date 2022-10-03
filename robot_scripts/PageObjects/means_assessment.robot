@@ -14,12 +14,14 @@ ${decision_field_proceedings}            ${IMG_PATH}/meritsAssessment/DecisionFi
 ${decision_field_costlimit_proceedings}  ${IMG_PATH}/meansAssessment/costLimitsMeansProceeding.PNG
 ${cost_limits_button}                    ${IMG_PATH}/meritsAssessment/CostLimitsButton.PNG
 ${close_form_button}                     ${IMG_PATH}/meritsAssessment/CloseFormButton.PNG
-${means_proceeding_decision}     Grant
+
 ${ok_button_shortcut}   !k
 ${case_reference}
 ${save_button}   ^s
 ${ENTER}  {ENTER}
 ${backspace}  {BACKSPACE}
+
+${means_proceeding_decision}     Grant
 
 
 *** Keywords ***
