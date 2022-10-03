@@ -14,15 +14,14 @@ ${decision_field_costlimit_proceedings}  ${IMG_PATH}/meansAssessment/costLimitsM
 ${cost_limits_button}                    ${IMG_PATH}/meritsAssessment/CostLimitsButton.PNG
 ${close_form_button}                     ${IMG_PATH}/meritsAssessment/CloseFormButton.PNG
 
-#decision value
-${merits_proceeding_decision}     Grant
-
-#Keyboard shortcuts
 ${ok_button_shortcut}   !k
 ${case_reference}
 ${save_button}   ^s
 ${ENTER}  {ENTER}
 ${backspace}  {BACKSPACE}
+
+${merits_proceeding_decision}     Grant
+
 
 
 
