@@ -1,6 +1,46 @@
-all: case-search means-merits
-case-search: ## run case search
-		python -m robot --task Search_For_Case  robot_scripts
 
-means-merits: ## run means and merits assessment
-		python -m robot --task  Propagate_Case_Status  robot_scripts
+help:
+	@echo -- Commands available --
+	@echo.
+	@echo list                    List all available tasks to run.
+	@echo command task/t=^<task^>   Generate a robot command for a task.
+	@echo run task/t=^<task^>       Run a task by name.
+	@echo install                 Install dependencies for robot framework.
+	@echo report                  Open the html report for the last task run.
+	@echo help                    This menu.
+	@echo.
+	@echo example usage: make run task=search_case
+
+list:
+	@echo Listing available tasks:
+	@echo.
+	@for /F "delims= eol=" %%A IN ('dir /A-D /B robot_scripts\tasks') do echo %%~nA
+
+command:
+	@echo robot --task $(task) $(t) robot_scripts
+
+run:
+	robot --task $(task) $(t) robot_scripts
+
+install:
+	choco --version
+
+	pip install --user robotframework
+	pip install --user robotframework-SikuliLibrary
+	pip install --user pyttsx3
+	pip install --user robotframework-selenium2library
+	pip install --user robotframework-autoitlibrary
+	npm install
+
+	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot
+	cmd /c type nul > cypress.env.json
+	echo {} > cypress.env.json
+
+	cmd /c robot_scripts\secrets.robot
+	cmd /c cypress.env.json
+
+report:
+	cmd /c report.html
+
+update:
+	git pull origin main

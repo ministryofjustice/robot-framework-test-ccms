@@ -1,11 +1,11 @@
 *** Settings ***
 Resource     ../Support/Cypress.robot
-Library     ../Support/case_reference_locator.py
+Library      ../Support/case_reference_locator.py
+Resource     ../settings.robot
 
 
 *** Tasks ***
-
-Cypress Apply Case Submission 
+Apply Case Submission 
     Log To Console  \nNote nothing displayed for a while - cypress output only shows upon completion
     ${cy_cwd} =  Get Root Dir  ${CURDIR}
     ${cypress_response} =  Cypress runner  cypress\\e2e\\apply_case_spec.cy.js  ${cy_cwd}
