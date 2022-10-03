@@ -20,11 +20,6 @@ ${save_button}   ^s
 ${ENTER}  {ENTER}
 ${backspace}  {BACKSPACE}
 
-${merits_proceeding_decision}     Grant
-
-
-
-
 *** Keywords ***
 Access Merits
     Log To Console    Access merits
