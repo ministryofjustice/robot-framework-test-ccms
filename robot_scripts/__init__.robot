@@ -7,10 +7,9 @@ Suite Setup         Run Keywords    Start Sikuli Process
                     ...  AND    Image Paths
                     ...  AND    Auto It Set Option    WinTitleMatchMode    2
 
-Test Setup          Run Keywords   no operation
-                    ...  AND    Speaker.Say If Human  Starting task ${TEST NAME}
+Test Setup          Run Keyword    Test Startup Hook
 
-Suite Teardown      Run Keywords    Stop Remote Server
-                    ...  AND    Speaker.Say If Human  Done with ${PREV_TEST_NAME} task
+Suite Teardown      Run Keyword    Stop Remote Server
 
-Test Teardown       Run Keyword If Test Failed    Failure Hook
+Test Teardown       Run Keywords  Run Keyword If Test Failed    Test Failure Hook
+                                        ...  AND   Run Keyword If Test Passed    Test Pass Hook
