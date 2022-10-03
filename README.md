@@ -3,6 +3,11 @@ Introduction
 
 EBS automated tasks (RPA) to facilitate testing of EBS using Robot framework utilising SikuliX and AutoIT.
 
+Issues
+====
+
+Had an issue? Chances are the solution is already logged here https://dsdmoj.atlassian.net/wiki/spaces/LAA/pages/4175626273/Common+Issues+Log. If not, please log it.
+
 Setup
 ====
 - *Note due to dependency on AutoIT this is only expected to work on Windows OS*
