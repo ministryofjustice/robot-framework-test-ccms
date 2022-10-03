@@ -29,18 +29,26 @@ Quick install:
 ```
 choco install make
 make install
+make config
 ```
 
-Open the `robot_scripts/secrets.robot` and fill in details. Note Robot Framework enforces 2 spaces after each keyword. Values are assigned in the file like this:
+The last command will open 2 config files for you to fill:
+
+- secrets.robot
+- cypress.env.json
+
+Note Robot Framework enforces 2 spaces after each keyword. Values are assigned in the file like this:
 
 ```
+# example: robot_scripts/secrets.robot
+
 ${login_username}  TEST_USER1
 ${login_password}  abc123
 ```
 
-Open file `cypress.env.json` in the project root directory and record username, password and URL for Apply in format as below:
-
 ```
+# example: cypress.env.json
+
 {
   "APPLY_USERNAME": "username",
   "APPLY_PASSWORD": "password",
@@ -88,14 +96,23 @@ npm install
 Running a script
 ====
 
+For a list of commands:
+
 ```
 make list
+```
+
+To run a task:
+
+```
 make run task=<task name from above command>
 ```
 
 Raw version:
 
+```
 robot --task <task name> robot_scripts
+```
 
 Development
 =====
