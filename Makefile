@@ -40,6 +40,7 @@ install:
 	cmd /c cypress.env.json
 
 verify:
+	systeminfo |find "Memory"
 	python --version
 	make --version
 	choco --version
