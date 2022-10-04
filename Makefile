@@ -47,9 +47,14 @@ install:
 	pip show robotframework
 
 	rundll32 sysdm.cpl,EditEnvironmentVariables
+	$(MAKE) refresh
+
+refresh:
+	refreshenv
 
 env-variables:
 	rundll32 sysdm.cpl,EditEnvironmentVariables
+	$(MAKE) refresh
 
 config:
 	notepad robot_scripts\secrets.robot
