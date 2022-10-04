@@ -13,6 +13,11 @@ Apply Case Submission
     
     ${apply_reference} =  case_reference_locator.Extract Reference Number  ${cypress_response.stdout}  LAA Reference
     ${ccms_case_reference} =  case_reference_locator.Extract Reference Number  ${cypress_response.stdout}
+
     Log To Console  \nNew Apply Reference: ${apply_reference}
     Log To Console  \nNew Case Reference: ${ccms_case_reference}\n 
+
+    IF  "${apply_reference}" == "" or "${ccms_case_reference}" == ""
+        Fail  Unable to generate case reference due to an error, inspect logs.
+    END
     

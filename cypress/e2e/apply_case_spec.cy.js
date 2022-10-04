@@ -21,9 +21,13 @@ describe('Cypress Apply Script', () => {
 		// below fails in UAT (not needed as portal thing?)
 		/// cy.get('a').contains('Apply for Legal Aid').invoke('removeAttr', 'target').click();
 		
-		//Office Check
-		///cy.get('.gov-ukradios > div:nth-child(1) > input').click();
-		cy.get('#binary-choice-form-confirm-office-true-field').click();
+		// Office Account No - different behaviour when only one choice 
+		if (cy.get('h1').contains("your office account number?")){
+			cy.get('#binary-choice-form-confirm-office-true-field').click();
+		}
+		else {
+			cy.get('.gov-ukradios > div:nth-child(1) > input').click();
+		}	
 		cy.get('#continue').click();
 		
 		//Applications
