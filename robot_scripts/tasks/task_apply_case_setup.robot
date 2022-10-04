@@ -1,5 +1,6 @@
 *** Settings ***
 Resource     ../Support/Cypress.robot
+Resource     ../settings.robot
 Library     ../Support/case_reference_locator.py
 
 
