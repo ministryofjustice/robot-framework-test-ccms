@@ -8,10 +8,15 @@ Resource            ../PageObjects/case_details.robot
 Resource            ../PageObjects/merits_assessment.robot
 Resource            ../PageObjects/means_assessment.robot
 
+*** Variables ***
+${means_proceeding_decision}     Grant
+${merits_proceeding_decision}    Grant
+${role_group}                    General Administration
+
 *** Tasks ***
 Propagate Case Status
     Focus EBS Forms
-    And Group_And_Role.Choose Group and Role If Presented  role_group=General Administration
+    And Group_And_Role.Choose Group and Role If Presented  ${role_group}
     And case_details.Submissions Status Check
     When merits_assessment.Access Merits
     Say If Human    We have accessed merits
