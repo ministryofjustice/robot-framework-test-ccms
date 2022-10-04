@@ -12,4 +12,4 @@ Test Setup          Run Keyword    Test Startup Hook
 Suite Teardown      Run Keyword    Stop Remote Server
 
 Test Teardown       Run Keywords  Run Keyword If Test Failed    Test Failure Hook
-                                        ...  AND   Run Keyword If Test Passed    Test Pass Hook
+                    ...  AND   Run Keyword If Test Passed    Test Pass Hook
