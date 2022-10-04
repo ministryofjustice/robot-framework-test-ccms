@@ -8,6 +8,7 @@ help:
 	@echo variables               Edit variables that are fed into robot framework for different tasks.
 	@echo install                 Install dependencies for robot framework.
 	@echo view-report             Open the html report for the last task run.
+	@echo env-variables           Open the Windows environment variables dialogue for configuration.
 	@echo help                    This menu.
 	@echo.
 	@echo example usage: make run task=search_case
@@ -40,6 +41,15 @@ install:
 	cmd /c copy variables.py.template variables.py
 	cmd /c type nul > cypress.env.json
 	echo {} > cypress.env.json
+
+	@echo.
+	@echo Add the robot.exe directory path to the PATH variables:
+	pip show robotframework
+
+	rundll32 sysdm.cpl,EditEnvironmentVariables
+
+env-variables:
+	rundll32 sysdm.cpl,EditEnvironmentVariables
 
 config:
 	notepad robot_scripts\secrets.robot
