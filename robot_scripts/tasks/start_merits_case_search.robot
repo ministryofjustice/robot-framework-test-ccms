@@ -5,6 +5,6 @@ Suite Setup       Start Sikuli Process
 Suite Teardown     Stop Remote Server
 
 *** Tasks ***
-Start Merits EBS Case Search
+Start Merits Case Search
     Dashboard.Start EBS merits
     Universal_Search.Back To Case Search

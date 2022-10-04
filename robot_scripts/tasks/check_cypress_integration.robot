@@ -1,9 +1,8 @@
 *** Settings ***
 Resource     ../Support/Cypress.robot
-
+Resource     ../settings.robot
 
 *** Tasks ***
-
 Check Cypress Integration
     [Documentation]  Run a very simple cypress test that does not depend on any website.
     ${cy_cwd} =  Get Root Dir  ${CURDIR}  

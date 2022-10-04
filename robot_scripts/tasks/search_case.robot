@@ -9,7 +9,7 @@ Resource            ../PageObjects/merits_assessment.robot
 Resource            ../PageObjects/means_assessment.robot
 
 *** Tasks ***
-Search For Case
+Search Case
     ${case_reference}=  Universal_Search.Get Case Reference
 
     Given Common.Ensure EBS Forms Screen  ${login_username}  ${login_password}

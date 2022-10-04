@@ -1,0 +1,9 @@
+# Use this file to setup all actions to be taken againt a case reference. This will be fed into the
+# tasks automatically when you trigger them.
+
+# Task: Search case, Get Case Details
+case_reference = ''
+
+# Task: Trigger Batch Process
+request_name = ''
+business_rule_group = ''
