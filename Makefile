@@ -7,7 +7,7 @@ help:
 	@echo run task/t=^<task^>       Run a task by name.
 	@echo variables               Edit variables that are fed into robot framework for different tasks.
 	@echo install                 Install dependencies for robot framework.
-	@echo open-report             Open the html report for the last task run.
+	@echo view-report             Open the html report for the last task run.
 	@echo help                    This menu.
 	@echo.
 	@echo example usage: make run task=search_case
@@ -47,18 +47,30 @@ config:
 
 verify:
 	systeminfo |find "Memory"
+	@echo.
 	python --version
+	@echo.
 	make --version
+	@echo.
 	choco --version
+	@echo.
 	python -m robot --version
+	@echo.
 	robot --version
+	@echo.
 	cmd /c IEDriverServer.exe --version
+	@echo.
 	npm --version
+	@echo.
 	java -version
+	@echo.
 
 	dir cypress.config.js
+	@echo.
 	dir robot_scripts\secrets.robot
+	@echo.
 	python variables.py
+	@echo.
 
 view-report:
 	cmd /c report.html

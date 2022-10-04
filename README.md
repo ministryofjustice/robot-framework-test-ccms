@@ -108,6 +108,12 @@ To run a task:
 make run task=<task name from above command>
 ```
 
+For all commands available:
+
+```
+make help
+```
+
 Raw version:
 
 ```
