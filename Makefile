@@ -60,7 +60,7 @@ verify:
 	dir robot_scripts\secrets.robot
 	python variables.py
 
-open-report:
+view-report:
 	cmd /c report.html
 
 update:
