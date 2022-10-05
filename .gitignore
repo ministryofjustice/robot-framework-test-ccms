@@ -13,3 +13,4 @@ selenium-screenshot*png
 geckodriver*.log
 PIPE
 variables.py
+results/*

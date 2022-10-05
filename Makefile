@@ -19,13 +19,55 @@ list:
 	@for /F "delims= eol=" %%A IN ('dir /A-D /B robot_scripts\tasks\*.robot') do echo %%~nA
 
 command:
-	@echo robot --variablefile variables.py --task $(task) $(t) robot_scripts
+	@echo robot --variablefile variables.py --outputdir results --task $(task) $(t) robot_scripts
 
 run:
-	robot --variablefile variables.py --task $(task) $(t) robot_scripts
+	robot --variablefile variables.py --outputdir results --task $(task) $(t) robot_scripts
 
 variables:
 	notepad variables.py
+
+install-dependencies:
+	@echo -- The following software will be installed on your machine:
+	@echo.
+	@echo python
+	@echo nodejs
+	@echo java 8.0.251
+	@echo IEDriverServer@4.3.0.0
+	@echo.
+	@echo You can choose to install them or not one by one.
+	@echo.
+	@pause
+
+	@echo.
+	@echo Installing python:
+	choco install python --version=3.10.6
+
+	@echo.
+	@echo Installing nodejs:
+	choco install nodejs
+
+	@echo.
+	@echo Installing java:
+	cmd /c start p:\TAP_Files\Installers\jdk-8u251-windows-x64.exe
+	@pause
+
+	@echo.
+	@echo Setting up IEDriverServer:
+	copy "p:\TAP_Files\Installers\Webdrivers\IEDriverServer.exe" "%USERPROFILE%\Desktop\"
+	powershell -Command "Start-Process cmd \"/c move `\"%UserProfile%\Desktop\IEDriverServer.exe`\" `\"C:\Program Files\IEDriverServer\`\" & pause  \" -Verb RunAs"
+	@pause
+
+	@echo.
+	@echo -- Add the following to your PATH variable:
+	@echo "%USERPROFILE%\AppData\Roaming\Python\Python310\Scripts"
+	@echo "C:\Program Files\IEDriverServer\"
+	@echo.
+
+	$(MAKE) env-variables
+
+testing:
+	cmd /c start "p:\TAP_Files\Installers\jdk-8u251-windows-x64.exe"
 
 install:
 	choco --version
@@ -88,7 +130,7 @@ verify:
 	@echo.
 
 view-report:
-	cmd /c report.html
+	cmd /c results\report.html
 
 update:
 	git pull origin main

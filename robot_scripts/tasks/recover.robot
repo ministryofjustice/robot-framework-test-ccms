@@ -6,3 +6,4 @@ Resource   ../settings.robot
 Recover
     Run Process   taskkill   /F /IM java.exe /T
     Run Process   taskkill   /F /IM firefox.exe /T
+    Run Process   taskkill   /F /IM IEDriverServer.exe /T
