@@ -14,20 +14,23 @@ Setup
 - *Installation has been tested using standard Windows CMD terminal. It is unclear if other ways work*
 - *Install using choco found here https://chocolatey.org/install#individual.
 
-Download and install Java 8 (tested with 1.8.0_202).    
-Download and install Python 3 (tested with 3.10).    
-Download and install AutoIt (tested with 3.3.16.0).   
-Download and install SikuliX (tested with 2.0.5).
-Download and install 32 bit IEDriverServer.exe (tested with 4.3.0.0 for IE version 1607)
-Download and install npm (node v16)
-
-Please include the IEDriverServer.exe in your PATH environment variable.
-
-Quick install:
+Quick install (AWS workspace):
 ====
+
+*Note: You need to be setup with access to the github repository.
+
+Dependencies install:
 
 ```
 choco install make
+choco install git
+git clone git@github.com:ministryofjustice/robot-framework-test-ccms.git
+cd robot-framework-test-ccms.git && make -i install-dependencies
+```
+
+To proceed with installing robot framework and its dependencies, run the following commands:
+
+```
 make install
 make config
 ```
@@ -67,6 +70,13 @@ make -i verify
 
 Step by step
 ====
+
+Download and install Java 8 (tested with 1.8.0_251).    
+Download and install Python 3 (tested with 3.10).
+Download and install 32 bit IEDriverServer.exe (tested with 4.3.0.0 for IE version 1607)
+Download and install npm (node v16)
+
+Please include the IEDriverServer.exe in your PATH environment variable.
 
 Use pip to install the following Python packages:
 
