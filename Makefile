@@ -34,7 +34,7 @@ install:
 	pip install --user robotframework-SikuliLibrary
 	pip install --user pyttsx3
 	pip install --user robotframework-selenium2library
-	pip install --user robotframework-autoitlibrary
+	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary \" -Verb RunAs"
 	npm install
 
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	
@@ -47,9 +47,14 @@ install:
 	pip show robotframework
 
 	rundll32 sysdm.cpl,EditEnvironmentVariables
+	$(MAKE) refresh
+
+refresh:
+	refreshenv
 
 env-variables:
 	rundll32 sysdm.cpl,EditEnvironmentVariables
+	$(MAKE) refresh
 
 config:
 	notepad robot_scripts\secrets.robot
