@@ -66,9 +66,6 @@ install-dependencies:
 
 	$(MAKE) env-variables
 
-testing:
-	cmd /c start "p:\TAP_Files\Installers\jdk-8u251-windows-x64.exe"
-
 install:
 	choco --version
 
