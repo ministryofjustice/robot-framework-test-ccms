@@ -1,4 +1,3 @@
-
 help:
 	@echo -- Commands available --
 	@echo.
@@ -6,6 +5,7 @@ help:
 	@echo command task/t=^<task^>   Generate a robot command for a task.
 	@echo run task/t=^<task^>       Run a task by name.
 	@echo variables               Edit variables that are fed into robot framework for different tasks.
+	@echo install-dependencies    Install software dependencies for this project (Elevated CMD).
 	@echo install                 Install dependencies for robot framework.
 	@echo view-report             Open the html report for the last task run.
 	@echo env-variables           Open the Windows environment variables dialogue for configuration.
