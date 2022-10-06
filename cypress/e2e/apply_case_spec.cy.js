@@ -71,9 +71,19 @@ describe('Cypress Apply Script', () => {
 		cy.get('#legal-aid-application-has-other-proceeding-field').click()
 		cy.get('#continue').click();
 
-		//Delegated Functions?
-		cy.get('input[id=legal-aid-applications-used-multiple-delegated-functions-form-none-selected-true-field]').click();
+		// What is your client’s role in this proceeding?
+		cy.get('#proceeding-client-involvement-type-ccms-code-a-field').click()
 		cy.get('#continue').click();
+		
+		//Delegated Functions?
+		//cy.get('input[id=legal-aid-applications-used-multiple-delegated-functions-form-none-selected-true-field]').click();
+		cy.get('#proceeding-used-delegated-functions-field').click()
+		cy.get('#continue').click();
+
+		// Do you want the default level of service?
+		cy.get('#proceeding-accepted-substantive-defaults-true-field').click()
+		cy.get('#continue').click();
+
 		//What you're applying for
 		cy.get('#continue').click();
 		//Check your answers
