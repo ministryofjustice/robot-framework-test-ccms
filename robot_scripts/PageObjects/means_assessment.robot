@@ -10,9 +10,10 @@ ${toolbar_tools_button}                  ${IMG_PATH}/meritsAssessment/ToolbarToo
 ${toolbar_tools_details_link}            ${IMG_PATH}/meritsAssessment/ToolbarToolsDetailsLink.PNG
 ${decision_field_custom_application}     ${IMG_PATH}/meritsAssessment/DecisionFieldCustomApplication.PNG
 ${decision_field_proceedings}            ${IMG_PATH}/meritsAssessment/DecisionFieldProceedings.PNG
-${decision_field_costlimit_proceedings}  ${IMG_PATH}/meansAssessment/costLimitsMeansProceeding.PNG
 ${cost_limits_button}                    ${IMG_PATH}/meritsAssessment/CostLimitsButton.PNG
 ${close_form_button}                     ${IMG_PATH}/meritsAssessment/CloseFormButton.PNG
+${means_task_status_field}               ${IMG_PATH}/meansAssessment/meansTaskStatusField.PNG
+${decision_field_costlimit_proceedings}  ${IMG_PATH}/meansAssessment/costLimitsMeansProceeding.PNG
 
 ${ok_button_shortcut}   !k
 ${case_reference}
@@ -27,6 +28,16 @@ Access Means
     Log To Console    Access Means
 
     Common.Wait Until Screen Contains  ${service_request_screen}
+
+Check Means Status
+    [Arguments]  ${proceeding_decision}
+
+     Log To Console    Check Means Status
+     Common.Wait Until Screen Contains  ${service_request_screen}
+     Common.Click On    ${subject_assess_means}
+     ${exists}=  Image With Text Exists On Screen    ${means_task_status_field}     ${proceeding_decision}
+     IF  "${exists}" == "True"  Say If Human   Ignoring means process as its in Grant Status
+     BuiltIn.Skip if  ('${exists}' == '${True}')
 
 Service Request Task
     Log To Console    Service Request Task

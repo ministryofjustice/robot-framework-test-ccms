@@ -10,6 +10,7 @@ Resource            ../PageObjects/means_assessment.robot
 
 *** Variables ***
 ${means_proceeding_decision}     Grant
+${means_proceeding_task_status}  Grant Decision
 ${merits_proceeding_decision}    Grant
 ${role_group}                    General Administration
 
@@ -25,6 +26,7 @@ Propagate Case Status
     Say If Human   changed proceeding status to ${merits_proceeding_decision}
     And merits_assessment.Change Status Costlimits  ${merits_proceeding_decision}
     Say If Human   changed costlimits status to ${merits_proceeding_decision}
+    AND means_assessment.Check Means Status    ${means_proceeding_task_status}
     When means_assessment.Access Means   $proceeding_decision
     Say If Human    We have accessed means
     Then means_assessment.Service request task
