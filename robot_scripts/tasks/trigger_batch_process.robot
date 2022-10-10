@@ -13,8 +13,6 @@ ${request_name}
 
 *** Tasks ***
 Trigger Batch Process
-    # Request name: CCMS Business Rules Monitor
-    # Business rule group: Bill Approve
     ${request_name}=  Get Request Name
     ${business_rule_group}=  Get Business Rule Group
 
