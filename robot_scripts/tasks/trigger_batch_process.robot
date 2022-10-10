@@ -19,7 +19,7 @@ Trigger Batch Process
     ${business_rule_group}=  Get Business Rule Group
 
     Given Focus EBS Forms
-    When Submit Single Request  ${request_name}   ${business_rule_group}
-    Say If Human    Submitted single request
-    Then Open Batch Request Run Window
-    Say If Human    Opened request window
+    Then Submit Single Request  ${request_name}  ${business_rule_group}
+    Say If Human   Submitted single request 
+    And Open Batch Request Run Window
+    Say If Human   Opened request window

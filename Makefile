@@ -13,6 +13,15 @@ help:
 	@echo.
 	@echo example usage: make run task=search_case
 
+e2e:
+	echo case_reference = '' > variables.py
+	echo cypress_browser = 'electron' >> variables.py
+	echo cypress_options = '--headed' >> variables.py
+	$(MAKE) run task=apply_case_submission
+	echo case_reference = '%case_reference%' > variables.py
+	$(MAKE) run task=search_case  $case_reference
+	$(MAKE) run task=propagate_case_status
+
 list:
 	@echo Listing available tasks:
 	@echo.

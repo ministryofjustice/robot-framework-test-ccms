@@ -3,11 +3,13 @@ Resource   settings.robot
 Resource   PageObjects/login.robot
 Resource   PageObjects/dashboard.robot
 Resource    PageObjects/group_and_role.robot
+Resource    Support/Processing.robot
 Library    String
 Library    ./Support/StringUtils.py
 Library    Screenshot
 Library    ./Support/Speaker.py
 Library    Dialogs
+Library    Process
 
 *** Variables ***
 ${file_menu_shortcut}   !f
@@ -219,7 +221,7 @@ Close EBS Forms
     Send Keys  ${file_menu_shortcut}${exit_option_shortcut}${ok_button_shortcut}
 
 Close IE
-    Close Application    Internet Explorer
+    Task Kill  task=iexplore.exe
 
 Send Keys
     [Documentation]  Use to either fill inputs or press shortcut keys.
