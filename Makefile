@@ -41,16 +41,18 @@ install-dependencies:
 
 	@echo.
 	@echo Installing python:
-	powershell -Command "Start-Process cmd \"/c choco install python --version=3.10.6 \" -Verb RunAs"
+	powershell -Command "Start-Process cmd \"/c choco install python --version=3.10.6 & pause \" -Verb RunAs"
 	@pause
 
 	@echo.
 	@echo Installing nodejs:
-	powershell -Command "Start-Process cmd \"/c choco install nodejs \" -Verb RunAs"
+	powershell -Command "Start-Process cmd \"/c choco install nodejs & pause \" -Verb RunAs"
 	@pause
 
 	@echo.
 	@echo Installing java:
+	where java
+	java -version
 	cmd /c start p:\TAP_Files\Installers\jdk-8u251-windows-x64.exe
 	@pause
 
@@ -75,7 +77,7 @@ install:
 	pip install --user robotframework-SikuliLibrary
 	pip install --user pyttsx3
 	pip install --user robotframework-selenium2library
-	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary \" -Verb RunAs"
+	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary & pause \" -Verb RunAs"
 	npm install
 
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	
