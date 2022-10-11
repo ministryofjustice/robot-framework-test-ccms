@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SikuliLibrary
 Resource    ../Common.robot
+Resource    Navigator.robot
 
 *** Variables ***
 ${all_details_checkbox}             ${IMG_PATH}AllCheckbox.png
@@ -14,18 +15,13 @@ ${service_request_screen}           ${IMG_PATH}/meritsAssessment/service_request
 
 ${down_arrow_shortcut}  {DOWN}
 *** Keywords ***
-Refresh Case
-    Log To Console    Refresh case status
-
-    Wait Until Window With Title Appears    eBusiness Center
-    Common.Click On    ${all_details_checkbox}
-    Common.Click On    ${case_refresh_button}
-
-Submissions Status Check
-    Log To Console     Submission status check
-    Send Keys   ${down_arrow_shortcut}
-    Common.Click On    ${submissions_text}
-    Common.Click On    ${details_button}
-    Common.Wait Until Screen Contains  ${drilldown_list_screen}
-    Common.Click On    ${drill_down_list_details_button}
+Check Service Request Screen
+    Log To Console     Checking if on Service request screen
     Common.Wait Until Screen Contains  ${service_request_screen}
+    ${exists}=  Get Text From Image Matching  ${service_request_screen}
+         IF  ${exists} == "True"
+               Log To Console    "We are not on Service request Screen."
+                              Back To Navigator
+                              Open Universal Search
+         END
+

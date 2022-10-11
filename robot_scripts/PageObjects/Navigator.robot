@@ -18,3 +18,4 @@ Open Universal Search
     # Wait Until Navigator Window With Title Appears    Navigator
     Sleep  2
     Send Keys  ${open_search_shortcut}
+
