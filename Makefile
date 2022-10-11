@@ -41,27 +41,31 @@ install-dependencies:
 
 	@echo.
 	@echo Installing python:
-	choco install python --version=3.10.6
+	powershell -Command "Start-Process cmd \"/c choco install python --version=3.10.6 & pause \" -Verb RunAs"
+	@pause
 
 	@echo.
 	@echo Installing nodejs:
-	choco install nodejs
+	powershell -Command "Start-Process cmd \"/c choco install nodejs & pause \" -Verb RunAs"
+	@pause
 
 	@echo.
 	@echo Installing java:
+	where java
+	java -version
 	cmd /c start p:\TAP_Files\Installers\jdk-8u251-windows-x64.exe
 	@pause
 
 	@echo.
 	@echo Setting up IEDriverServer:
-	copy "p:\TAP_Files\Installers\Webdrivers\IEDriverServer.exe" "%USERPROFILE%\Desktop\"
-	powershell -Command "Start-Process cmd \"/c move `\"%UserProfile%\Desktop\IEDriverServer.exe`\" `\"C:\Program Files\IEDriverServer\`\" & pause  \" -Verb RunAs"
+	mkdir %USERPROFILE%\projects\IEDriverServer
+	copy "p:\TAP_Files\Installers\Webdrivers\IEDriverServer.exe" "%USERPROFILE%\projects\IEDriverServer"
 	@pause
 
 	@echo.
-	@echo -- Add the following to your PATH variable:
+	@echo -- Add the following to your PATH variable and move them up in the list:
 	@echo "%USERPROFILE%\AppData\Roaming\Python\Python310\Scripts"
-	@echo "C:\Program Files\IEDriverServer\"
+	@echo "%USERPROFILE%\projects\IEDriverServer"
 	@echo.
 
 	$(MAKE) env-variables
@@ -73,7 +77,7 @@ install:
 	pip install --user robotframework-SikuliLibrary
 	pip install --user pyttsx3
 	pip install --user robotframework-selenium2library
-	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary \" -Verb RunAs"
+	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary & pause \" -Verb RunAs"
 	npm install
 
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	
@@ -85,14 +89,13 @@ install:
 	@echo Add the robot.exe directory path to the PATH variables:
 	pip show robotframework
 
-	rundll32 sysdm.cpl,EditEnvironmentVariables
 	$(MAKE) refresh
 
 refresh:
-	refreshenv
+	@refreshenv
 
 env-variables:
-	rundll32 sysdm.cpl,EditEnvironmentVariables
+	@rundll32 sysdm.cpl,EditEnvironmentVariables
 	$(MAKE) refresh
 
 config:
@@ -117,6 +120,7 @@ verify:
 	npm --version
 	@echo.
 	java -version
+	where java
 	@echo.
 
 	dir cypress.config.js
