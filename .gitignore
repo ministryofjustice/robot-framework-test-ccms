@@ -11,6 +11,8 @@ node_modules/
 cypress.env.json
 selenium-screenshot*png
 geckodriver*.log
-PIPE
 variables.py
 results/*
+.vscode/
+cypress/screenshots
+cypress_log.txt

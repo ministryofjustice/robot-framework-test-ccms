@@ -1,6 +1,7 @@
 *** Settings ***
 Resource     ../Support/Cypress.robot
 Library      ../Support/case_reference_locator.py
+Library    OperatingSystem
 Resource     ../settings.robot
 
 
@@ -16,6 +17,9 @@ Apply Case Submission
 
     Log To Console  \nNew Apply Reference: ${apply_reference}
     Log To Console  \nNew Case Reference: ${ccms_case_reference}\n 
+
+    Set Environment Variable  case_reference  ${ccms_case_reference}
+    Set Environment Variable  apply_reference  ${apply_reference}
 
     IF  "${apply_reference}" == "" or "${ccms_case_reference}" == ""
         Fail  Unable to generate case reference due to an error, inspect logs.
