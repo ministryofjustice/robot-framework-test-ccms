@@ -33,9 +33,10 @@ Skip if Means Status Auto Granted
      Common.Wait Until Screen Contains  ${service_request_screen}
      Common.Click On    ${subject_assess_means}
      Common.Wait Until Screen Contains  ${subject_assess_means_selected}
-     ${exists}=  Get Text From Image Matching  ${means_task_status_field}
-     IF  ${exists} == "True"
-          BuiltIn.Pass Execution If  "${exists}" == "True"  Ignoring means process as its in Grant Status
+     ${exists}=  Image With Text Exists On Screen  ${means_task_status_field}  ${proceeding_decision}
+     IF   "${exists}" == "True"
+         Say If Human    Ignoring means process as its in Grant Status
+         BuiltIn.Pass Execution If  "${exists}" == "True"   Ignoring means process as its in Grant Status
      END
 
 Service Request Task

@@ -5,6 +5,7 @@ Resource    ../Common.robot
 
 ${open_search_shortcut}   {UP}{UP}{DOWN}{ENTER}
 ${navigator_shortcut}     !w1
+${window_menu_shortcut}   !w2
 
 *** Keywords ***
 Open Batch Request Run Window
@@ -13,6 +14,9 @@ Open Batch Request Run Window
 
 Back To Navigator
     Send Keys  ${navigator_shortcut}
+
+Back To Choose Window
+    Send Keys  ${window_menu_shortcut}
 
 Open Universal Search
     # Wait Until Navigator Window With Title Appears    Navigator
