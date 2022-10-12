@@ -4,7 +4,8 @@ help:
 	@echo list                    List all available tasks to run.
 	@echo command task/t=^<task^>   Generate a robot command for a task.
 	@echo run task/t=^<task^>       Run a task by name.
-	@echo variables               Edit variables that are fed into robot framework for different tasks.
+	@echo variables               Re-create the variables file from the existing template.
+	@echo edit-variables          Edit variables that are fed into robot framework for different tasks.
 	@echo install-dependencies    Install software dependencies for this project (Elevated CMD).
 	@echo install                 Install dependencies for robot framework.
 	@echo view-report             Open the html report for the last task run.
@@ -12,6 +13,15 @@ help:
 	@echo help                    This menu.
 	@echo.
 	@echo example usage: make run task=search_case
+
+e2e:
+	echo case_reference = '' > variables.py
+	echo cypress_browser = 'electron' >> variables.py
+	echo cypress_options = '--headed' >> variables.py
+	$(MAKE) run task=apply_case_submission
+	echo case_reference = '%case_reference%' > variables.py
+	$(MAKE) run task=search_case  $case_reference
+	$(MAKE) run task=propagate_case_status
 
 list:
 	@echo Listing available tasks:
@@ -24,8 +34,11 @@ command:
 run:
 	robot --variablefile variables.py --outputdir results --task $(task) $(t) robot_scripts
 
-variables:
+edit-variables:
 	notepad variables.py
+
+variables:
+	cmd /c copy variables.py.template variables.py
 
 install-dependencies:
 	@echo -- The following software will be installed on your machine:

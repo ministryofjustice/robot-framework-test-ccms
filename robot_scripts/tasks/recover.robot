@@ -1,9 +1,10 @@
 *** Settings ***
 Library    Process
 Resource   ../settings.robot
+Resource    ../Support/Processing.robot
 
 *** Tasks ***
 Recover
-    Run Process   taskkill   /F /IM java.exe /T
-    Run Process   taskkill   /F /IM firefox.exe /T
-    Run Process   taskkill   /F /IM IEDriverServer.exe /T
+    Task Kill  task=java.exe
+    Task Kill  task=firefox.exe
+    Task Kill  task=IEDriverServer.exe
