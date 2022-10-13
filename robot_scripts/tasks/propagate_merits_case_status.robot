@@ -18,6 +18,7 @@ ${role_group}                    General Administration
 Propagate Merits Case Status
     Focus EBS Forms
     And Group_And_Role.Choose Group and Role If Presented  ${role_group}
+    And Ensure EBusiness Center
     And case_details.Submissions Status Check
     When merits_assessment.Access Merits
     Say If Human    We have accessed merits

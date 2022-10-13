@@ -2,7 +2,7 @@
 Library             Dialogs
 Resource            ../Common.robot
 Resource            ../settings.robot
-Resource            ../PageObjects/group_and_role.robot
+Resource            ../PageObjects/service_request.robot
 Resource            ../PageObjects/universal_search.robot
 Resource            ../PageObjects/case_details.robot
 Resource            ../PageObjects/merits_assessment.robot
@@ -21,7 +21,7 @@ Propagate Means Case Status
     And Ensure EBusiness Center
     And case_details.Submissions Status Check
     When means_assessment.Access Means
-    AND means_assessment.Skip if Means Status Auto Granted    ${means_proceeding_task_status}
+    AND means_assessment.Skip if Means Status Auto Granted   ${means_proceeding_task_status}
     Say If Human    We have accessed means
     Then means_assessment.Service request task
     Then means_assessment.Change Status Proceedings  ${means_proceeding_decision}
