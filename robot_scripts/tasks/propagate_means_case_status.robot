@@ -17,7 +17,6 @@ ${role_group}                    General Administration
 *** Tasks ***
 Propagate Means Case Status
     Focus EBS Forms
-    And Group_And_Role.Choose Group and Role If Presented  ${role_group}
     And Ensure EBusiness Center
     And case_details.Submissions Status Check
     When means_assessment.Access Means

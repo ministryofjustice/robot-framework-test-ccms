@@ -13,6 +13,7 @@ ${drilldown_list_screen}            ${IMG_PATH}/DrilldownlistSubmissionsScreen.P
 ${service_request_screen}           ${IMG_PATH}/meritsAssessment/service_request_screen.PNG
 
 ${down_arrow_shortcut}  {DOWN}
+
 *** Keywords ***
 Refresh Case
     Log To Console    Refresh case status

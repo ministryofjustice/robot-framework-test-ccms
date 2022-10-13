@@ -90,7 +90,6 @@ Image With Text Exists On Screen
     END
 
     IF  """${foundText}""" == "False" or """${foundText}""" == ""
-        ${Screenshot}=  Take Screenshot
         LogV   No text found inside image ${img}
     END
     ${result}=  Set Variable  False
