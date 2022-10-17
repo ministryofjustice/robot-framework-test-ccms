@@ -284,19 +284,6 @@ Click In Until
         Fail   Waited for '${tries}' tries, but could not click on image ${image} inside '${region}'.
     END
 
-Fail With Voice Old
-    [Arguments]  ${msg}  ${voiceMsg}=""
-
-    Log  ${msg}
-    Log To Console  ${msg}
-
-    IF  "${voiceMsg}" != "False"
-        ${voiceMsg}=  Set Variable  ${msg}
-    END
-
-    Say  ${voiceMsg}
-    Fail  ${msg}
-
 Fail With Voice And Help
     [Documentation]  Fail with both spoken and displayed error message.
     ...    Displayed message in two places: (i) direct to console, near screenshot info and extra text 
