@@ -284,20 +284,26 @@ Click In Until
         Fail   Waited for '${tries}' tries, but could not click on image ${image} inside '${region}'.
     END
 
-Fail With Voice
-    [Arguments]  ${msg}  ${voiceMsg}=""
+Fail With Voice And Help
+    [Documentation]  Fail with both spoken and displayed error message.
+    ...    Displayed message in two places: (i) direct to console, near screenshot info and extra text 
+    ...                                     (ii) part of standard "FAIL" output
+    ...    Optional extra info is displayed but not spoken. 
+    ...    enforce_new_line flag used to start "direct to console" message on a new line which can be tidier
+    [Arguments]    ${message}  ${extra_info}=""  ${enforce_new_line}=True
 
-    Log  ${msg}
-    Log To Console  ${msg}
+    Say If Human  ${message}
 
-    IF  "${voiceMsg}" != "False"
-        ${voiceMsg}=  Set Variable  ${msg}
+    IF  ${enforce_new_line}
+        Log To Console  \ 
+    END
+    Log to Console  ${message}
+    # Triple quotes to avoid "EOL while scanning string literal" errors from \n chars 
+    IF  """${extra_info}""" != ""
+        Log To Console  ${extra_info}
     END
 
-    Say  ${voiceMsg}
-    Fail  ${msg}
-
-
+    Fail  ${message}
 
 LogV
     [Arguments]  ${text}  ${voiceMsg}=True
