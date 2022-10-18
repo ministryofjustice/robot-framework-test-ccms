@@ -177,8 +177,6 @@ Create a Case
       #Getting the client name, LAA reference and CCMS reference 
       Wait Until Element Is Visible   xpath://*[@id="main-content"]/div[2]/div/div[1]/dl
       ${result}=    Selenium2Library.Get Text  xpath://*[@id="main-content"]/div[2]/div/div[1]/dl
-      Split String    string, separator=None, max_split=-1
-      ${finalResult}    Split String    ${result}       ,${SPACE}
-      Log To Console   ${finalResult}
+      Log To Console    ${result}
  
     Close Browser
