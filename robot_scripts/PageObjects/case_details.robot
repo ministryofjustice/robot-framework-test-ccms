@@ -24,6 +24,7 @@ Refresh Case
 
 Submissions Status Check
     Log To Console     Submission status check
+    #Down arrow is used to move focus from above image
     Send Keys   ${down_arrow_shortcut}
     Common.Click On    ${submissions_text}
     Common.Click On    ${details_button}
