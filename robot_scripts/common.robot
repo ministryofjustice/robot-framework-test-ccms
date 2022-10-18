@@ -2,8 +2,9 @@
 Resource   settings.robot
 Resource   PageObjects/login.robot
 Resource   PageObjects/dashboard.robot
-Resource    PageObjects/group_and_role.robot
-Resource    Support/Processing.robot
+Resource   PageObjects/group_and_role.robot
+Resource   Support/Processing.robot
+Resource   PageObjects/Navigator.robot
 Library    String
 Library    ./Support/StringUtils.py
 Library    Screenshot
@@ -15,6 +16,7 @@ Library    Process
 ${file_menu_shortcut}   !f
 ${exit_option_shortcut}   x
 ${ok_button_shortcut}   !o
+${close_button_shortcut}  {TAB}{ENTER}	
 
 *** Keywords ***
 Ensure EBS Web Screen
@@ -54,6 +56,20 @@ Ensure EBS Forms Screen
     Focus EBS Forms
     sleep  1s
 
+Ensure EBusiness Center
+        ${exists}=  Win Exists  eBusiness Center
+
+        LogV    eBusinessCenterWindow - Value of exists is: ${exists}
+
+        IF  ${exists} == 0
+                   Log To Console    "We are not on eBusiness Center window, going to it now."
+                   Back To Choose Window
+                   Send Keys    ${close_button_shortcut}
+        END
+        
+        Focus EBS Forms
+        sleep  1s
+
 Focus EBS Forms
     Win Activate  Oracle Applications - UAT
 
@@ -74,8 +90,7 @@ Image With Text Exists On Screen
     END
 
     IF  """${foundText}""" == "False" or """${foundText}""" == ""
-        ${Screenshot}=  Take Screenshot
-        Fail  No text found inside image ${img}, screenshot: ${Screenshot}
+        LogV   No text found inside image ${img}
     END
     ${result}=  Set Variable  False
 

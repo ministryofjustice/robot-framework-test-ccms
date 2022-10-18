@@ -12,3 +12,10 @@ role_group = 'General Administration'
 # Task: Trigger Batch Process
 request_name = 'CCMS Business Rules Monitor'
 business_rule_group = 'App Review'
+
+# Task: Merits Assessment
+means_proceeding_decision =    'Grant'
+means_proceeding_task_status = 'Grant Decision'
+
+# Task: Means Assessment
+merits_proceeding_decision  =  'Grant'
