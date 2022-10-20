@@ -1,6 +1,5 @@
 *** Settings ***
 Resource   ../settings.robot
-Library    Selenium2Library
 
 *** Variables ***
 ${logged_in_screen}   ${IMG_PATH}EBSWebLoggedInScreen.png

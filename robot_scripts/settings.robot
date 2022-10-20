@@ -1,6 +1,7 @@
 *** Settings ***
 Library     SikuliLibrary    mode=NEW
 Library     AutoItLibrary
+Library     Selenium2Library
 Resource    secrets.robot
 Resource    ./Support/Hooks.robot
 
