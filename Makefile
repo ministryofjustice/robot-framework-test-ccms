@@ -50,7 +50,7 @@ find-stale-images:
 	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_unused_images.robot
 
 lint:
-	python -m rflint -r robot_scripts
+	python -m rflint -A helpers\rflint-arguments-file -r robot_scripts
 
 install-dependencies:
 	@echo -- The following software will be installed on your machine:
