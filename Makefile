@@ -41,28 +41,14 @@ edit-variables:
 variables:
 	cmd /c copy variables.py.template variables.py
 
+activate-pre-commit-hook:
+	copy helpers\pre-commit .git\hooks\pre-commit
+
 find-stale-images:
 	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_unused_images.robot
 
 lint:
-	@echo.
-	@echo ^>^> PageObjects
-	python -m rflint -r robot_scripts\PageObjects
-	@echo.
-	@echo ^>^> Support
-	python -m rflint -r robot_scripts\Support
-	@echo.
-	@echo ^>^> Tasks
-	python -m rflint -r robot_scripts\tasks
-	@echo.
-	@echo ^>^> Utils
-	python -m rflint -r robot_scripts\utils
-	@echo.
-	@echo ^>^> Generic
 	python -m rflint -r robot_scripts
-	@echo.
-	@echo ^>^> Images
-	$(MAKE) find-stale-images
 
 install-dependencies:
 	@echo -- The following software will be installed on your machine:

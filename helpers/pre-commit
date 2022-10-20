@@ -1,0 +1,4 @@
+#!/bin/sh
+
+make find-stale-images 
+make lint 
