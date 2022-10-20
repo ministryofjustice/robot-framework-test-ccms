@@ -9,6 +9,7 @@ help:
 	@echo install-dependencies    Install software dependencies for this project (Elevated CMD).
 	@echo install                 Install dependencies for robot framework.
 	@echo view-report             Open the html report for the last task run.
+	@echo find-stale-images       Will find and show list of stale images not used in the framework.
 	@echo env-variables           Open the Windows environment variables dialogue for configuration.
 	@echo help                    This menu.
 	@echo.
@@ -39,6 +40,29 @@ edit-variables:
 
 variables:
 	cmd /c copy variables.py.template variables.py
+
+find-stale-images:
+	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_unused_images.robot
+
+lint:
+	@echo.
+	@echo ^>^> PageObjects
+	python -m rflint -r robot_scripts\PageObjects
+	@echo.
+	@echo ^>^> Support
+	python -m rflint -r robot_scripts\Support
+	@echo.
+	@echo ^>^> Tasks
+	python -m rflint -r robot_scripts\tasks
+	@echo.
+	@echo ^>^> Utils
+	python -m rflint -r robot_scripts\utils
+	@echo.
+	@echo ^>^> Generic
+	python -m rflint -r robot_scripts
+	@echo.
+	@echo ^>^> Images
+	$(MAKE) find-stale-images
 
 install-dependencies:
 	@echo -- The following software will be installed on your machine:
@@ -90,6 +114,7 @@ install:
 	pip install --user robotframework-SikuliLibrary
 	pip install --user pyttsx3
 	pip install --user robotframework-selenium2library
+	pip install --upgrade --user robotframework-lint
 	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary & pause \" -Verb RunAs"
 	npm install
 
