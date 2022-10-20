@@ -1,7 +1,5 @@
 *** Settings ***
-Library    Process
-Resource   ../settings.robot
-Resource    ../Support/Processing.robot
+Resource   ../Support/Processing.robot
 
 *** Tasks ***
 Recover

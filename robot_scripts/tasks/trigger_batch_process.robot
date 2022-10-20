@@ -1,11 +1,7 @@
 *** Settings ***
-Resource    ../PageObjects/login.robot
-Resource    ../Common.robot
-Resource    ../Support/Dialogue.robot
+Resource    ../Support/ebs_helpers.robot
 Resource    ../PageObjects/submit_new_batch_request.robot
-Resource    ../PageObjects/Navigator.robot
 Resource    ../PageObjects/batch_runner.robot
-Library    Dialogs
 
 *** Variables ***
 ${business_rule_group}
@@ -16,8 +12,8 @@ Trigger Batch Process
     ${request_name}=  Get Request Name
     ${business_rule_group}=  Get Business Rule Group
 
-    Given Focus EBS Forms
-    Then Submit Single Request  ${request_name}  ${business_rule_group}
+    Focus EBS Forms
+    Submit Single Request  ${request_name}  ${business_rule_group}
     Say If Human   Submitted single request 
-    And Open Batch Request Run Window
+    Open Batch Request Run Window
     Say If Human   Opened request window

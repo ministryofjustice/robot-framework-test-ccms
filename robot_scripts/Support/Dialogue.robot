@@ -1,5 +1,6 @@
 *** Settings ***
-Resource  ../Common.robot
+Resource  ../Support/interaction_helper.robot
+Resource  ../Support/screen_content_helper.robot
 
 *** Keywords ***
 Press Dialogue OK

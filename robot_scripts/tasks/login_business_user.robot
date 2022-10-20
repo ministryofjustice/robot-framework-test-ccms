@@ -1,7 +1,5 @@
 *** Settings ***
-Resource    ../Common.robot
-Suite Setup       Start Sikuli Process
-Suite Teardown     Stop Remote Server
+Resource    ../PageObjects/login.robot
 
 *** Tasks ***
 Login Business User

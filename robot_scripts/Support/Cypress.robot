@@ -1,6 +1,6 @@
 *** Settings ***
 Library     Process
-
+Resource    ../settings.robot
 
 *** Variables ***
 # Note the two Cypress paths are relative to the project
@@ -8,11 +8,9 @@ Library     Process
 # from robot scripts dir (even with correct paths specified)
 ${cypress_executable_path}    node_modules\\.bin\\cypress
 ${cypress_config_file}  cypress.config.js
-${cypress_browser}  chrome
 # shell=True needed for paths to work (seems to be a Windows thing)
 ${shell_option}   True
 ${cypress_options}
-
 
 *** Keywords ***
 Cypress runner
@@ -23,7 +21,7 @@ Cypress runner
     [Arguments]    ${cypress_script_path}    ${cwd}=../../
     # Take care when editing  Run Process below:
     # Some of the parameters must be separated by one character rather than the usual Robot Framework two (those that make up the command to be executed).
-    ${result} =    Run Process  ${cypress_executable_path} run --config-file ${cypress_config_file} --spec ${cypress_script_path} ${cypress_options} --browser ${cypress_browser}  cwd=${cwd}  stderr=STDOUT  stdout=cypress_log.txt  shell=${shell_option}  output_encoding=UTF-8
+    ${result} =    Run Process  ${cypress_executable_path} run --config-file ${cypress_config_file} --spec ${cypress_script_path} ${cypress_options} --browser ${APPLY_BROWSER}  cwd=${cwd}  stderr=STDOUT  stdout=cypress_log.txt  shell=${shell_option}  output_encoding=UTF-8
     [return]    ${result}
 
 

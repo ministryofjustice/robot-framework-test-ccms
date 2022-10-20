@@ -1,23 +1,21 @@
 *** Settings ***
-Library     Speaker.py
 Library     Screenshot
+Library     speaker.py
+Library     ../Support/string_utils.py
 Resource    ../settings.robot
 Resource    ../PageObjects/group_and_role.robot
-
 
 *** Keywords ***
 Test Failure Hook
     ${screenshot}=    Take Screenshot
     Log To Console    Failure screenshot: ${screenshot}
-    Speaker.Say If Human    The task ${TEST NAME} failed to execute
+    Say If Human    The task ${TEST NAME} failed to execute
 
 Test Startup Hook
-   Speaker.Say If Human  Starting task ${TEST NAME}
+    Say If Human  Starting task ${TEST NAME}
 
 Test Pass Hook
-   Speaker.Say If Human  Done with ${TEST NAME} task
-
-
+    Say If Human  Done with ${TEST NAME} task
 
 On Dialogue Title Search Fail
     [Arguments]    ${foundTitle}

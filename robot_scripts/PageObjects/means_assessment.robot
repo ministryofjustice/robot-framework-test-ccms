@@ -1,8 +1,6 @@
 *** Settings ***
 Resource   ../settings.robot
-Resource   ../Common.robot
 Resource   case_details.robot
-Library    Dialogs
 
 *** Variables ***
 ${subject_assess_means}                  ${IMG_PATH}/meansAssessment/meansCaseDetails.PNG
@@ -25,14 +23,14 @@ ${backspace}  {BACKSPACE}
 *** Keywords ***
 Access Means
     Log To Console    Access Means
-    Common.Wait Until Screen Contains  ${service_request_screen}
+    Wait Until Screen Contains  ${service_request_screen}
 
 Skip if Means Status Auto Granted
     [Arguments]  ${proceeding_decision}
      Log To Console    Skip if Means Status Auto Granted
-     Common.Wait Until Screen Contains  ${service_request_screen}
-     Common.Click On    ${subject_assess_means}
-     Common.Wait Until Screen Contains  ${subject_assess_means_selected}
+     Wait Until Screen Contains  ${service_request_screen}
+     Click On    ${subject_assess_means}
+     Wait Until Screen Contains  ${subject_assess_means_selected}
      ${exists}=  Image With Text Exists On Screen  ${means_task_status_field}  ${proceeding_decision}
      IF   "${exists}" == "True"
          Say If Human    Ignoring means process as its in Grant Status
@@ -42,19 +40,19 @@ Skip if Means Status Auto Granted
 Service Request Task
     Log To Console    Service Request Task
 
-    Common.Click On    ${subject_assess_means}
-    Common.Click On    ${toolbar_tools_button}
-    Common.Click On    ${toolbar_tools_details_link}
+    Click On    ${subject_assess_means}
+    Click On    ${toolbar_tools_button}
+    Click On    ${toolbar_tools_details_link}
 
 Change Status Proceedings
     [Arguments]   ${proceeding_decision}
 
     Log To Console    Change Status Proceedings
 
-    Common.Input Text Until Appears    ${decision_field_custom_application}  ${proceeding_decision}
+    Input Text Until Appears    ${decision_field_custom_application}  ${proceeding_decision}
     Send Keys  ${save_button}
     Send Keys    ${ok_button_shortcut}
-    Common.Input Text Until Appears    ${decision_field_proceedings}  ${proceeding_decision}
+    Input Text Until Appears    ${decision_field_proceedings}  ${proceeding_decision}
     Send Keys  ${save_button}
 
 Change Status Costlimits
@@ -63,8 +61,8 @@ Change Status Costlimits
     Log To Console    Change Status Costlimits
 
     Send Keys  ${ok_button_shortcut}
-    Common.Click On    ${cost_limits_button}
+    Click On    ${cost_limits_button}
     Send Keys  ${backspace}
-    Common.Input Text Until Appears    ${decision_field_costlimit_proceedings}  ${proceeding_decision}
+    Input Text Until Appears    ${decision_field_costlimit_proceedings}  ${proceeding_decision}
     Send Keys  ${save_button}
-    Common.Click On    ${close_form_button}
+    Click On    ${close_form_button}

@@ -1,8 +1,7 @@
 *** Settings ***
-Resource   ../settings.robot
-Resource   ../Common.robot
+Resource    ../settings.robot
 Resource    Navigator.robot
-Library    Dialogs
+Library     Dialogs
 
 *** Variables ***
 ${merits_case_work_link_element}  MeritsCaseWorkerLink.PNG

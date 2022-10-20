@@ -1,6 +1,6 @@
 from robot.api import logger
 
-class StringUtils:
+class string_utils:
     def cleanse(self, string):
         return string.replace('\n', ' ')
     

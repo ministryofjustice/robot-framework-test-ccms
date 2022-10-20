@@ -1,8 +1,6 @@
 *** Settings ***
-Resource    ../Common.robot
+Resource    ../PageObjects/dashboard.robot
 Resource    ../PageObjects/universal_search.robot
-Suite Setup       Start Sikuli Process
-Suite Teardown     Stop Remote Server
 
 *** Tasks ***
 Start Merits Case Search

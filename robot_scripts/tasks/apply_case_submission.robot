@@ -1,9 +1,9 @@
 *** Settings ***
-Resource    ../common.robot
-Resource    ../settings.robot
-Resource    ../Support/Cypress.robot
 Library    ../Support/case_reference_locator.py
 Library    OperatingSystem
+Resource    ../settings.robot
+Resource    ../Support/Cypress.robot
+Resource    ../Support/debug.robot
 
 
 *** Variables ***
