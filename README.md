@@ -141,8 +141,14 @@ Find the files in the robot_scripts folder. Script name starting with 'task' are
 
 For Sikuli OCR use Windows 'Snipping Tool' to take images of the screen you want to use in your scripts.
 
-To further aid development, install the robotframework linter. This is programmed to run on each commit (Note: If you've installed robot using the make install command you may already have this).
+To further aid development, install the robotframework linter. (Note: If you've installed robot using the make install command you may already have this).
 
 ```
 pip install --upgrade --user robotframework-lint
+```
+
+Activate automated runs before git commit using this command:
+
+```
+make activate-pre-commit-hook
 ```
