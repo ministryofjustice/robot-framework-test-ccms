@@ -17,13 +17,9 @@ def get_all_images(image_directory):
 def get_all_files(task_directories):
     files = []
 
-    for task_directory in task_directories:
-        directory = os.fsencode(task_directory)
-        for task_file in os.listdir(directory):
-            task_file_str = task_file.decode('UTF-8')
-            if task_file_str.endswith('.robot'):
-                file_path = os.path.join(task_directory, task_file_str)
-                files.append(file_path)
+    for directory in task_directories:
+        robot_filenames = [os.path.join(directory, f) for f in os.listdir(directory) if f.endswith('.robot')] 
+        files = files + robot_filenames
 
     return files
 
