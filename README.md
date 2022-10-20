@@ -106,7 +106,7 @@ npm install
 Running a script
 ====
 
-For a list of commands:
+For a list of tasks:
 
 ```
 make list

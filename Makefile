@@ -55,7 +55,7 @@ lint:
 install-dependencies:
 	@echo -- The following software will be installed on your machine:
 	@echo.
-	@echo python
+	@echo python@3.10.6
 	@echo nodejs
 	@echo java 8.0.251
 	@echo IEDriverServer@4.3.0.0
@@ -98,12 +98,11 @@ install-dependencies:
 install:
 	choco --version
 
-	pip install --user robotframework
-	pip install --user robotframework-SikuliLibrary
-	pip install --user pyttsx3
-	pip install --user robotframework-selenium2library
-	pip install --upgrade --user robotframework-lint
-	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary & pause \" -Verb RunAs"
+	pip install --user robotframework==5.0.1
+	pip install --user robotframework-SikuliLibrary==2.0.3
+	pip install --user pyttsx3==2.90
+	pip install --user robotframework-selenium2library==3.0.0
+	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary==1.2.8 & pause \" -Verb RunAs"
 	npm install
 
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	

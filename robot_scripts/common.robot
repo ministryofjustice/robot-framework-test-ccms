@@ -2,8 +2,9 @@
 Resource   settings.robot
 Resource   PageObjects/login.robot
 Resource   PageObjects/dashboard.robot
-Resource    PageObjects/group_and_role.robot
-Resource    Support/Processing.robot
+Resource   PageObjects/group_and_role.robot
+Resource   Support/Processing.robot
+Resource   PageObjects/Navigator.robot
 Library    String
 Library    ./Support/StringUtils.py
 Library    Screenshot
@@ -15,6 +16,7 @@ Library    Process
 ${file_menu_shortcut}   !f
 ${exit_option_shortcut}   x
 ${ok_button_shortcut}   !o
+${close_button_shortcut}  {TAB}{ENTER}	
 
 *** Keywords ***
 Ensure EBS Web Screen
@@ -54,6 +56,20 @@ Ensure EBS Forms Screen
     Focus EBS Forms
     sleep  1s
 
+Ensure EBusiness Center
+        ${exists}=  Win Exists  eBusiness Center
+
+        LogV    eBusinessCenterWindow - Value of exists is: ${exists}
+
+        IF  ${exists} == 0
+                   Log To Console    "We are not on eBusiness Center window, going to it now."
+                   Back To Choose Window
+                   Send Keys    ${close_button_shortcut}
+        END
+        
+        Focus EBS Forms
+        sleep  1s
+
 Focus EBS Forms
     Win Activate  Oracle Applications - UAT
 
@@ -74,8 +90,7 @@ Image With Text Exists On Screen
     END
 
     IF  """${foundText}""" == "False" or """${foundText}""" == ""
-        ${Screenshot}=  Take Screenshot
-        Fail  No text found inside image ${img}, screenshot: ${Screenshot}
+        LogV   No text found inside image ${img}
     END
     ${result}=  Set Variable  False
 
@@ -284,20 +299,26 @@ Click In Until
         Fail   Waited for '${tries}' tries, but could not click on image ${image} inside '${region}'.
     END
 
-Fail With Voice
-    [Arguments]  ${msg}  ${voiceMsg}=""
+Fail With Voice And Help
+    [Documentation]  Fail with both spoken and displayed error message.
+    ...    Displayed message in two places: (i) direct to console, near screenshot info and extra text 
+    ...                                     (ii) part of standard "FAIL" output
+    ...    Optional extra info is displayed but not spoken. 
+    ...    enforce_new_line flag used to start "direct to console" message on a new line which can be tidier
+    [Arguments]    ${message}  ${extra_info}=""  ${enforce_new_line}=True
 
-    Log  ${msg}
-    Log To Console  ${msg}
+    Say If Human  ${message}
 
-    IF  "${voiceMsg}" != "False"
-        ${voiceMsg}=  Set Variable  ${msg}
+    IF  ${enforce_new_line}
+        Log To Console  \ 
+    END
+    Log to Console  ${message}
+    # Triple quotes to avoid "EOL while scanning string literal" errors from \n chars 
+    IF  """${extra_info}""" != ""
+        Log To Console  ${extra_info}
     END
 
-    Say  ${voiceMsg}
-    Fail  ${msg}
-
-
+    Fail  ${message}
 
 LogV
     [Arguments]  ${text}  ${voiceMsg}=True
