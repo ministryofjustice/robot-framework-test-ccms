@@ -24,10 +24,14 @@ def get_all_files(task_directories):
     return files
 
 def find_unused_images_in_directory(image_directory, task_directories):
+    """
+    This method will search the task directories for each image in the image directory by name.
+    Note there is a limitation in that the search is done by file name and not path. Duplicate file
+    names will therefor not be reported but will be picked up by subsequent calls once the stale images
+    are removed.
+    """
     images = get_all_images(image_directory)
     files = get_all_files(task_directories)
-
-    BuiltIn().log_to_console(images)
 
     BuiltIn().log_to_console(" ")
     BuiltIn().log_to_console("Images count: ")

@@ -7,4 +7,4 @@ ${images_directory}  robot_scripts\\Images
 
 *** Tasks ***
 Flag Unused Images
-    find_in_files.find_unused_images_in_directory  ${images_directory}  ${directories_to_scan}
+    find_in_files.Find Unused Images In Directory  ${images_directory}  ${directories_to_scan}
