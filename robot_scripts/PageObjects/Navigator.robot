@@ -1,9 +1,9 @@
 *** Settings ***
 Resource    ../Support/screen_content_helper.robot
 Resource    ../Support/interaction_helper.robot
+Resource    ../Support/Dialogue.robot
 
 *** Variables ***
-
 ${open_search_shortcut}            {UP}{UP}{DOWN}{ENTER}
 ${navigator_shortcut}              !w1
 ${window_menu_shortcut}            !w2

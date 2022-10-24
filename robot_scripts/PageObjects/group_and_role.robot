@@ -1,21 +1,21 @@
 *** Settings ***
-Resource   ../settings.robot
-Resource   ../Support/Dialogue.robot
+Resource    ../settings.robot
+Resource    ../Support/Dialogue.robot
 
 *** Variables ***
-${choose_role_user_dialogue_title_bar}  ${IMG_PATH}ChooseRoleUserDialogue.png
-${role_group_input_box}  ${IMG_PATH}RoleGroupInputBox.png
-${more_menu_button}  ${IMG_PATH}MoreMenuButton.png
-${ok_button_small}  ${IMG_PATH}OkButtonSmall.png
-${ok_button_dialogue}  ${IMG_PATH}RoleAndGroupOkButton.png
+${choose_role_user_dialogue_title_bar}      ChooseRoleUserDialogue.png
+${role_group_input_box}                     RoleGroupInputBox.png
+${more_menu_button}                         MoreMenuButton.png
+${ok_button_small}                          OkButtonSmall.png
+${ok_button_dialogue}                       RoleAndGroupOkButton.png
 
 *** Keywords ***
 Dialogue Title
-    RETURN   Choose Role and Group
+    RETURN    Choose Role and Group
 
 Fill And Submit
-    [Arguments]  ${role_group}
+    [Arguments]    ${role_group}
     Log To Console    Role group exists, dealing with it.
     Click On    ${role_group_input_box}
-    Send Keys     ${role_group}
+    Send Keys    ${role_group}
     Press Dialogue OK

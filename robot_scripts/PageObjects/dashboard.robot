@@ -5,10 +5,9 @@ Resource    ../Support/screen_content_helper.robot
 Resource    ../Support/ebs_helpers.robot
 
 *** Variables ***
-${merits_case_work_link_element}            ${IMG_PATH}MeritsCaseWorkerLink.PNG
-${merits_case_and_clients_link_element}     ${IMG_PATH}MeritsCasesAndClientsLink.png
-${menu_item_ccms_batch_user}                ${IMG_PATH}MenuItemCcmsBatchUser.png
-
+${merits_case_work_link_element}            MeritsCaseWorkerLink.PNG
+${merits_case_and_clients_link_element}     MeritsCasesAndClientsLink.png
+${menu_item_ccms_batch_user}                MenuItemCcmsBatchUser.png
 
 *** Keywords ***
 On Dashboard
@@ -34,12 +33,12 @@ Start EBS merits
     Wait For Active Window    Oracle Applications - UAT
 
 Click Merits Link When Visible
-    Wait Until Screen Contains    ${merits_case_work_link_element}    ${GLOBAL_WAIT_TIMEOUT}
+    Wait Until Element Is Visible    css:#mainMenuRow .rootmenu
 
     Click Link    CCMS Complex Merits Caseworker
 
 Click Merits Case Search Link When Visible
-    Wait Until Screen Contains    ${merits_case_and_clients_link_element}    ${GLOBAL_WAIT_TIMEOUT}
+    Wait Until Element Is Visible    css:li[id='CCMS Complex Merits Caseworker']
 
     Click Link    Cases and Clients
 
@@ -47,7 +46,7 @@ Logout
     Click Link    Logout
 
 Open Batch Runner
-    Wait Until Screen Contains    ${menu_item_ccms_batch_user}
+    Wait Until Element Is Visible    id:treemenu1
 
     Click Link   CCMS Batch User
 

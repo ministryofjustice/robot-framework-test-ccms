@@ -1,10 +1,9 @@
 *** Settings ***
+Library    SikuliLibrary  mode=NEW
 Resource   ../settings.robot
 Resource   debug.robot
-Resource   browser_helper.robot
 Resource   interaction_helper.robot
 Resource   ../PageObjects/navigator.robot
-Resource   ../PageObjects/login.robot
 Resource   ../PageObjects/dashboard.robot
 
 *** Variables ***
@@ -17,14 +16,8 @@ ${close_button_shortcut}  {TAB}{ENTER}
 Ensure EBS Web Screen
     [Arguments]  ${login_username}  ${login_password}
 
-    ${exists}=  Win Exists   Internet Explorer
-    LogV  InternetExplorer - Value of exists is: ${exists}
-    IF  ${exists} == 0
-        Close IE
-        Login.Login    ${login_username}    ${login_password}
-    END
-
-    Focus Browser
+    Close IE
+    Login.Login    ${login_username}    ${login_password}
 
     ${exists}=  Dashboard.On Dashboard
 
@@ -44,7 +37,6 @@ Ensure EBS Forms Screen
     
     IF  ${exists} == 0
         LogV    "EBS forms not open, starting up from beginning."
-        Ensure EBS Web Screen    ${login_username}    ${login_password}
         Dashboard.Start EBS merits
     END
 
@@ -52,18 +44,18 @@ Ensure EBS Forms Screen
     sleep  1s
 
 Ensure EBusiness Center
-        ${exists}=  Win Exists  eBusiness Center
+    ${exists}=  Win Exists  eBusiness Center
 
-        LogV    eBusinessCenterWindow - Value of exists is: ${exists}
+    LogV    eBusinessCenterWindow - Value of exists is: ${exists}
 
-        IF  ${exists} == 0
-                   Log To Console    "We are not on eBusiness Center window, going to it now."
-                   Back To Choose Window
-                   Send Keys    ${close_button_shortcut}
-        END
-        
-        Focus EBS Forms
-        sleep  1s
+    IF  ${exists} == 0
+        Log To Console    "We are not on eBusiness Center window, going to it now."
+        Back To Choose Window
+        Send Keys    ${close_button_shortcut}
+    END
+    
+    Focus EBS Forms
+    sleep  1s
 
 Focus EBS Forms
     Win Activate  Oracle Applications - UAT

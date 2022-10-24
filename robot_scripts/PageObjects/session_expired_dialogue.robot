@@ -4,8 +4,8 @@ Resource    login.robot
 Resource    ../Support/interaction_helper.robot
 
 *** Variables ***
-${ok_button}   ${IMG_PATH}OkButtonSmall.png
-${dialogue}    ${IMG_PATH}
+${ok_button}   OkButtonSmall.png
+${dialogue}
 
 *** Keywords ***
 Re Login

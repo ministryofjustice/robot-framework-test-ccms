@@ -1,4 +1,5 @@
 *** Settings ***
+Library    speaker.py
 Resource   ../settings.robot
 
 *** Keywords ***

@@ -1,9 +1,25 @@
 *** Settings ***
 Library    String
+Library    SikuliLibrary
+Library    string_utils.py
+Library    AutoItLibrary
 Resource   ../settings.robot
 Resource   debug.robot
 
 *** Keywords ***
+Get EBS Window Dialogue Title Text
+    [Documentation]  Get the value of any EBS window title bar. This title bar must have
+    ...              the minimise, maximise and close buttons on the right.
+    ${region}=  Get Extended Region From Image     ${WINDOW_TITLE_IMAGE}    left    10
+    ${score}=  Get Match Score    ${WINDOW_TITLE_IMAGE}
+
+    IF  "${DEBUG}" == "True"
+        Highlight Region    ${region}   ${DEBUG_HIGHLIGHT_TIME}
+    END
+    ${text}=  Read Text From Region     ${region}
+    
+    RETURN    ${text}
+
 Image With Text Exists On Screen
     [Arguments]  ${img}  ${text}  ${expect_unique}=False  ${strict}=False
 
