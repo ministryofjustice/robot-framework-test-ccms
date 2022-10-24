@@ -1,0 +1,4 @@
+--ignore InvalidTableInResource
+--ignore RequireKeywordDocumentation
+--ignore RequireSuiteDocumentation
+--ignore RequireTestDocumentation
