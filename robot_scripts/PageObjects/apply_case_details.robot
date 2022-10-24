@@ -1,12 +1,5 @@
 *** Settings ***
 Library    Selenium2Library
-Library   ../Support/Speaker.py
-Library  ../Support/StringUtils.py
-Library    OperatingSystem
-Library    String
-Library    DateTime
-Library    XML
-Resource   ../secrets.robot
 
 *** Variables ***
 ${ApplicationCompetedMessage}     Application complete

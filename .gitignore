@@ -7,12 +7,9 @@ robot_scripts/secrets.robot
 __pycache__
 screenshot*.jpg
 .idea/
-node_modules/
-cypress.env.json
 selenium-screenshot*png
 geckodriver*.log
 variables.py
 results/*
 .vscode/
-cypress/screenshots
-cypress_log.txt
+robot_scripts/tasks/Casedetails

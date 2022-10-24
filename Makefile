@@ -15,10 +15,7 @@ help:
 	@echo example usage: make run task=search_case
 
 e2e:
-	echo case_reference = '' > variables.py
-	echo cypress_browser = 'electron' >> variables.py
-	echo cypress_options = '--headed' >> variables.py
-	$(MAKE) run task=apply_case_submission
+	$(MAKE) run task=create_a_case
 	echo case_reference = '%case_reference%' > variables.py
 	$(MAKE) run task=search_case  $case_reference
 	$(MAKE) run task=propagate_case_status
@@ -95,8 +92,6 @@ install:
 
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	
 	cmd /c copy variables.py.template variables.py
-	cmd /c type nul > cypress.env.json
-	echo {} > cypress.env.json
 
 	@echo.
 	@echo Add the robot.exe directory path to the PATH variables:
@@ -113,7 +108,6 @@ env-variables:
 
 config:
 	notepad robot_scripts\secrets.robot
-	notepad cypress.env.json
 
 verify:
 	systeminfo |find "Memory"
@@ -136,7 +130,6 @@ verify:
 	where java
 	@echo.
 
-	dir cypress.config.js
 	@echo.
 	dir robot_scripts\secrets.robot
 	@echo.

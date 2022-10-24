@@ -1,16 +1,10 @@
 *** Settings ***
-Library    Selenium2Library
-Library   ../Support/Speaker.py
-Library  ../Support/StringUtils.py
+Library   ../Support/StringUtils.py
 Library    OperatingSystem
-Library    String
-Library    DateTime
-Library    XML
-Resource   ../secrets.robot
-Resource   ../PageObjects/apply_case_details.robot
+Resource  ../PageObjects/apply_case_details.robot
 
 *** Variables ***
-${Path}      robot_scripts\\tasks\\Casedetails\\
+${path}      robot_scripts\\tasks\\Casedetails\\
 ${ccms_case_reference_id_from_application_page}   //*[@id="main-content"]/div[2]/div/div[1]/dl/dd[3]
 ${apply_case_reference_id_from_application_page}  //*[@id="main-content"]/div[2]/div/div[1]/dl/dd[2]
 
@@ -22,15 +16,13 @@ Apply Submit Application
       Wait Until Element Is Visible    ${ccms_case_reference_id_from_application_page}  
      
 Write CCMS Caseid In File
-   ${ccms-caseId}=   Get Element Attribute  ${ccms_case_reference_id_from_application_page}   innerHTML
-   #CCMS case id
-      ${ccmscaseid}=   cleanse   ${ccms-caseId}
+   ${ccms_caseId}=   Get Element Attribute  ${ccms_case_reference_id_from_application_page}   innerHTML
+      ${ccmscaseid}=   addnewline   ${ccms_caseId}
       Log To Console   ${ccmscaseid}
-  Append to file  ${Path}/ccms_case_reference .txt  ${ccmscaseid}  encoding='UTF-8'
+  Append to file  ${path}/ccms_case_reference .txt  ${ccmscaseid}  encoding='UTF-8'
 
 Write Apply Caseid In File
-   ${apply-caseId}=  Get Element Attribute  ${apply_case_reference_id_from_application_page}  innerHTML
-    #Apply case id
-      ${applycaseid}=   cleanse   ${apply-caseId}
+   ${apply_caseId}=  Get Element Attribute  ${apply_case_reference_id_from_application_page}  innerHTML
+      ${applycaseid}=   addnewline   ${apply_caseId}
       Log To Console   ${applycaseid}
-  Append to file  ${Path}/apply_laa_reference .txt  ${applycaseid}  encoding='UTF-8'
+  Append to file  ${path}/apply_laa_reference .txt  ${applycaseid}  encoding='UTF-8'

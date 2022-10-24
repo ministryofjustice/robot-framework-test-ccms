@@ -1,12 +1,4 @@
 *** Settings ***
-Library    Selenium2Library
-Library   ../Support/Speaker.py
-Library  ../Support/StringUtils.py
-Library    OperatingSystem
-Library    String
-Library    DateTime
-Library    XML
-Resource   ../secrets.robot
 Resource   ../PageObjects/apply_case_details.robot
 
 *** Variables ***

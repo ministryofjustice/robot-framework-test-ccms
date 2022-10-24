@@ -1,8 +1,11 @@
 *** Settings ***
+Library    ../Support/Speaker.py
+Resource   ../secrets.robot
 Resource   ../PageObjects/apply_case_details.robot
 Resource   ../PageObjects/apply_client_details.robot
 Resource   ../PageObjects/apply_submit_application.robot
 Resource   ../PageObjects/apply_income_payments_assets.robot
+
 
 *** Variables ***
 ${apply_url}  https://main-applyforlegalaid-uat.cloud-platform.service.justice.gov.uk/

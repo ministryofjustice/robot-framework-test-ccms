@@ -1,6 +1,4 @@
 from robot.api import logger
-import datetime
-import re
 
 class StringUtils:
     def cleanse(self, string):
@@ -12,7 +10,5 @@ class StringUtils:
 
         return string.find(subString) != -1
 
-    def adddatetime(self,string):
-        today = datetime.datetime.now()
-        date_time = today.strftime("%m/%d/%Y, %H:%M:%S")
-        return date_time + string.replace('\n', ' ')
+    def addnewline(self,string):
+        return string + '\n'
