@@ -11,9 +11,17 @@ ${apply_case_reference_id_from_application_page}  //*[@id="main-content"]/div[2]
 *** Keywords ***
 Apply Submit Application
       #Getting the client name, LAA reference and CCMS reference 
-      Sleep    5
-      Reload Page
-      Wait Until Element Is Visible    ${ccms_case_reference_id_from_application_page}  
+      ${caseid_present}=  Run keyword And Return Status  Element Text Should Not Be  ${ccms_case_reference_id_from_application_page}  ${EMPTY}
+      WHILE    ${caseid_present}==False
+          Reload Page
+          ${caseid_present}=  Run keyword And Return Status  Element Text Should Not Be  ${ccms_case_reference_id_from_application_page}  ${EMPTY}
+          CONTINUE
+          IF    ${caseid_present}==True
+           BREAK   
+          END 
+      END
+
+       Wait Until Element Is Visible    ${ccms_case_reference_id_from_application_page}  
      
 Write CCMS Caseid In File
    ${ccms_caseId}=   Get Element Attribute  ${ccms_case_reference_id_from_application_page}   innerHTML
