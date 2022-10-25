@@ -123,3 +123,15 @@ VsCode has great support for Robot Framework. You may also use Robot IDE (RIDE) 
 Find the files in the robot_scripts folder. Script name starting with 'task' are meant to be run to achieve that task. The browser is then left open for follow up manual actions by the user.
 
 For Sikuli OCR use Windows 'Snipping Tool' to take images of the screen you want to use in your scripts.
+
+To further aid development, install the robotframework linter. (Note: If you've installed robot using the make install command you may already have this).
+
+```
+pip install --upgrade --user robotframework-lint
+```
+
+Activate automated runs before git commit using this command:
+
+```
+make activate-pre-commit-hook
+```

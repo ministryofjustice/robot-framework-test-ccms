@@ -1,16 +1,19 @@
 help:
 	@echo -- Commands available --
 	@echo.
-	@echo list                    List all available tasks to run.
-	@echo command task/t=^<task^>   Generate a robot command for a task.
-	@echo run task/t=^<task^>       Run a task by name.
-	@echo variables               Re-create the variables file from the existing template.
-	@echo edit-variables          Edit variables that are fed into robot framework for different tasks.
-	@echo install-dependencies    Install software dependencies for this project (Elevated CMD).
-	@echo install                 Install dependencies for robot framework.
-	@echo view-report             Open the html report for the last task run.
-	@echo env-variables           Open the Windows environment variables dialogue for configuration.
-	@echo help                    This menu.
+	@echo list                      List all available tasks to run.
+	@echo command task/t=^<task^>     Generate a robot command for a task.
+	@echo run task/t=^<task^>         Run a task by name.
+	@echo variables                 Re-create the variables file from the existing template.
+	@echo edit-variables            Edit variables that are fed into robot framework for different tasks.
+	@echo install-dependencies      Install software dependencies for this project (Elevated CMD).
+	@echo install                   Install dependencies for robot framework.
+	@echo view-report               Open the html report for the last task run.
+	@echo find-stale-images         Will find and show list of stale images not used in the framework.
+	@echo lint                      Lints all robot files.
+	@echo activate-pre-commit-hook  Activate automatic checks before commit.
+	@echo env-variables             Open the Windows environment variables dialogue for configuration.
+	@echo help                      This menu.
 	@echo.
 	@echo example usage: make run task=search_case
 
@@ -37,10 +40,19 @@ edit-variables:
 variables:
 	cmd /c copy variables.py.template variables.py
 
+activate-pre-commit-hook:
+	copy helpers\pre-commit .git\hooks\pre-commit
+
+find-stale-images:
+	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_unused_images.robot
+
+lint:
+	python -m rflint -A helpers\rflint-arguments-file -r robot_scripts
+
 install-dependencies:
 	@echo -- The following software will be installed on your machine:
 	@echo.
-	@echo python
+	@echo python@3.10.6
 	@echo java 8.0.251
 	@echo IEDriverServer@4.3.0.0
 	@echo.
@@ -77,11 +89,11 @@ install-dependencies:
 install:
 	choco --version
 
-	pip install --user robotframework
-	pip install --user robotframework-SikuliLibrary
-	pip install --user pyttsx3
-	pip install --user robotframework-selenium2library
-	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary & pause \" -Verb RunAs"
+	pip install --user robotframework==5.0.1
+	pip install --user robotframework-SikuliLibrary==2.0.3
+	pip install --user pyttsx3==2.90
+	pip install --user robotframework-selenium2library==3.0.0
+	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary==1.2.8 & pause \" -Verb RunAs"
 
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	
 	cmd /c copy variables.py.template variables.py
