@@ -41,7 +41,6 @@ install-dependencies:
 	@echo -- The following software will be installed on your machine:
 	@echo.
 	@echo python
-	@echo nodejs
 	@echo java 8.0.251
 	@echo IEDriverServer@4.3.0.0
 	@echo.
@@ -52,11 +51,6 @@ install-dependencies:
 	@echo.
 	@echo Installing python:
 	powershell -Command "Start-Process cmd \"/c choco install python --version=3.10.6 & pause \" -Verb RunAs"
-	@pause
-
-	@echo.
-	@echo Installing nodejs:
-	powershell -Command "Start-Process cmd \"/c choco install nodejs & pause \" -Verb RunAs"
 	@pause
 
 	@echo.
@@ -88,7 +82,6 @@ install:
 	pip install --user pyttsx3
 	pip install --user robotframework-selenium2library
 	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary & pause \" -Verb RunAs"
-	npm install
 
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	
 	cmd /c copy variables.py.template variables.py
@@ -123,8 +116,6 @@ verify:
 	robot --version
 	@echo.
 	cmd /c IEDriverServer.exe --version
-	@echo.
-	npm --version
 	@echo.
 	java -version
 	where java

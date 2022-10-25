@@ -25,12 +25,12 @@ Apply Submit Application
      
 Write CCMS Caseid In File
    ${ccms_caseId}=   Get Element Attribute  ${ccms_case_reference_id_from_application_page}   innerHTML
-      ${ccmscaseid}=   addnewline   ${ccms_caseId}
-      Log To Console   ${ccmscaseid}
+      ${ccmscaseid}=  addnewline   ${ccms_caseId}
+      Log To Console  New CCMS Case Reference: ${ccmscaseid}
   Append to file  ${path}/ccms_case_reference .txt  ${ccmscaseid}  encoding='UTF-8'
 
 Write Apply Caseid In File
    ${apply_caseId}=  Get Element Attribute  ${apply_case_reference_id_from_application_page}  innerHTML
-      ${applycaseid}=   addnewline   ${apply_caseId}
-      Log To Console   ${applycaseid}
+      ${applycaseid}=  addnewline   ${apply_caseId}
+      Log To Console  New Apply Case Reference: ${applycaseid}
   Append to file  ${path}/apply_laa_reference .txt  ${applycaseid}  encoding='UTF-8'

@@ -35,7 +35,7 @@ make install
 make config
 ```
 
-The last command will open config files for you to fill:
+The last command will open a config file for you to fill:
 
 - secrets.robot
 
@@ -50,14 +50,11 @@ ${login_password}  abc123
 
 ```
 # Creds for Apply case submission example: robot_scripts/secrets.robot
-{
-  "APPLY_USERNAME": "username",
-  "APPLY_PASSWORD": "password",
-}
+
+${apply_username}  username
+${apply_password}  password
+
 ```
-
-The creds should automatically be picked up by Selenium script, whether run via Robot Framework or run directly.
-
 
 Verify your installation
 ====
@@ -88,9 +85,6 @@ As administrator
 ```
 pip install --user robotframework-autoitlibrary
 ```
-
-### Selenium script (for case creation in Apply)
-make run task=create_a_case
 
 Running a script
 ====

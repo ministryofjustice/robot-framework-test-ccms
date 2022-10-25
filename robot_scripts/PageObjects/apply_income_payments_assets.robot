@@ -7,6 +7,7 @@ ${proceeding_search_input_text}  Domestic Abuse
 ${non_molestation_order_radio_button}  css:label[for=id-da004-field]
 ${add_another_proceeding_no_option}  id:legal-aid-application-has-other-proceeding-field
 ${applicant_claimant_petitioner_radio_button}  id:proceeding-client-involvement-type-ccms-code-a-field
+${applicant_not_used_delegated_functions}  id:legal-aid-applications-used-multiple-delegated-functions-form-none-selected-true-field
 ${used_delegated_functions_option_no}  id:proceeding-used-delegated-functions-field
 ${do_you_want_default_service_option_yes}  id:proceeding-accepted-substantive-defaults-true-field
 ${does_client_own_the_home_option_no}  id:legal-aid-application-own-home-no-field
@@ -32,17 +33,17 @@ Apply Income Payments Assets
     Click Element  ${continue_button}
 
     # #What is your client’s role in this proceeding?
-     Click Element  ${applicant_claimant_petitioner_radio_button}
-     Click Element  ${continue_button}
+    #  Click Element  ${applicant_claimant_petitioner_radio_button}
+    #  Click Element  ${continue_button}
 
     #Delegated Functions?
-    #  Click Element   css:label[for=legal-aid-applications-used-multiple-delegated-functions-form-none-selected-true-field]
-     Click Element   ${used_delegated_functions_option_no}
+     Click Element  ${applicant_not_used_delegated_functions}
+    #  Click Element   ${used_delegated_functions_option_no}
      Click Element   ${continue_button}
 
     #Do you want the default level of service?
-      Click Element  ${do_you_want_default_service_option_yes}
-      Click Element  ${continue_button}
+      # Click Element  ${do_you_want_default_service_option_yes}
+      # Click Element  ${continue_button}
 
     #What you're applying for
      Click Element  ${continue_button}
