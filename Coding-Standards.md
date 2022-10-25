@@ -33,6 +33,7 @@ Task Files
 - Only have one task per file
 - Use snake case filenames with words matching those in the task's name, e.g. a file containing task "**Search For Case**" will have filename  `search_for_case.robot`
 - Task files should not contain any keyword definitions, only consume keywords
+- Given, When, Then's are not consistent with our RPA way of working and therefore not expected to be present.
 
 User Defined Libraries
 ----
@@ -49,6 +50,7 @@ Comments
 - Minimise the need for comments by writing self-explanatory code. Aim to use comments sparsly and where there is a genuine need. 
 - Single line comments are preferred over paraghraphs for readability. Paragraphs are acceptable for documenting a keyword, although `[Documentation]` tags may be prefereable here to plain comments.
 - Comments should be aligned with the code they relate too, i.e. the same indentation level.
+- 1 space between the comment hash symbol and the comment itself.
 
 #### Example
 
@@ -78,14 +80,14 @@ Robot File \*** Variables \*** section format
 #### Example
 ```
 *** Variables ***
-${subject_assess_merits}                 ${IMG_PATH}/meritsAssessment/MeritCaseDetails.PNG
-${toolbar_tools_button}                  ${IMG_PATH}/meritsAssessment/ToolbarToolsButton.PNG
-${toolbar_tools_details_link}            ${IMG_PATH}/meritsAssessment/ToolbarToolsDetailsLink.PNG
-${decision_field_custom_application}     ${IMG_PATH}/meritsAssessment/DecisionFieldCustomApplication.PNG
-${decision_field_proceedings}            ${IMG_PATH}/meritsAssessment/DecisionFieldProceedings.PNG
-${decision_field_costlimit_proceedings}  ${IMG_PATH}/meansAssessment/costLimitsMeansProceeding.PNG
-${cost_limits_button}                    ${IMG_PATH}/meritsAssessment/CostLimitsButton.PNG
-${close_form_button}                     ${IMG_PATH}/meritsAssessment/CloseFormButton.PNG
+${subject_assess_merits}                 meritsAssessment/MeritCaseDetails.PNG
+${toolbar_tools_button}                  meritsAssessment/ToolbarToolsButton.PNG
+${toolbar_tools_details_link}            meritsAssessment/ToolbarToolsDetailsLink.PNG
+${decision_field_custom_application}     meritsAssessment/DecisionFieldCustomApplication.PNG
+${decision_field_proceedings}            meritsAssessment/DecisionFieldProceedings.PNG
+${decision_field_costlimit_proceedings}  meansAssessment/costLimitsMeansProceeding.PNG
+${cost_limits_button}                    meritsAssessment/CostLimitsButton.PNG
+${close_form_button}                     meritsAssessment/CloseFormButton.PNG
 
 ${ok_button_shortcut}   !k
 ${case_reference}
