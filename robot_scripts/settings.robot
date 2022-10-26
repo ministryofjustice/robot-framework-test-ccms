@@ -1,13 +1,13 @@
 *** Settings ***
 Library     SikuliLibrary    mode=NEW
 Library     AutoItLibrary
+Library     Selenium2Library
 Resource    secrets.robot
 Resource    Support/hooks.robot
 
 *** Variables ***
 ${BASE_URL}                         https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/OA.jsp?OAFunc=OAHOMEPAGE#
 ${EBS_BROWSER}                      ie
-${APPLY_BROWSER}                    chrome
 ${APP_PATH}                         C:\\Program Files\\Internet Explorer\\iexplore.exe
 ${IMG_PATH}                         ${CURDIR}\\Images\\
 ${DIALOGUE_TITLE_IMAGE}             ${IMG_PATH}DialogueTitleBar.png
