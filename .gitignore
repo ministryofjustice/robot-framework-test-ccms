@@ -12,4 +12,4 @@ geckodriver*.log
 variables.py
 results/*
 .vscode/
-robot_scripts/tasks/Casedetails
+build/*

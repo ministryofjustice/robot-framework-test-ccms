@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    ../PageObjects/apply_case_details.robot
 
-
 *** Variables ***
 ${save_and_continue}                        name:continue_button
 ${confirm_office_page_h1}                   tag:h1

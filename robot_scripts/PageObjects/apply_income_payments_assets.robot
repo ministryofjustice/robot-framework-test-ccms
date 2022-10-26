@@ -1,15 +1,13 @@
 *** Settings ***
 Resource    ../PageObjects/apply_case_details.robot
 
-
 *** Variables ***
 ${proceeding_search_input}                          id:proceeding-search-input
 ${proceeding_search_input_text}                     Domestic Abuse
 ${non_molestation_order_radio_button}               css:label[for=id-da004-field]
 ${add_another_proceeding_no_option}                 id:legal-aid-application-has-other-proceeding-field
 ${applicant_claimant_petitioner_radio_button}       id:proceeding-client-involvement-type-ccms-code-a-field
-${applicant_not_used_delegated_functions}
-...                                                 id:legal-aid-applications-used-multiple-delegated-functions-form-none-selected-true-field
+${applicant_not_used_delegated_functions}           id:legal-aid-applications-used-multiple-delegated-functions-form-none-selected-true-field
 ${used_delegated_functions_option_no}               id:proceeding-used-delegated-functions-field
 ${do_you_want_default_service_option_yes}           id:proceeding-accepted-substantive-defaults-true-field
 ${does_client_own_the_home_option_no}               id:legal-aid-application-own-home-no-field
@@ -21,7 +19,6 @@ ${savings_and_investments_option_no}                id:savings-amount-none-selec
 ${client_other_assets_declaration_option_no}        id:other-assets-declaration-none-selected-true-field
 ${client_restrictions_on_selling_option_no}         id:legal-aid-application-has-restrictions-field
 ${charities_option_no}                              id:policy-disregards-none-selected-true-field
-
 
 *** Keywords ***
 Apply Income Payments Assets

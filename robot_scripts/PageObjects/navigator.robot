@@ -1,5 +1,6 @@
 *** Settings ***
-Resource    ../Common.robot
+Resource    ../Support/screen_content_helper.robot
+Resource    ../Support/interaction_helper.robot
 
 *** Variables ***
 

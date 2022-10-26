@@ -26,7 +26,7 @@ e2e:
 list:
 	@echo Listing available tasks:
 	@echo.
-	@for /F "delims= eol=" %%A IN ('dir /A-D /B robot_scripts\tasks\*.robot') do echo %%~nA
+	@for /F "delims= eol=" %%A IN ('dir /A-D /B robot_scripts\Tasks\*.robot') do echo %%~nA
 
 command:
 	@echo robot --variablefile variables.py --outputdir results --task $(task) $(t) robot_scripts

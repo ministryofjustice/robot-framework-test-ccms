@@ -1,7 +1,6 @@
 *** Settings ***
 Resource   ../settings.robot
-Resource   ../Common.robot
-Resource    ../Support/Dialogue.robot
+Resource   ../Support/Dialogue.robot
 
 *** Variables ***
 ${choose_role_user_dialogue_title_bar}  ${IMG_PATH}ChooseRoleUserDialogue.png
@@ -13,17 +12,6 @@ ${ok_button_dialogue}  ${IMG_PATH}RoleAndGroupOkButton.png
 *** Keywords ***
 Dialogue Title
     RETURN   Choose Role and Group
-
-Choose Group and Role If Presented
-    [Arguments]  ${role_group}
-    
-    Log To Console    Checking if Choose group and role dialogue is presented.
-
-    ${title}=  Dialogue Title
-    ${exists}=  Image With Text Exists On Screen    ${choose_role_user_dialogue_title_bar}    ${title}
-    IF  "${exists}" == "True"
-        Fill And Submit    ${role_group}
-    END
 
 Fill And Submit
     [Arguments]  ${role_group}

@@ -1,5 +1,7 @@
 *** Settings ***
 Resource    ../PageObjects/dashboard.robot
+Resource    ../Support/interaction_helper.robot
+Resource    ../Support/browser_helper.robot
 
 *** Variables ***
 ${switch_username}

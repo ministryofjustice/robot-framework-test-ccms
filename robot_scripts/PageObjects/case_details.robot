@@ -1,6 +1,7 @@
 *** Settings ***
-Library    SikuliLibrary
-Resource    ../Common.robot
+Resource    ../settings.robot
+Resource    ../Support/interaction_helper.robot
+Resource    ../Support/screen_content_helper.robot
 
 *** Variables ***
 ${all_details_checkbox}             ${IMG_PATH}AllCheckbox.png
@@ -19,15 +20,15 @@ Refresh Case
     Log To Console    Refresh case status
 
     Wait Until Window With Title Appears    eBusiness Center
-    Common.Click On    ${all_details_checkbox}
-    Common.Click On    ${case_refresh_button}
+    Click On    ${all_details_checkbox}
+    Click On    ${case_refresh_button}
 
 Submissions Status Check
     Log To Console     Submission status check
     #Down arrow is used to move focus from above image
     Send Keys   ${down_arrow_shortcut}
-    Common.Click On    ${submissions_text}
-    Common.Click On    ${details_button}
-    Common.Wait Until Screen Contains  ${drilldown_list_screen}
-    Common.Click On    ${drill_down_list_details_button}
-    Common.Wait Until Screen Contains  ${service_request_screen}
+    Click On    ${submissions_text}
+    Click On    ${details_button}
+    Wait Until Screen Contains  ${drilldown_list_screen}
+    Click On    ${drill_down_list_details_button}
+    Wait Until Screen Contains  ${service_request_screen}

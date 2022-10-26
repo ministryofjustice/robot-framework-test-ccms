@@ -3,11 +3,11 @@ Library     SikuliLibrary    mode=NEW
 Library     AutoItLibrary
 Library     Selenium2Library
 Resource    secrets.robot
-Resource    ./Support/Hooks.robot
-
+Resource    Support/hooks.robot
 
 *** Variables ***
-${base_url}                         https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/OA.jsp?OAFunc=OAHOMEPAGE#
+${BASE_URL}                         https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/OA.jsp?OAFunc=OAHOMEPAGE#
+${EBS_BROWSER}                      ie
 ${APP_PATH}                         C:\\Program Files\\Internet Explorer\\iexplore.exe
 ${IMG_PATH}                         ${CURDIR}\\Images\\
 ${DIALOGUE_TITLE_IMAGE}             ${IMG_PATH}DialogueTitleBar.png
@@ -23,7 +23,6 @@ ${GLOBAL_RETRY_TIME}                3
 ${GLOBAL_RETRY_WAIT_INTERVAL}       2
 ${GLOBAL_BEFORE_SEND_KEYS_WAIT}     1
 ${EXECUTION_MODE}                   Human    #Human/Machine
-
 
 *** Keywords ***
 Image Paths

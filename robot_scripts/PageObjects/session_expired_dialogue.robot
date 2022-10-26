@@ -1,6 +1,7 @@
 *** Settings ***
-Resource  ../settings.robot
+Resource    ../settings.robot
 Resource    login.robot
+Resource    ../Support/interaction_helper.robot
 
 *** Variables ***
 ${ok_button}   ${IMG_PATH}OkButtonSmall.png

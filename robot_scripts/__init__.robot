@@ -1,7 +1,6 @@
 *** Settings ***
 Resource            settings.robot
-Resource            Support/Hooks.robot
-Library             Support/Speaker.py
+Resource            Support/hooks.robot
 
 Suite Setup         Run Keywords    Start Sikuli Process
                     ...  AND    Image Paths

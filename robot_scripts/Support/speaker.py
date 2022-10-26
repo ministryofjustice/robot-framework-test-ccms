@@ -1,7 +1,7 @@
 import pyttsx3
 from robot.libraries.BuiltIn import BuiltIn
 
-class Speaker:
+class speaker:
     def say(self, text):
         narrator = pyttsx3.init()
 

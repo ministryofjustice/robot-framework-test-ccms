@@ -1,7 +1,8 @@
 *** Settings ***
-Resource    ../Common.robot
 Resource    session_expired_dialogue.robot
 Resource    ../Support/Dialogue.robot
+Resource    ../Support/screen_content_helper.robot
+Resource    ../Support/ebs_helpers.robot
 
 *** Variables ***
 ${merits_case_work_link_element}            ${IMG_PATH}MeritsCaseWorkerLink.PNG

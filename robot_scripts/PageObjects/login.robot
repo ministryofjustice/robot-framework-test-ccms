@@ -1,9 +1,11 @@
 *** Settings ***
+Library    Selenium2Library
 Resource   ../settings.robot
+Resource   ../Support/screen_content_helper.robot
+Resource   ../Support/browser_helper.robot
 
 *** Variables ***
 ${logged_in_screen}   ${IMG_PATH}EBSWebLoggedInScreen.png
-${browser}  ie
 
 *** Keywords ***
 Login
@@ -19,7 +21,7 @@ Login
     Wait Until Screen Contains    ${logged_in_screen}   ${GLOBAL_LONG_WAIT_TIMEOUT}
 
 Open Web Login
-    Open Browser  ${base_url}  ${browser}
+    Open Browser  ${BASE_URL}  ${EBS_BROWSER}
     Maximize Browser Window
 
 Navigate To Login
@@ -27,7 +29,7 @@ Navigate To Login
 
 Enter Credentials And Login
     [Arguments]  ${login_username}  ${login_password}
-    
+
     Selenium2Library.Input Text    css:input[name=usernameField]    ${login_username}
     Selenium2Library.Press Keys    css:input[name=passwordField]    ${EMPTY}
     Sleep  1s

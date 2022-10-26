@@ -1,7 +1,5 @@
 *** Settings ***
-Library    Speaker
-Library    Dialogs
-Resource    ../Common.robot
+Resource    ../Support/interaction_helper.robot
 
 *** Variables ***
 ${request_name}
