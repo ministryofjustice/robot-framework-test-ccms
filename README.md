@@ -35,10 +35,9 @@ make install
 make config
 ```
 
-The last command will open 2 config files for you to fill:
+The last command will open a config file for you to fill:
 
 - secrets.robot
-- cypress.env.json
 
 Note Robot Framework enforces 2 spaces after each keyword. Values are assigned in the file like this:
 
@@ -50,16 +49,12 @@ ${login_password}  abc123
 ```
 
 ```
-# example: cypress.env.json
+# Creds for Apply case submission example: robot_scripts/secrets.robot
 
-{
-  "APPLY_USERNAME": "username",
-  "APPLY_PASSWORD": "password",
-  "APPLY_URL": "https://main-applyforlegalaid-uat.cloud-platform.service.justice.gov.uk/"
-}
+${apply_username}  username
+${apply_password}  password
+
 ```
-
-This should automatically be picked up by Cypress, whether run via Robot Framework or run directly.
 
 Verify your installation
 ====
@@ -74,7 +69,6 @@ Step by step
 Download and install Java 8 (tested with 1.8.0_251).    
 Download and install Python 3 (tested with 3.10).
 Download and install 32 bit IEDriverServer.exe (tested with 4.3.0.0 for IE version 1607)
-Download and install npm (node v16)
 
 Please include the IEDriverServer.exe in your PATH environment variable.
 
@@ -90,17 +84,6 @@ As administrator
 
 ```
 pip install --user robotframework-autoitlibrary
-```
-
-### Cypress Setup (for case creation in Apply)
-Download and install install **npm** (and nodejs too?)
-
-Install Google Chrome (script has failed with Cypress electron browser emulation)
-
-Install Cypress by running the below in the project top directory (this uses details already in `package.json`). 
-
-```
-npm install
 ```
 
 Running a script

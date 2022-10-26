@@ -9,3 +9,6 @@ class StringUtils:
             string = string.decode('utf-8')
 
         return string.find(subString) != -1
+
+    def addnewline(self,string):
+        return string + '\n'

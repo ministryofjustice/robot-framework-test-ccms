@@ -1,10 +1,6 @@
 # Use this file to setup all actions to be taken againt a case reference. This will be fed into the
 # tasks automatically when you trigger them.
 
-# Set options for the cypress runner (Apply tasks)
-cypress_browser = 'chrome'
-cypress_options = ''
-
 # Task: Search case, Get Case Details
 case_reference = ''
 role_group = 'General Administration'

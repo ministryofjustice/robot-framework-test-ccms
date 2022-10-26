@@ -18,10 +18,7 @@ help:
 	@echo example usage: make run task=search_case
 
 e2e:
-	echo case_reference = '' > variables.py
-	echo cypress_browser = 'electron' >> variables.py
-	echo cypress_options = '--headed' >> variables.py
-	$(MAKE) run task=apply_case_submission
+	$(MAKE) run task=create_a_case
 	echo case_reference = '%case_reference%' > variables.py
 	$(MAKE) run task=search_case  $case_reference
 	$(MAKE) run task=propagate_case_status
@@ -56,7 +53,6 @@ install-dependencies:
 	@echo -- The following software will be installed on your machine:
 	@echo.
 	@echo python@3.10.6
-	@echo nodejs
 	@echo java 8.0.251
 	@echo IEDriverServer@4.3.0.0
 	@echo.
@@ -67,11 +63,6 @@ install-dependencies:
 	@echo.
 	@echo Installing python:
 	powershell -Command "Start-Process cmd \"/c choco install python --version=3.10.6 & pause \" -Verb RunAs"
-	@pause
-
-	@echo.
-	@echo Installing nodejs:
-	powershell -Command "Start-Process cmd \"/c choco install nodejs & pause \" -Verb RunAs"
 	@pause
 
 	@echo.
@@ -103,12 +94,9 @@ install:
 	pip install --user pyttsx3==2.90
 	pip install --user robotframework-selenium2library==3.0.0
 	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary==1.2.8 & pause \" -Verb RunAs"
-	npm install
 
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	
 	cmd /c copy variables.py.template variables.py
-	cmd /c type nul > cypress.env.json
-	echo {} > cypress.env.json
 
 	@echo.
 	@echo Add the robot.exe directory path to the PATH variables:
@@ -125,7 +113,6 @@ env-variables:
 
 config:
 	notepad robot_scripts\secrets.robot
-	notepad cypress.env.json
 
 verify:
 	systeminfo |find "Memory"
@@ -142,13 +129,10 @@ verify:
 	@echo.
 	cmd /c IEDriverServer.exe --version
 	@echo.
-	npm --version
-	@echo.
 	java -version
 	where java
 	@echo.
 
-	dir cypress.config.js
 	@echo.
 	dir robot_scripts\secrets.robot
 	@echo.

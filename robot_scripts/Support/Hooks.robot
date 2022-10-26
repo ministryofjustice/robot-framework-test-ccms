@@ -1,7 +1,6 @@
 *** Settings ***
 Library     Speaker.py
 Library     Screenshot
-Resource    ../settings.robot
 Resource    ../PageObjects/group_and_role.robot
 
 
@@ -16,7 +15,6 @@ Test Startup Hook
 
 Test Pass Hook
    Speaker.Say If Human  Done with ${TEST NAME} task
-
 
 
 On Dialogue Title Search Fail
