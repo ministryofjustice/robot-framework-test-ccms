@@ -17,7 +17,7 @@ Get EBS Window Dialogue Title Text
         Highlight Region    ${region}   ${DEBUG_HIGHLIGHT_TIME}
     END
     ${text}=  Read Text From Region     ${region}
-    
+
     RETURN    ${text}
 
 Image With Text Exists On Screen
@@ -25,7 +25,7 @@ Image With Text Exists On Screen
 
     ${foundText}=  Get Text From Image Matching    ${img}
     ${foundText}=  Encode String To Bytes    ${foundText}    ASCII  errors=replace
-    
+
     IF  "${DEBUG}" == "True"
         Highlight    ${img}  ${DEBUG_HIGHLIGHT_TIME}
         ${matches}=  Get Match Score    ${img}
@@ -65,7 +65,7 @@ Get Text From Image Matching
     [Arguments]  ${img}
     ${exists}=  Exists    ${img}
     ${text}=   Set Variable  False
-    
+
     IF  "${exists}" != "False"
         ${region}=  Get Extended Region From    ${img}    original    1
         LogV  Region to get text from: ${region}   False

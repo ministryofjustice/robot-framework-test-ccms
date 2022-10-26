@@ -3,6 +3,7 @@ Library    SikuliLibrary  mode=NEW
 Resource   ../settings.robot
 Resource   debug.robot
 Resource   interaction_helper.robot
+Resource   browser_helper.robot
 Resource   ../PageObjects/navigator.robot
 Resource   ../PageObjects/dashboard.robot
 
@@ -10,7 +11,7 @@ Resource   ../PageObjects/dashboard.robot
 ${file_menu_shortcut}   !f
 ${exit_option_shortcut}   x
 ${ok_button_shortcut}   !o
-${close_button_shortcut}  {TAB}{ENTER}	
+${close_button_shortcut}  {TAB}{ENTER}
 
 *** Keywords ***
 Ensure EBS Web Screen
@@ -22,7 +23,7 @@ Ensure EBS Web Screen
     ${exists}=  Dashboard.On Dashboard
 
     # We may be logged out now...
-    IF  "${exists}" == "False" 
+    IF  "${exists}" == "False"
         Fail  "Expected to be on dashboard, but not."
     END
 
@@ -30,11 +31,11 @@ Ensure EBS Web Screen
 
 Ensure EBS Forms Screen
     [Arguments]  ${login_username}  ${login_password}
-    
+
     ${exists}=  Win Exists  Oracle Applications - UAT
 
     LogV    OracleApplicationsUAT - Value of exists is: ${exists}
-    
+
     IF  ${exists} == 0
         LogV    "EBS forms not open, starting up from beginning."
         Dashboard.Start EBS merits
@@ -53,7 +54,7 @@ Ensure EBusiness Center
         Back To Choose Window
         Send Keys    ${close_button_shortcut}
     END
-    
+
     Focus EBS Forms
     sleep  1s
 
@@ -62,8 +63,8 @@ Focus EBS Forms
 
 If On EBS Forms
     [Documentation]  returns 0 or 1
-    
-    ${exists}=  Win Exists  Oracle Applications - UAT  
+
+    ${exists}=  Win Exists  Oracle Applications - UAT
 
     RETURN  ${exists}
 

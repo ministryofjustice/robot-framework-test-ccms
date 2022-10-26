@@ -8,7 +8,7 @@ def get_all_images(image_directory):
     for qualified_path in glob.glob(directory, recursive=True):
         image_str = os.path.basename(qualified_path)
         if os.path.isfile(qualified_path):
-            images[image_str] = qualified_path 
+            images[image_str] = qualified_path
         elif os.path.isdir(qualified_path):
             images = images | get_all_images(qualified_path)
 

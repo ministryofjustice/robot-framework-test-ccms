@@ -14,6 +14,6 @@ Trigger Batch Process
 
     Focus EBS Forms
     Submit Single Request  ${request_name}  ${business_rule_group}
-    Say If Human   Submitted single request 
+    Say If Human   Submitted single request
     Open Batch Request Run Window
     Say If Human   Opened request window

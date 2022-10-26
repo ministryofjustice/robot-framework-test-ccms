@@ -1,6 +1,7 @@
 *** Settings ***
+Library     Dialogs
 Resource    ../settings.robot
-Resource    Navigator.robot
+Resource    navigator.robot
 
 *** Variables ***
 ${universal_search_screen}      UniversalSearchDialogue.png

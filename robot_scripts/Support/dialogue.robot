@@ -1,7 +1,7 @@
 *** Settings ***
 Resource  ../Support/interaction_helper.robot
 Resource  ../Support/screen_content_helper.robot
-Resource  ../Support/Hooks.robot
+Resource  ../Support/hooks.robot
 
 *** Keywords ***
 Press Dialogue OK
@@ -18,7 +18,7 @@ Press Dialogue No
 
 Find Dialogue With Title
     [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
-    
+
     ${result}=  Set Variable  False
     FOR    ${i}    IN RANGE    ${tries}
         LogV   Try ${i}

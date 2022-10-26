@@ -15,7 +15,7 @@ Suite Setup Hook
 Test Failure Hook
     ${screenshot}=    Take Screenshot
     Log To Console    Failure screenshot: ${screenshot}
-    Say If Human    The task ${TEST NAME} failed to execute
+    Say If Human    The task ${TEST NAME} failed to execute, please continue manually.
 
 Test Startup Hook
     Say If Human  Starting task ${TEST NAME}

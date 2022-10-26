@@ -1,6 +1,6 @@
 *** Settings ***
 Resource            settings.robot
-Resource            Support/Hooks.robot
+Resource            Support/hooks.robot
 
 Suite Setup         Run Keyword   Suite Setup Hook
 
