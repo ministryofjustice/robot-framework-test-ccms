@@ -8,6 +8,12 @@ Issues
 
 Had an issue? Chances are the solution is already logged here https://dsdmoj.atlassian.net/wiki/spaces/LAA/pages/4175626273/Common+Issues+Log. If not, please log it.
 
+Other guides
+====
+
+[Coding Standards](Coding-Standards.md)
+[Sikuli Screenshot Guide](Sikuli-Screenshot-Guide.md)
+
 Setup
 ====
 - *Note due to dependency on AutoIT this is only expected to work on Windows OS*
