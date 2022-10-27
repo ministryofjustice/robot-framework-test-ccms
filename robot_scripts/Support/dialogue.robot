@@ -40,7 +40,6 @@ Find Dialogue With Title
             Exit For Loop
         EXCEPT  AS    ${error_message}
             LogV  ${error_message}  False
-            # ${foundText}=   Get Text From Image Matching    ${img}
             On Dialogue Title Search Fail    ${foundText}
         END
 

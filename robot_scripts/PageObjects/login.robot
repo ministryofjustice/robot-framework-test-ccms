@@ -5,6 +5,10 @@ Resource   ../settings.robot
 *** Variables ***
 ${logged_in_screen}   EBSWebLoggedInScreen.png
 
+${username_field_locator}  css:input[name=usernameField]
+${password_field_locator}  css:input[name=passwordField]
+${login_button_locator}    css:#SubmitButton
+
 *** Keywords ***
 Login
     [Arguments]  ${login_username}  ${login_password}
@@ -28,11 +32,11 @@ Navigate To Login
 Enter Credentials And Login
     [Arguments]  ${login_username}  ${login_password}
 
-    Selenium2Library.Input Text    css:input[name=usernameField]    ${login_username}
-    Press Keys    css:input[name=passwordField]    ${EMPTY}
+    Selenium2Library.Input Text    ${username_field_locator}    ${login_username}
+    Press Keys    ${password_field_locator}    ${EMPTY}
     # In case the user has saved details in the browser which are autofilled, let them be filled and
     # then clear them.
     Sleep  1s
-    Press keys    css:input[name=passwordField]    CTRL+a+DELETE
+    Press keys    ${password_field_locator}    CTRL+a+DELETE
     Press Keys    None   ${login_password}
-    Click Button    css:#SubmitButton
+    Click Button    ${login_button_locator}
