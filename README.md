@@ -11,11 +11,17 @@ Had an issue? Chances are the solution is already logged here https://dsdmoj.atl
 Other guides
 ====
 
-[Coding Standards](Coding-Standards.md)
+[Coding Standards For This CodeBase](Coding-Standards.md)
+
 [Sikuli Screenshot Guide](Sikuli-Screenshot-Guide.md)
+
 [Robot Builtin Keywords Guide](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html)
+
 [Sikuli Keywords Guide](https://rainmanwy.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary.html)
+
 [Selenium Keywords Guide](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html)
+
+[Sikuli Python Library Guide](http://doc.sikuli.org/index.html)
 
 Setup
 ====
