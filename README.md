@@ -13,6 +13,9 @@ Other guides
 
 [Coding Standards](Coding-Standards.md)
 [Sikuli Screenshot Guide](Sikuli-Screenshot-Guide.md)
+[Robot Builtin Keywords Guide](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html)
+[Sikuli Keywords Guide](https://rainmanwy.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary.html)
+[Selenium Keywords Guide](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html)
 
 Setup
 ====

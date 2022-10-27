@@ -29,8 +29,11 @@ Chances are that the text you're trying to read keeps changing and taking a dire
 
 ```
 ${region}=  Get Extended Region From Image  ${IMG}  direction=left  10
-Read Text From Region  ${region}
+${text}=  Read Text From Region  ${region}
+Log To Console  ${text}
 ```
+
+Note: Check the text before using it in subsequent calls. You may get special characters which can cause issues. If using text in comparisons, using a partial match is recommended where possible.
 
 Q) My test framework is slow and flaky. How do I fix this?
 -----
@@ -41,6 +44,10 @@ Image recognition is slow and sometimes not very reliable. If you have an altern
 - Interacting with elements on windows (shortcuts buttons - AutoIt)
 - Navigating menu bars (shortcut keys - AutoIt)
 - For browser interaction, use Selenium
+- While using the snipping tool, make sure the image intended to be captured is not highlighted or in focus. This will add a change in color or orientation to the image and make the image not traceable.
+- Make sure to not capture images with prefilled text, this will then make the images redundant for any other case.
+- Try not to choose a large cross-section of images, this slows down the operation. Images need to be unique and small in size. Sikuli is clever to identify the image if it's unique.
+- If an image is highlighted due to an error action on the screen, do not capture a highlighted image for interaction. Use AutoIT keyboard shortcuts to undo highlighting by clicking elsewhere.
 
 Beware of colours that may change from user to user such as themes of a browser - these are likely to fail matching on other peoples machines.
 
