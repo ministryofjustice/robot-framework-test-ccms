@@ -30,6 +30,8 @@ Enter Credentials And Login
 
     Selenium2Library.Input Text    css:input[name=usernameField]    ${login_username}
     Press Keys    css:input[name=passwordField]    ${EMPTY}
+    # In case the user has saved details in the browser which are autofilled, let them be filled and
+    # then clear them.
     Sleep  1s
     Press keys    css:input[name=passwordField]    CTRL+a+DELETE
     Press Keys    None   ${login_password}
