@@ -3,14 +3,14 @@ Resource   ../settings.robot
 Resource   case_details.robot
 
 *** Variables ***
-${subject_assess_merits}                 ${IMG_PATH}/meritsAssessment/MeritCaseDetails.PNG
-${toolbar_tools_button}                  ${IMG_PATH}/meritsAssessment/ToolbarToolsButton.PNG
-${toolbar_tools_details_link}            ${IMG_PATH}/meritsAssessment/ToolbarToolsDetailsLink.PNG
-${decision_field_custom_application}     ${IMG_PATH}/meritsAssessment/DecisionFieldCustomApplication.PNG
-${decision_field_proceedings}            ${IMG_PATH}/meritsAssessment/DecisionFieldProceedings.PNG
-${decision_field_costlimit_proceedings}  ${IMG_PATH}/meansAssessment/costLimitsMeansProceeding.PNG
-${cost_limits_button}                    ${IMG_PATH}/meritsAssessment/CostLimitsButton.PNG
-${close_form_button}                     ${IMG_PATH}/meritsAssessment/CloseFormButton.PNG
+${subject_assess_merits}                 meritsAssessment/MeritCaseDetails.PNG
+${toolbar_tools_button}                  meritsAssessment/ToolbarToolsButton.PNG
+${toolbar_tools_details_link}            meritsAssessment/ToolbarToolsDetailsLink.PNG
+${decision_field_custom_application}     meritsAssessment/DecisionFieldCustomApplication.PNG
+${decision_field_proceedings}            meritsAssessment/DecisionFieldProceedings.PNG
+${decision_field_costlimit_proceedings}  meansAssessment/costLimitsMeansProceeding.PNG
+${cost_limits_button}                    meritsAssessment/CostLimitsButton.PNG
+${close_form_button}                     meritsAssessment/CloseFormButton.PNG
 
 ${ok_button_shortcut}   !k
 ${case_reference}

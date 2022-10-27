@@ -1,6 +1,7 @@
 *** Settings ***
 Resource  ../Support/interaction_helper.robot
 Resource  ../Support/screen_content_helper.robot
+Resource  ../Support/hooks.robot
 
 *** Keywords ***
 Press Dialogue OK
@@ -17,17 +18,28 @@ Press Dialogue No
 
 Find Dialogue With Title
     [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
-    
+
     ${result}=  Set Variable  False
     FOR    ${i}    IN RANGE    ${tries}
         LogV   Try ${i}
         TRY
-            Image With Text Exists On Screen    ${img}    ${text}  strict=True
+            ${foundText}=  Get EBS Window Dialogue Title Text
+            ${contains}=  String Contains  ${foundText}  ${text}
+
+            Log To Console    CONTAINS RESULT: ${contains}
+
+            IF  ${contains}
+                LogV               Yes we have found the text in the image ${text}
+                ${result}=  Set Variable  True
+            ELSE IF  "${strict}" == "True"
+                LogV   Expected image was found, but text did not match. Expected '${text}', Found '${foundText}'.
+                Fail   Expected image was found, but text did not match. Expected '${text}', Found '${foundText}'.
+            END
+
             ${result}=  Set Variable  True
             Exit For Loop
         EXCEPT  AS    ${error_message}
             LogV  ${error_message}  False
-            ${foundText}=   Get Text From Image Matching    ${img}
             On Dialogue Title Search Fail    ${foundText}
         END
 

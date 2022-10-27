@@ -1,5 +1,7 @@
 *** Settings ***
 Library    Dialogs
+Library    AutoItLibrary
+Library    SikuliLibrary   mode=NEW
 Resource   ../settings.robot
 Resource   debug.robot
 

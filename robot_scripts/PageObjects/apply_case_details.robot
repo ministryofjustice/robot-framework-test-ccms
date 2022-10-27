@@ -38,6 +38,7 @@ ${client_declaration_confirm_radio_button}                  id:legal-aid-applica
 
 *** Keywords ***
 Apply Case Details
+    Set Library Search Order	Selenium2Library
     # Detail of case
     Click Link    ${latest_incident_details_link}
     Input Text    ${client_contact_about_incident_day}    ${client_contact_about_incident_day_input_text}

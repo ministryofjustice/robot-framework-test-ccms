@@ -1,11 +1,13 @@
 *** Settings ***
 Library    Selenium2Library
 Resource   ../settings.robot
-Resource   ../Support/screen_content_helper.robot
-Resource   ../Support/browser_helper.robot
 
 *** Variables ***
-${logged_in_screen}   ${IMG_PATH}EBSWebLoggedInScreen.png
+${logged_in_screen}   EBSWebLoggedInScreen.png
+
+${username_field_locator}  css:input[name=usernameField]
+${password_field_locator}  css:input[name=passwordField]
+${login_button_locator}    css:#SubmitButton
 
 *** Keywords ***
 Login
@@ -18,7 +20,7 @@ Login
     Navigate To Login
     Enter Credentials And Login  ${login_username}  ${login_password}
 
-    Wait Until Screen Contains    ${logged_in_screen}   ${GLOBAL_LONG_WAIT_TIMEOUT}
+    Wait Until Page Contains    Logged In As ${login_username}
 
 Open Web Login
     Open Browser  ${BASE_URL}  ${EBS_BROWSER}
@@ -30,11 +32,11 @@ Navigate To Login
 Enter Credentials And Login
     [Arguments]  ${login_username}  ${login_password}
 
-    Selenium2Library.Input Text    css:input[name=usernameField]    ${login_username}
-    Selenium2Library.Press Keys    css:input[name=passwordField]    ${EMPTY}
+    Selenium2Library.Input Text    ${username_field_locator}    ${login_username}
+    Press Keys    ${password_field_locator}    ${EMPTY}
+    # In case the user has saved details in the browser which are autofilled, let them be filled and
+    # then clear them.
     Sleep  1s
-    Selenium2Library.Press keys    css:input[name=passwordField]    CTRL+a+DELETE
-    Selenium2Library.Press Keys    None   ${login_password}
-    Selenium2Library.Click Button    css:#SubmitButton
-
-    Wait Until Screen Contain    ${logged_in_screen}    timeout=${GLOBAL_LONG_WAIT_TIMEOUT}
+    Press keys    ${password_field_locator}    CTRL+a+DELETE
+    Press Keys    None   ${login_password}
+    Click Button    ${login_button_locator}

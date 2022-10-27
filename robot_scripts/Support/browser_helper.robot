@@ -1,4 +1,5 @@
 *** Settings ***
+Library     AutoItLibrary
 Resource    ../settings.robot
 Resource    ../Support/processing.robot
 

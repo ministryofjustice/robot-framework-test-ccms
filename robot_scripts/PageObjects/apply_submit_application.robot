@@ -10,14 +10,14 @@ ${apply_case_reference_id_from_application_page}  //*[@id="main-content"]/div[2]
 
 *** Keywords ***
 Apply Submit Application
-      #Getting the client name, LAA reference and CCMS reference
-      ${caseid_present}=  Run keyword And Return Status  Element Text Should Not Be  ${ccms_case_reference_id_from_application_page}  ${EMPTY}
-      WHILE    ${caseid_present}==False  limit=10
-          Reload Page
-          ${caseid_present}=  Run keyword And Return Status  Element Text Should Not Be  ${ccms_case_reference_id_from_application_page}  ${EMPTY}
-      END
+    #Getting the client name, LAA reference and CCMS reference
+    ${caseid_present}=  Run keyword And Return Status  Element Text Should Not Be  ${ccms_case_reference_id_from_application_page}  ${EMPTY}
+    WHILE    ${caseid_present}==False  limit=10
+        Reload Page
+        ${caseid_present}=  Run keyword And Return Status  Element Text Should Not Be  ${ccms_case_reference_id_from_application_page}  ${EMPTY}
+    END
 
-      Wait Until Element Is Visible    ${ccms_case_reference_id_from_application_page}
+    Wait Until Element Is Visible    ${ccms_case_reference_id_from_application_page}
 
 Write CCMS Caseid In File
     [Arguments]  ${file}

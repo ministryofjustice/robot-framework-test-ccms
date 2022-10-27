@@ -6,7 +6,6 @@ ${request_name}
 ${business_rule_group}
 
 *** Keywords ***
-
 Get Request Name
     ${value}=   Get User Input If Not Exists  ${request_name}  request name
 

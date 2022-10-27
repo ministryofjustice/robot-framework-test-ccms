@@ -1,6 +1,5 @@
 *** Settings ***
 Library    OperatingSystem
-Resource   ../settings.robot
 Resource   ../PageObjects/universal_search.robot
 
 *** Tasks ***

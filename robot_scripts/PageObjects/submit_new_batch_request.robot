@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../settings.robot
 Resource    ../Support/interaction_helper.robot
+Resource    ../Support/Dialogue.robot
 
 *** Variables ***
 ${case_submit_input}   ${input_box_image}

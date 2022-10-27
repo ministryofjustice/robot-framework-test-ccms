@@ -22,6 +22,7 @@ ${charities_option_no}                              id:policy-disregards-none-se
 
 *** Keywords ***
 Apply Income Payments Assets
+    Set Library Search Order	Selenium2Library
     #What is legal aid for
     Input Text    ${proceeding_search_input}    ${proceeding_search_input_text}
     Wait Until Element Is Visible    ${non_molestation_order_radio_button}

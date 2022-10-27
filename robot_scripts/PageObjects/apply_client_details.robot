@@ -33,6 +33,7 @@ ${address_postcode_input_text}              TE15 1NG
 
 *** Keywords ***
 Apply Client Details
+    Set Library Search Order	Selenium2Library
     ${response}=    Get Text    ${confirm_office_page_h1}
     ${contains}=    Run Keyword And Return Status    Should Contain    ${response}    ${pageTitle}
     Log To Console    ${contains}
