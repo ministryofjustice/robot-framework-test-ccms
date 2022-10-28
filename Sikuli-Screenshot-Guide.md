@@ -33,6 +33,8 @@ ${text}=  Read Text From Region  ${region}
 Log To Console  ${text}
 ```
 
+Read more about `Get Extended Region From Image` keywords [here](https://rainmanwy.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary.html#Get%20Extended%20Region%20From%20Image).
+
 Note: Check the text before using it in subsequent calls. You may get special characters which can cause issues. If using text in comparisons, using a partial match is recommended where possible.
 
 Q) My test framework is slow and flaky. How do I fix this?
@@ -45,7 +47,7 @@ Image recognition is slow and sometimes not very reliable. If you have an altern
 - Navigating menu bars (shortcut keys - AutoIt)
 - For browser interaction, use Selenium
 - While using the snipping tool, make sure the image intended to be captured is not highlighted or in focus. This will add a change in color or orientation to the image and make the image not traceable.
-- Make sure to not capture images with prefilled text, this will then make the images redundant for any other case.
+-  Unless you're wanting to check for a particular expected outcome, make sure to not capture images with prefilled text.
 - Try not to choose a large cross-section of images, this slows down the operation. Images need to be unique and small in size. Sikuli is clever to identify the image if it's unique.
 - If an image is highlighted due to an error action on the screen, do not capture a highlighted image for interaction. Use AutoIT keyboard shortcuts to undo highlighting by clicking elsewhere.
 
