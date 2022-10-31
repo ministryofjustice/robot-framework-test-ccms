@@ -9,6 +9,7 @@ Q) How do you decide on what screenshot to take and for what purpose?
 - Interact with the element
 - Take a screenshot of the element. Ensure that the borders of the element is contained within the screenshot.
 - Sikuli will click on the first occurrence of the image if there are multiple. If you have multiple occurrences of something and want to click on a particular one, ensure that you’ve captured a unique surrounding detail around the element within the screenshot.
+- Beware of colours that may change from user to user such as themes of a browser - these are likely to fail matching on other peoples machines.
 
 Q) How can I check the presence or absence of content on the screen?
 ----
@@ -50,8 +51,6 @@ Image recognition is slow and sometimes not very reliable. If you have an altern
 -  Unless you're wanting to check for a particular expected outcome, make sure to not capture images with prefilled text.
 - Try not to choose a large cross-section of images, this slows down the operation. Images need to be unique and small in size. Sikuli is clever to identify the image if it's unique.
 - If an image is highlighted due to an error action on the screen, do not capture a highlighted image for interaction. Use AutoIT keyboard shortcuts to undo highlighting by clicking elsewhere.
-
-Beware of colours that may change from user to user such as themes of a browser - these are likely to fail matching on other peoples machines.
 
 Q) How can you check that the screenshot matches what you expect it to match?
 ----
