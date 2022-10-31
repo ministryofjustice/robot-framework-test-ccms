@@ -8,6 +8,21 @@ Issues
 
 Had an issue? Chances are the solution is already logged here https://dsdmoj.atlassian.net/wiki/spaces/LAA/pages/4175626273/Common+Issues+Log. If not, please log it.
 
+Other guides
+====
+
+[Coding Standards For This CodeBase](Coding-Standards.md)
+
+[Sikuli Screenshot Guide](Sikuli-Screenshot-Guide.md)
+
+[Robot Builtin Keywords Guide](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html)
+
+[Sikuli Keywords Guide](https://rainmanwy.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary.html)
+
+[Selenium Keywords Guide](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html)
+
+[Sikuli Python Library Guide](http://doc.sikuli.org/index.html)
+
 Setup
 ====
 - *Note due to dependency on AutoIT this is only expected to work on Windows OS*
