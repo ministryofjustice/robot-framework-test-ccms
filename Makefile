@@ -12,6 +12,7 @@ help:
 	@echo find-stale-images         Will find and show list of stale images not used in the framework.
 	@echo lint                      Lints all robot files.
 	@echo activate-pre-commit-hook  Activate automatic checks before commit.
+	@echo documentation             Regenerate documentation for all keywords.
 	@echo env-variables             Open the Windows environment variables dialogue for configuration.
 	@echo help                      This menu.
 	@echo.
@@ -44,13 +45,14 @@ activate-pre-commit-hook:
 	copy helpers\pre-commit .git\hooks\pre-commit
 
 find-stale-images:
-	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_unused_images.robot
+	@robot --output NONE --report NONE --log NONE robot_scripts\Utils\flag_unused_images.robot
 
-generate-documentation:
+.PHONY: documentation
+documentation:
 	rmdir /Q /S Documentation\Support
-	python robot_scripts\utils\generate_library_documentation.py -i robot_scripts\\Support -o Documentation\\Support
+	python robot_scripts\Utils\generate_library_documentation.py -i robot_scripts\\Support -o Documentation\\Support
 	rmdir /Q /S Documentation\PageObjects
-	python robot_scripts\utils\generate_library_documentation.py -i robot_scripts\\PageObjects -o Documentation\\PageObjects
+	python robot_scripts\Utils\generate_library_documentation.py -i robot_scripts\\PageObjects -o Documentation\\PageObjects
 
 lint:
 	python -m rflint -A helpers\rflint-arguments-file -r robot_scripts

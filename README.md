@@ -150,3 +150,14 @@ Activate automated runs before git commit using this command:
 ```
 make activate-pre-commit-hook
 ```
+
+Generating/Updating Documentation
+======
+
+To generate documentation, run the following command:
+
+```
+make documentation
+```
+
+Note that this will only create documentation for keywords, to edit the index files please look in the Documentation folder.
