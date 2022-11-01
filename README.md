@@ -25,6 +25,105 @@ Other guides
 
 [Sikuli Python Library Guide](http://doc.sikuli.org/index.html)
 
+FAQs
+====
+
+<details>
+    <summary>How to click on different elements?</summary>
+
+    Clicking on EBS elements is done in two ways.
+    1. Matching on the image of the element and clicking on that.
+    ```
+        Click On  ${button_image}
+    ```
+    2. Pressing a shortcut key to activate the functionality.
+    ```
+        Press Shortcut Keys  ${button_shortcut_keys}
+    ```
+
+</details>
+
+<details>
+    <summary>How to fill in text fields?</summary>
+
+    You can fill in text using this keyword.
+    ```
+        Input Text Until Appears   ${input_text_image}   hello I am the text to fill in.
+    ```
+
+</details>
+
+<details>
+    <summary>How to press shortcuts?</summary>
+
+    Use the following keyword:
+    ```
+        Press Shortcut Keys   ${shortcut_keys}
+    ```
+    Note, if you need to press special keys (autoit based), these are documented here: https://www.autoitscript.com/autoit3/docs/functions/Send.htm
+
+</details>
+
+<details>
+    <summary>How to verify the current screen window?</summary>
+
+    To verify which window you're on, you can use one of the following
+    ```
+        Image With Text Exists On Screen  ${img}  ${text}
+        Window With Title Exists  ${title}
+        Wait Until Screen Contains  {image}
+        Wait Until Screen Contains With Text  ${image}  ${text}
+    ```
+
+</details>
+
+<details>
+    <summary>How to verify screen text content?</summary>
+
+    If you have a situation where you need to verify content that is generated dynamically and the
+    image cannot be captured of that part before hand, you can capture a region around it and expand
+    the region around this image like so:
+    ```
+        ${extended_image}=  Get Extended Region From Image  ${region}  right  2
+        ${text}=            Get Text From Image Matching  ${extended_image}
+        Should Be Equal   ${text}   Hello I should be on the screen
+    ```
+
+</details>
+
+<details>
+    <summary>How to add a new image to our framework?</summary>
+
+    If you've snipped a new image for Sikuli, this should go in the robot_scripts/Images folder. Guidance on how to take a snippet can be found [here](Sikuli-Screenshot-Guide.md).
+
+</details>
+
+<details>
+    <summary>How to read text from the screen?</summary>
+
+    To read text off of EBS screens, you'll have to specify the region where the text is. This can be done in a few ways:
+    ```
+    ${coordinates}	Create List 	x	y	w	h
+    ${region_image}=  Capture Region   ${coordinates}
+    ```
+
+    or
+
+    ```
+    ${region_image}=  Get Extended Region From Image  ${image}  top   3
+    ```
+
+    The above will extend the image region to the top 3 times the height of the image you've provided.
+
+    This region should span over your text that you'd like to read. Now use the following keyword to 
+    read the text within this region:
+
+    ```
+    ${text}=  Get Text  ${region_image}
+    ```
+
+</details>
+
 Setup
 ====
 - *Note due to dependency on AutoIT this is only expected to work on Windows OS*
