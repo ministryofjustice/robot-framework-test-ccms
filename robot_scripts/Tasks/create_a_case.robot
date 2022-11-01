@@ -16,8 +16,8 @@ Create a Case
     Set Library Search Order	Selenium2Library
     Open Browser    ${APPLY_URL}    ${APPLY_BROWSER}
     Click Element   ${start_button}
-    Input Text      ${email_input_field}    ${apply_username}
-    Input Text      ${password_input_field}    ${apply_password}
+    Selenium2Library.Input Text      ${email_input_field}    ${apply_username}
+    Selenium2Library.Input Text      ${password_input_field}    ${apply_password}
     Click Button    ${sign_in_button}
 
     apply_client_details.Apply Client Details

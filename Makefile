@@ -46,6 +46,12 @@ activate-pre-commit-hook:
 find-stale-images:
 	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_unused_images.robot
 
+generate-documentation:
+	rmdir /Q /S Documentation\Support
+	python robot_scripts\utils\generate_library_documentation.py -i robot_scripts\\Support -o Documentation\\Support
+	rmdir /Q /S Documentation\PageObjects
+	python robot_scripts\utils\generate_library_documentation.py -i robot_scripts\\PageObjects -o Documentation\\PageObjects
+
 lint:
 	python -m rflint -A helpers\rflint-arguments-file -r robot_scripts
 
@@ -95,7 +101,7 @@ install:
 	pip install --user robotframework-selenium2library==3.0.0
 	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary==1.2.8 & pause \" -Verb RunAs"
 
-	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	
+	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot
 	cmd /c copy variables.py.template variables.py
 
 	@echo.
@@ -111,8 +117,11 @@ env-variables:
 	@rundll32 sysdm.cpl,EditEnvironmentVariables
 	$(MAKE) refresh
 
-config:
+edit-config:
 	notepad robot_scripts\secrets.robot
+
+config:
+	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot
 
 verify:
 	systeminfo |find "Memory"

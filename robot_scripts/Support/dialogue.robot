@@ -1,22 +1,28 @@
 *** Settings ***
-Resource  ../Support/interaction_helper.robot
-Resource  ../Support/screen_content_helper.robot
+Library    Dialogs
+Resource  ../Support/ebs_helper.robot
 Resource  ../Support/hooks.robot
 
 *** Keywords ***
 Press Dialogue OK
+    [Documentation]  Uses: AutoIt Returns: None
     Send Keys    !o
 
 Press Dialogue Cancel
+    [Documentation]  Uses: AutoIt Returns: None
     Send Keys    !c
 
 Press Dialogue Yes
+    [Documentation]  Uses: AutoIt Returns: None
     Send Keys    !y
 
 Press Dialogue No
+    [Documentation]  Uses: AutoIt Returns: None
     Send Keys    !n
 
 Find Dialogue With Title
+    [Documentation]  Uses: AutoIt/Sikuli Returns: None
+    ...   Find dialogue with a title, will try a few times based on the tries argument.
     [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
 
     ${result}=  Set Variable  False
@@ -75,3 +81,14 @@ Wait Until Decision Dialogue Appears
     [Arguments]  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
 
     Find Dialogue With Title    ${DECISION_TITLE_IMAGE}    Decision  ${tries}  ${strict}
+
+Get User Input If Not Exists
+    [Documentation]  Prompt user for input if the value is empty of the variable passed in.
+    [Arguments]  ${input}  ${input_name}
+
+    IF  "${input}" == ""
+        Speaker.Say    Please enter ${input_name}
+        ${input}=    Get Value From User    ${input_name}
+    END
+
+    RETURN  ${input}

@@ -1,13 +1,14 @@
 *** Settings ***
 Resource    ../settings.robot
-Resource    ../Support/interaction_helper.robot
-Resource    ../Support/Dialogue.robot
+Resource    ../Support/ebs_helper.robot
 
 *** Variables ***
 ${case_submit_input}   ${input_box_image}
 
 *** Keywords ***
 Submit Single Request
+    [Documentation]  Uses: AutoIt/Sikuli Returns: None
+    ...  Submits a single batch request provided in arguments.
     [Arguments]  ${request_name}  ${business_rule_group}
     Send Keys    !o
     Wait Until Window With Title Appears   Submit Request

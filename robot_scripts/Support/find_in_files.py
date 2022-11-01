@@ -2,6 +2,9 @@ import os, glob
 from robot.libraries.BuiltIn import BuiltIn
 
 def get_all_images(image_directory):
+    """
+        Returns all images from a directory provided.
+    """
     images = {}
 
     directory = os.path.join(os.getcwd(), image_directory, "**", "*.png")
@@ -15,6 +18,9 @@ def get_all_images(image_directory):
     return images
 
 def get_all_files(task_directories):
+    """
+        Returns all files in a directory as a list.
+    """
     files = []
 
     for directory in task_directories:

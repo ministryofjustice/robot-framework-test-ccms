@@ -1,9 +1,7 @@
 *** Settings ***
 Resource    ../settings.robot
-Resource    ../Support/interaction_helper.robot
-Resource    ../Support/screen_content_helper.robot
+Resource    ../Support/ebs_helper.robot
 Resource    ../Support/Dialogue.robot
-Resource    ../Support/ebs_helpers.robot
 
 *** Variables ***
 ${all_details_checkbox}             AllCheckbox.png
@@ -19,6 +17,8 @@ ${down_arrow_shortcut}  {DOWN}
 
 *** Keywords ***
 Refresh Case
+    [Documentation]  Uses: Sikuli. Retruns: none.
+    ...   Refreshes the case details.
     Log To Console    Refresh case status
 
     Wait Until Window With Title Appears    eBusiness Center
@@ -26,6 +26,9 @@ Refresh Case
     Click On    ${case_refresh_button}
 
 Submissions Status Check
+    [Documentation]  Uses: Sikuli. Retruns: none.
+    ...   Opens the service request screen for a case.
+    ...   TODO: The method name probably needs to change.
     Log To Console     Submission status check
     #Down arrow is used to move focus from above image
     Send Keys   ${down_arrow_shortcut}
