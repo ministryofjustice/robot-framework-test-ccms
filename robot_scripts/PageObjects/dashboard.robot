@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    session_expired_dialogue.robot
-Resource    ../Support/Dialogue.robot
+Resource    ../Support/ebs_helper.robot
 
 *** Variables ***
 ${merits_case_work_link_element}            MeritsCaseWorkerLink.PNG

@@ -3,6 +3,7 @@ Library     Screenshot
 Library     speaker.py
 Library     SikuliLibrary  mode=NEW
 Library     ../Support/string_utils.py
+Library    AutoItLibrary
 Resource    ../settings.robot
 Resource    ../PageObjects/group_and_role.robot
 

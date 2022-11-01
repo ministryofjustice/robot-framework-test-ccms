@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    ../settings.robot
 Resource    ../Support/ebs_helper.robot
-Resource    ../Support/Dialogue.robot
 
 *** Variables ***
 ${all_details_checkbox}             AllCheckbox.png

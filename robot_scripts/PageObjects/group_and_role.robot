@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../settings.robot
-Resource    ../Support/Dialogue.robot
+Resource    ../Support/ebs_helper.robot
 
 *** Variables ***
 ${choose_role_user_dialogue_title_bar}      ChooseRoleUserDialogue.png

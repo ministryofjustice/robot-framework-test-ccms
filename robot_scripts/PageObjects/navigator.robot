@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../Support/ebs_helper.robot
-Resource    ../Support/Dialogue.robot
+Resource    ../Support/ebs_helper.robot
 
 *** Variables ***
 ${open_search_shortcut}            {UP}{UP}{DOWN}{ENTER}
