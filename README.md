@@ -85,8 +85,8 @@ FAQs
     <summary>How to verify screen text content?</summary>
 
     If you have a situation where you need to verify content that is generated dynamically and the
-    image cannot be captured of that part before hand, you can capture a region around it and expand
-    the region around this image like so:
+    image cannot be captured before hand, you can capture a region around it and extend it
+    to capture the contents like so:
     ```
         ${extended_image}=  Get Extended Region From Image  ${region}  right  2
         ${text}=            Get Text From Image Matching  ${extended_image}
