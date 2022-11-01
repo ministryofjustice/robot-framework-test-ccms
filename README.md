@@ -11,7 +11,7 @@ Had an issue? Chances are the solution is already logged here https://dsdmoj.atl
 Other guides
 ====
 
-[The EBS Robot Framework Documentation](Documentation/index.html)
+[The EBS Robot Framework Documentation](https://ministryofjustice.github.io/robot-framework-test-ccms/Documentation/index.html)
 
 [Coding Standards For This CodeBase](Coding-Standards.md)
 
