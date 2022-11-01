@@ -8,5 +8,5 @@ ${images_directory}  robot_scripts\\Images
 *** Tasks ***
 Flag Stale Image References
     [Documentation]  Find .PNG filenames listed in robot files that don't have corresponding 
-    ...              files within the img directory
+    ...              files within the img directory. Ignores case.
     find_in_files.Find Stale Image References  ${images_directory}  ${directories_to_scan}

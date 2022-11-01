@@ -57,7 +57,7 @@ def find_unused_images_in_directory(image_directory, task_directories):
 
     BuiltIn().log_to_console("Unused image count: " + str(count) + " (" + str(round(count/len(images)*100)) + "%)")
 
-def find_filename_references_in_file(filename, extension=".PNG"):
+def find_filename_references_in_file(filename, extension=".PNG", basename_only=True):
     """
     Search each line of file for filenames with the given extension.
     Return dictionary with found filenames as keys and list of line numbers where found 
@@ -66,9 +66,13 @@ def find_filename_references_in_file(filename, extension=".PNG"):
     "two.PNG" in line 7, then get: {'one.png': [1, 2, 2], 'two.PNG': [7]}
     """
     results = {}
-    with open(filename) as exam_file:
-        for lindex, line in enumerate(exam_file):
+    with open(filename) as robot_file:
+        for lindex, line in enumerate(robot_file):
             filenames = [e for e in line.split() if e.upper().endswith(extension)]
+
+            if basename_only:
+                filenames = [os.path.basename(e) for e in filenames]
+
             if filenames:
                 for filename in filenames:
                     line_number = lindex + 1
@@ -78,9 +82,10 @@ def find_filename_references_in_file(filename, extension=".PNG"):
                         results[filename].append(line_number)
     return results
 
-def find_filename_references_in_multiple_files(task_directories, extension="PNG"):
+
+def find_filename_references_in_multiple_files(task_directories, extension=".PNG"):
     """
-    Find all robot files, in each one look for references to filenames with particular extension.
+    Find all robot files, in each look for references to filenames with particular extension.
     Provide details of line numbers in each file where reference found by returning dictionary
     with this structure
     {
@@ -88,7 +93,6 @@ def find_filename_references_in_multiple_files(task_directories, extension="PNG"
      image_filename2: {robot_filename1: [line numbers], robot_filename3: [line_numbers]},
      image_filename3: {robot_filename4}: [line numbers]}
      }
-    But exclude robot_filenames where no
     """
     image_file_references = {}
     robot_filenames = get_all_files(task_directories)
@@ -101,18 +105,13 @@ def find_filename_references_in_multiple_files(task_directories, extension="PNG"
                 image_file_references[image_filename][robot_filename] = file_results[image_filename]
     return image_file_references
 
-
 def find_stale_image_references(image_directory, task_directories):
     image_file_references = find_filename_references_in_multiple_files(task_directories)
     images = get_all_images(image_directory)
     lower_case_images = [i.lower() for i in images.keys()]
     for image_reference in image_file_references:
         if image_reference.lower() not in lower_case_images:
-            print(f"Reference Filename: {image_reference}", image_file_references[image_reference])
+            BuiltIn().log_to_console(f"\nReference Filename: {image_reference}")
+            for robot_filename, line_numbers in image_file_references[image_reference].items():
+                BuiltIn().log_to_console(f"{robot_filename}: {line_numbers}")
     return images, image_file_references
-
-
-if __name__ == "__main__":
-    #results = find_filename_references_in_multiple_files(["../PageObjects", "../Support"])
-    img, ifr = find_stale_image_references("../Images", ["../PageObjects", "../Support"])
-    #images = get_all_images("../Images")
