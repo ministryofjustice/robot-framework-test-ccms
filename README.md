@@ -31,12 +31,16 @@ FAQs
 <details>
     <summary>How to click on different elements?</summary>
 
+    ### Click on EBS elements.
     Clicking on EBS elements is done in two ways.
     1. Matching on the image of the element and clicking on that.
+
     ```
         Click On  ${button_image}
     ```
+
     2. Pressing a shortcut key to activate the functionality.
+
     ```
         Press Shortcut Keys  ${button_shortcut_keys}
     ```
