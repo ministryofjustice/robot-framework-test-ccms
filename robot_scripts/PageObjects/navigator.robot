@@ -5,6 +5,9 @@ Resource    ../Support/Dialogue.robot
 
 *** Variables ***
 ${open_search_shortcut}            {UP}{UP}{DOWN}{ENTER}
+${open_batch_processes_shortcut}   !vr
+${cancel}                          {TAB}{TAB}{ENTER}
+${enter}                           {ENTER}
 ${navigator_shortcut}              !w1
 ${window_menu_shortcut}            !w2
 ${service_request_menu_shortcut}   !w4
@@ -13,6 +16,13 @@ ${service_request_menu_shortcut}   !w4
 Open Batch Request Run Window
     Wait Until Navigator Window With Title Appears    CCMS Batch User
     Send Keys   rrr
+
+Open Batch Process Status Check Window
+    Win Activate  Submit a New Request
+    Send  ${cancel}
+    Win Active    Submit Request
+    Send  ${open_batch_processes_shortcut}
+    Send  ${enter}
 
 Back To Navigator
     Send Keys  ${navigator_shortcut}

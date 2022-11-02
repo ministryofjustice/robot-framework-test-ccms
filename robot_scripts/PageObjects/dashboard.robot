@@ -3,6 +3,7 @@ Resource    session_expired_dialogue.robot
 Resource    ../Support/Dialogue.robot
 Resource    ../Support/screen_content_helper.robot
 Resource    ../Support/ebs_helpers.robot
+Resource    ../PageObjects/universal_search.robot
 
 
 *** Variables ***
@@ -57,7 +58,7 @@ Open Batch Runner
     Click Link    CCMS Batch User
 
     Wait Until Element Is Visible
-    ...    ${requests_menu_item_locator
+    ...    ${requests_menu_item_locator}
     ...    ${GLOBAL_WAIT_TIMEOUT}
     ...    Expected to find Requests in the menu, but not found.
     Click Link    Requests
@@ -73,5 +74,5 @@ Open Batch Runner
     ...    ${GLOBAL_WAIT_TIMEOUT}
     ...    Expected to find Run in the requests menu, but not found.
     Click Link    Run
-
-    Wait Until Window With Title Appears    Submit a New Request    tries=10
+    Sleep   5
+    Wait For Image  ${WINDOW_TITLE_IMAGE}  ${universal_search_screen}  20
