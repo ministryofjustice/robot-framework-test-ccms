@@ -17,13 +17,15 @@ Other guides
 
 [Sikuli Screenshot Guide](Sikuli-Screenshot-Guide.md)
 
-[Robot Builtin Keywords Guide](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html)
+[Robot Core Libraries Keywords Guide](https://robotframework.org/robotframework/)
 
 [Sikuli Keywords Guide](https://rainmanwy.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary.html)
 
 [Selenium Keywords Guide](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html)
 
 [Sikuli Python Library Guide](http://doc.sikuli.org/index.html)
+
+AutoIt Library Keywords Guide: C:\RobotFramework\Extensions\AutoItLibrary\AutoItLibrary.html
 
 FAQs
 ====
@@ -119,7 +121,7 @@ FAQs
 
     The above will extend the image region to the top 3 times the height of the image you've provided.
 
-    This region should span over your text that you'd like to read. Now use the following keyword to 
+    This region should span over your text that you'd like to read. Now use the following keyword to
     read the text within this region:
 
     ```
