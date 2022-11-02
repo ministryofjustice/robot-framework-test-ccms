@@ -3,7 +3,7 @@ Resource    secrets.robot
 Resource    Support/hooks.robot
 
 *** Variables ***
-${BASE_URL}                         https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/OA.jsp?OAFunc=OAHOMEPAGE#
+${BASE_URL}                         https://ccmsebs.stg.legalservices.gov.uk/OA_HTML/AppsLocalLogin.jsp
 ${EBS_BROWSER}                      ie
 ${APPLY_URL}                        https://main-applyforlegalaid-uat.cloud-platform.service.justice.gov.uk/
 ${APPLY_BROWSER}                    chrome
