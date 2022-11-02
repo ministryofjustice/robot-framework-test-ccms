@@ -46,6 +46,9 @@ activate-pre-commit-hook:
 find-stale-images:
 	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_unused_images.robot
 
+find-stale-image-references:
+	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_stale_image_references.robot
+
 lint:
 	python -m rflint -A helpers\rflint-arguments-file -r robot_scripts
 
