@@ -1,6 +1,6 @@
 *** Settings ***
 Resource            ../settings.robot
-Resource            ../Support/ebs_helpers.robot
+Resource            ../Support/ebs_helper.robot
 Resource            ../PageObjects/case_details.robot
 Resource            ../PageObjects/merits_assessment.robot
 

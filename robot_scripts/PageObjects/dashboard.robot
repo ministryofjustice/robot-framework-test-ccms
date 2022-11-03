@@ -1,10 +1,6 @@
 *** Settings ***
 Resource    session_expired_dialogue.robot
-Resource    ../Support/Dialogue.robot
-Resource    ../Support/screen_content_helper.robot
-Resource    ../Support/ebs_helpers.robot
-Resource    ../PageObjects/universal_search.robot
-
+Resource    ../Support/ebs_helper.robot
 
 *** Variables ***
 ${merits_case_work_link_element}            MeritsCaseWorkerLink.PNG
@@ -18,11 +14,15 @@ ${run_menu_item_locator}                    css:li.rootMenu li.submenu li.submen
 
 *** Keywords ***
 On Dashboard
+    [Documentation]  Uses: AutoIt. Retruns: Boolean.
+    ...   Checks if we're on the dashboard page.
     ${exists}=    Window With Title Exists    Oracle Applications Home Page
 
     RETURN    ${exists}
 
 Start EBS merits
+    [Documentation]  Uses: Selenium/AutoIt. Retruns: none.
+    ...   Opens the case search for merits case worker. If the user is not logged in, will log in.
     Auto It Set Option    WinTitleMatchMode    2
 
     ${exists}=    If On EBS Forms
@@ -32,7 +32,6 @@ Start EBS merits
     IF    ${exists} == 0
         Log To Console    "EBS forms are not open, opening now."
         Ensure EBS Web Screen    ${login_username}    ${login_password}
-
         Click Merits Link When Visible
         Click Merits Case Search Link When Visible
     END
@@ -40,19 +39,28 @@ Start EBS merits
     Wait For Active Window    Oracle Applications
 
 Click Merits Link When Visible
+    [Documentation]  Uses: Selenium. Retruns: none.
+    ...   Click on the merits caseworker link.
     Wait Until Element Is Visible    css:#mainMenuRow .rootmenu
 
     Click Link    CCMS Complex Merits Caseworker
 
 Click Merits Case Search Link When Visible
+    [Documentation]  Uses: Selenium. Retruns: none.
+    ...   Click on the cases and clients link.
     Wait Until Element Is Visible    css:li[id='CCMS Complex Merits Caseworker']
 
     Click Link    Cases and Clients
 
 Logout
+    [Documentation]  Uses: Selenium. Retruns: none.
+    ...   Clicks on the logout link on the dashboard.
     Click Link    Logout
 
 Open Batch Runner
+    [Documentation]  Uses: Selenium/Sikuli/AutoIt. Retruns: none.
+    ...   Opens the batch runner when logged in as ccms batch user.
+    ...   Will wait until the batch runner is opened.
     Wait Until Element Is Visible    ${menu_items_locator}
 
     Click Link    CCMS Batch User

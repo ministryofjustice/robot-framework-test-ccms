@@ -22,6 +22,8 @@ ${case_reference}
 
 *** Keywords ***
 Back To Case Search
+    [Documentation]  Uses: AutoIt/Sikuli Returns: None
+    ...  Goes back to the universal search window.
     ${exists}=    If On Universal Search
 
     Log To Console    UniversalSearch The value of exists is: ${exists}
@@ -33,6 +35,8 @@ Back To Case Search
     END
 
 Search Case
+    [Documentation]  Uses: AutoIt/Sikuli Returns: None
+    ...  Search for a case in universal search window.
     [Arguments]    ${case_reference}
     Wait Until Screen Contains    ${universal_search_screen}
     Send Keys    ${back_to_search_shortcut}
@@ -43,8 +47,8 @@ Search Case
     Click On    ${search_ok_button}
 
 If On Universal Search
-    [Documentation]    returns True or False
-
+    [Documentation]  Uses: Sikuli, Returns: Boolean
+    ...  Returns True if we're on universal search, False otherwise.
     TRY
         ${exists}=    Wait Until Window With Title Appears    Universal Search    2
     EXCEPT    AS    ${error_message}
@@ -54,6 +58,8 @@ If On Universal Search
     RETURN    ${exists}
 
 Get Case Reference
+    [Documentation]  Uses: Robot, Returns: String
+    ...  Prompts the user for a case reference number and returns it.
     IF    "${case_reference}" == ""
         Speaker.Say    Please enter case reference number
         ${case_reference}=    Get Value From User    Case reference number

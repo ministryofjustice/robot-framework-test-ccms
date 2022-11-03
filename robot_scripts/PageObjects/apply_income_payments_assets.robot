@@ -22,6 +22,8 @@ ${charities_option_no}                              id:policy-disregards-none-se
 
 *** Keywords ***
 Apply Income Payments Assets
+    [Documentation]  Uses: Selenium. Returns: None.
+    ...  Fills in apply income payment asset details during apply case submission.
     Set Library Search Order	Selenium2Library
     #What is legal aid for
     Input Text    ${proceeding_search_input}    ${proceeding_search_input_text}

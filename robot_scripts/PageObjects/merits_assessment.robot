@@ -20,11 +20,16 @@ ${backspace}  {BACKSPACE}
 
 *** Keywords ***
 Access Merits
+    [Documentation]  Uses: Sikuli/AutoIt. Retruns: none.
+    ...   Check if we're on the merits window.
+    ...   Todo: Change the name of the method.
     Log To Console    Access merits
 
     Wait Until Screen Contains  ${service_request_screen}
 
 Service Request Task
+    [Documentation]  Uses: Sikuli. Retruns: none.
+    ...   Opens the service request window for a case merits details.
     Log To Console    Service request task
 
     Click On    ${subject_assess_merits}
@@ -32,6 +37,8 @@ Service Request Task
     Click On    ${toolbar_tools_details_link}
 
 Change Status Proceedings
+    [Documentation]  Uses: Sikuli. Retruns: none.
+    ...   Change status proceedings to the provided status.
     [Arguments]   ${proceeding_decision}
 
     Log To Console    Change Status Proceedings
@@ -43,6 +50,8 @@ Change Status Proceedings
     Send Keys  ${ENTER}
 
 Change Status Costlimits
+    [Documentation]  Uses: Sikuli. Retruns: none.
+    ...   Change status cost limits to the provided decision.
     [Arguments]   ${proceeding_decision}
 
     Log To Console    Change Status Costlimits

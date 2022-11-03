@@ -1,5 +1,6 @@
 *** Settings ***
-Resource   ../Support/Processing.robot
+Resource   ../Support/processing.robot
+Resource   ../settings.robot
 Resource   ../Support/hooks.robot
 
 *** Tasks ***
