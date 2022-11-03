@@ -1,19 +1,20 @@
 help:
 	@echo -- Commands available --
 	@echo.
-	@echo list                      List all available tasks to run.
-	@echo command task/t=^<task^>     Generate a robot command for a task.
-	@echo run task/t=^<task^>         Run a task by name.
-	@echo variables                 Re-create the variables file from the existing template.
-	@echo edit-variables            Edit variables that are fed into robot framework for different tasks.
-	@echo install-dependencies      Install software dependencies for this project (Elevated CMD).
-	@echo install                   Install dependencies for robot framework.
-	@echo view-report               Open the html report for the last task run.
-	@echo find-stale-images         Will find and show list of stale images not used in the framework.
-	@echo lint                      Lints all robot files.
-	@echo activate-pre-commit-hook  Activate automatic checks before commit.
-	@echo env-variables             Open the Windows environment variables dialogue for configuration.
-	@echo help                      This menu.
+	@echo list                         List all available tasks to run.
+	@echo command task/t=^<task^>        Generate a robot command for a task.
+	@echo run task/t=^<task^>            Run a task by name.
+	@echo variables                    Re-create the variables file from the existing template.
+	@echo edit-variables               Edit variables that are fed into robot framework for different tasks.
+	@echo install-dependencies         Install software dependencies for this project (Elevated CMD).
+	@echo install                      Install dependencies for robot framework.
+	@echo view-report                  Open the html report for the last task run.
+	@echo find-stale-images            Will list stale images.
+	@echo find-stale-image-references  Will list stale image references.
+	@echo lint                         Lints all robot files.
+	@echo activate-pre-commit-hook     Activate automatic checks before commit.
+	@echo env-variables                Open the Windows environment variables dialogue for configuration.
+	@echo help                         This menu.
 	@echo.
 	@echo example usage: make run task=search_case
 

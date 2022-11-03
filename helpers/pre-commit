@@ -1,15 +1,16 @@
 #!/bin/sh
 
-make find-stale-images 
+make find-stale-images
+make find-stale-image-references
 make lint
 
 # Allows us to read user input below, assigns stdin to keyboard
 exec < /dev/tty
 
 while true; do
-  echo 
+  echo
   read -p "[pre-commit hook] Do you want to continue with the commit? (Y/n) " yn
-  
+
   case $yn in
       [Yy] ) break;;
       [Nn] ) exit 1;;
