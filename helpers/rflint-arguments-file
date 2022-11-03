@@ -1,4 +1,6 @@
 --ignore InvalidTableInResource
---ignore RequireKeywordDocumentation
 --ignore RequireSuiteDocumentation
 --ignore RequireTestDocumentation
+--ignore RequireKeywordDocumentation
+--ignore LineTooLong
+--ignore TooFewKeywordSteps
