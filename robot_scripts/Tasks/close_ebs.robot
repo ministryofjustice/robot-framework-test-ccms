@@ -2,7 +2,7 @@
 Resource  ../secrets.robot
 Resource  ../Support/debug.robot
 Resource  ../Support/browser_helper.robot
-Resource  ../Support/ebs_helpers.robot
+Resource  ../Support/ebs_helper.robot
 
 *** Tasks ***
 Close EBS
