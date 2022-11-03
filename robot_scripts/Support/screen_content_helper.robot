@@ -8,9 +8,10 @@ Resource   debug.robot
 
 *** Keywords ***
 Get EBS Window Dialogue Title Text
+    [Arguments]  ${img-width}
     [Documentation]  Get the value of any EBS window title bar. This title bar must have
     ...              the minimise, maximise and close buttons on the right.
-    ${region}=  Get Extended Region From Image     ${WINDOW_TITLE_IMAGE}    left    10
+    ${region}=  Get Extended Region From Image     ${WINDOW_TITLE_IMAGE}    left   ${img-width}
     ${score}=  Get Match Score    ${WINDOW_TITLE_IMAGE}
 
     IF  "${DEBUG}" == "True"

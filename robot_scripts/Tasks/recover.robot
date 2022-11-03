@@ -1,5 +1,6 @@
 *** Settings ***
 Resource   ../Support/Processing.robot
+Resource   ../Support/hooks.robot
 
 *** Tasks ***
 Recover

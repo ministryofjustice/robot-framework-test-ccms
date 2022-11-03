@@ -33,13 +33,13 @@ Apply Income Payments Assets
     Click Element    ${add_another_proceeding_no_option}
     Click Element    ${continue_button}
 
-    # #What is your client’s role in this proceeding?
-    #    Click Element    ${applicant_claimant_petitioner_radio_button}
-    #    Click Element    ${continue_button}
+    #What is your client’s role in this proceeding?
+    Click Element    ${applicant_claimant_petitioner_radio_button}
+    Click Element    ${continue_button}
 
     #Delegated Functions?
-    Click Element    ${applicant_not_used_delegated_functions}
-    #    Click Element    ${used_delegated_functions_option_no}
+    # Click Element    ${applicant_not_used_delegated_functions}
+    Click Element    ${used_delegated_functions_option_no}
     Click Element    ${continue_button}
 
     #Do you want the default level of service?

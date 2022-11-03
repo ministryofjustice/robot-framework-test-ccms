@@ -37,7 +37,7 @@ Start EBS merits
         Click Merits Case Search Link When Visible
     END
 
-    Wait For Active Window    Oracle Applications - UAT
+    Wait For Active Window    Oracle Applications
 
 Click Merits Link When Visible
     Wait Until Element Is Visible    css:#mainMenuRow .rootmenu
@@ -74,5 +74,4 @@ Open Batch Runner
     ...    ${GLOBAL_WAIT_TIMEOUT}
     ...    Expected to find Run in the requests menu, but not found.
     Click Link    Run
-    Sleep   5
-    Wait For Image  ${WINDOW_TITLE_IMAGE}  ${universal_search_screen}  20
+    Wait Until Window With Title Appears  Submit a New Request  tries=10   img-width=2

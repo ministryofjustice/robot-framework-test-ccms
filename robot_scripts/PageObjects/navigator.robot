@@ -34,7 +34,6 @@ Refresh Service Request Window
     Send Keys  ${service_request_menu_shortcut}
 
 Open Universal Search
-    # Wait Until Navigator Window With Title Appears    Navigator
-    Sleep  2
+    Wait Until Navigator Window With Title Appears    Navigator
     Send Keys  ${open_search_shortcut}
 
