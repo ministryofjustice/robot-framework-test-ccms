@@ -3,6 +3,9 @@ from robot.libraries.BuiltIn import BuiltIn
 
 class speaker:
     def say(self, text):
+        """
+        Speak the text outloud.
+        """
         narrator = pyttsx3.init()
 
         # Optional voice setting - male or female 0 or 1

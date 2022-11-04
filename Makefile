@@ -13,6 +13,7 @@ help:
 	@echo find-stale-image-references  Will list stale image references.
 	@echo lint                         Lints all robot files.
 	@echo activate-pre-commit-hook     Activate automatic checks before commit.
+	@echo documentation                Regenerate documentation for all keywords.
 	@echo env-variables                Open the Windows environment variables dialogue for configuration.
 	@echo help                         This menu.
 	@echo.
@@ -45,7 +46,14 @@ activate-pre-commit-hook:
 	copy helpers\pre-commit .git\hooks\pre-commit
 
 find-stale-images:
-	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_unused_images.robot
+	@robot --output NONE --report NONE --log NONE robot_scripts\Utils\flag_unused_images.robot
+
+.PHONY: documentation
+documentation:
+	rmdir /Q /S Documentation\Support
+	python robot_scripts\Utils\generate_library_documentation.py -i robot_scripts\\Support -o Documentation\\Support
+	rmdir /Q /S Documentation\PageObjects
+	python robot_scripts\Utils\generate_library_documentation.py -i robot_scripts\\PageObjects -o Documentation\\PageObjects
 
 find-stale-image-references:
 	@robot --output NONE --report NONE --log NONE robot_scripts\utils\flag_stale_image_references.robot
@@ -99,7 +107,7 @@ install:
 	pip install --user robotframework-selenium2library==3.0.0
 	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary==1.2.8 & pause \" -Verb RunAs"
 
-	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot	
+	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot
 	cmd /c copy variables.py.template variables.py
 
 	@echo.
@@ -115,8 +123,11 @@ env-variables:
 	@rundll32 sysdm.cpl,EditEnvironmentVariables
 	$(MAKE) refresh
 
-config:
+edit-config:
 	notepad robot_scripts\secrets.robot
+
+config:
+	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot
 
 verify:
 	systeminfo |find "Memory"

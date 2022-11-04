@@ -22,10 +22,15 @@ ${backspace}  {BACKSPACE}
 
 *** Keywords ***
 Access Means
+    [Documentation]  Uses: Sikuli/AutoIt. Retruns: none.
+    ...   Check if we're on the means window.
+    ...   Todo: Change the name of the method.
     Log To Console    Access Means
     Wait Until Screen Contains  ${service_request_screen}
 
 Skip if Means Status Auto Granted
+    [Documentation]  Uses: Sikuli/AutoIt. Retruns: none.
+    ...   Check if means status is auto granted, if so the skip. If not then...
     [Arguments]  ${proceeding_decision}
      Log To Console    Skip if Means Status Auto Granted
      Wait Until Screen Contains  ${service_request_screen}
@@ -38,6 +43,8 @@ Skip if Means Status Auto Granted
      END
 
 Service Request Task
+    [Documentation]  Uses: Sikuli. Retruns: none.
+    ...   Opens the service request window for a case means details.
     Log To Console    Service Request Task
 
     Click On    ${subject_assess_means}
@@ -45,6 +52,8 @@ Service Request Task
     Click On    ${toolbar_tools_details_link}
 
 Change Status Proceedings
+    [Documentation]  Uses: Sikuli. Retruns: none.
+    ...   Change status proceedings to the provided decision.
     [Arguments]   ${proceeding_decision}
 
     Log To Console    Change Status Proceedings
@@ -56,6 +65,8 @@ Change Status Proceedings
     Send Keys  ${save_button}
 
 Change Status Costlimits
+    [Documentation]  Uses: Sikuli. Retruns: none.
+    ...   Change status cost limits to the provided decision.
     [Arguments]   ${proceeding_decision}
 
     Log To Console    Change Status Costlimits

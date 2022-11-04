@@ -33,6 +33,8 @@ ${address_postcode_input_text}              TE15 1NG
 
 *** Keywords ***
 Apply Client Details
+    [Documentation]  Uses: Selenium. Returns: None.
+    ...  Fills in apply client details during apply case submission.
     Set Library Search Order	Selenium2Library
     ${response}=    Get Text    ${confirm_office_page_h1}
     ${contains}=    Run Keyword And Return Status    Should Contain    ${response}    ${pageTitle}

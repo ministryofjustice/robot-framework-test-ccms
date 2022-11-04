@@ -4,7 +4,8 @@ Resource   ../settings.robot
 
 *** Keywords ***
 Fail With Voice And Help
-    [Documentation]  Fail with both spoken and displayed error message.
+    [Documentation]  Uses: Robot, Returns: none.
+    ...    Fail with both spoken and displayed error message.
     ...    Displayed message in two places: (i) direct to console, near screenshot info and extra text
     ...                                     (ii) part of standard "FAIL" output
     ...    Optional extra info is displayed but not spoken.
@@ -25,6 +26,8 @@ Fail With Voice And Help
     Fail  ${message}
 
 LogV
+    [Documentation]  Uses: Robot, Returns: None
+    ...  Log a message to console, and if voice is enabled also read it out.
     [Arguments]  ${text}  ${voiceMsg}=True
 
     Log  ${text}

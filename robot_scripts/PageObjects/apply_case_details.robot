@@ -38,6 +38,8 @@ ${client_declaration_confirm_radio_button}                  id:legal-aid-applica
 
 *** Keywords ***
 Apply Case Details
+    [Documentation]  Uses: Selenium. Returns: None.
+    ...  Fills in apply case details during apply case submission.
     Set Library Search Order	Selenium2Library
     # Detail of case
     Click Link    ${latest_incident_details_link}

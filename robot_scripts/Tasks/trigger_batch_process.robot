@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../Support/ebs_helpers.robot
+Resource    ../Support/ebs_helper.robot
 Resource    ../PageObjects/submit_new_batch_request.robot
 Resource    ../PageObjects/batch_runner.robot
 
