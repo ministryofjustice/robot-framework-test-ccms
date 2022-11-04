@@ -86,7 +86,8 @@ Close EBS Forms
 Get EBS Window Dialogue Title Text
     [Documentation]  Get the value of any EBS window title bar. This title bar must have
     ...              the minimise, maximise and close buttons on the right.
-    ${region}=  Get Extended Region From Image     ${WINDOW_TITLE_IMAGE}    left    10
+    [Arguments]  ${img-width}
+    ${region}=  Get Extended Region From Image     ${WINDOW_TITLE_IMAGE}    left   ${img-width}
     ${score}=  Get Match Score    ${WINDOW_TITLE_IMAGE}
 
     IF  "${DEBUG}" == "True"
@@ -308,13 +309,13 @@ Press Dialogue No
 Find Dialogue With Title
     [Documentation]  Uses: AutoIt/Sikuli Returns: None
     ...   Find dialogue with a title, will try a few times based on the tries argument.
-    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
+    [Arguments]  ${img}  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True  ${img-width}=${IMAGE_WIDTH}
 
     ${result}=  Set Variable  False
     FOR    ${i}    IN RANGE    ${tries}
         LogV   Try ${i}
         TRY
-            ${foundText}=  Get EBS Window Dialogue Title Text
+            ${foundText}=  Get EBS Window Dialogue Title Text  ${img-width}
             ${contains}=  String Contains  ${foundText}  ${text}
 
             Log To Console    CONTAINS RESULT: ${contains}
@@ -345,27 +346,27 @@ Find Dialogue With Title
 
 Wait Until Navigator Window With Title Appears
     [Documentation]  Expects the window to have the navigator icon.
-    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True  ${img-width}=${IMAGE_WIDTH}
 
-    Find Dialogue With Title    ${NAVIGATOR_TITLE_IMAGE}    ${text}  ${tries}  ${strict}
+    Find Dialogue With Title    ${NAVIGATOR_TITLE_IMAGE}    ${text}  ${tries}  ${strict}  ${img-width}
 
 Wait Until Window With Title Appears
     [Documentation]  Expects the window to have the red oracle icon.
-    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True  ${img-width}=${IMAGE_WIDTH}
 
-    Find Dialogue With Title    ${WINDOW_TITLE_IMAGE}    ${text}  ${tries}  ${strict}
+    Find Dialogue With Title    ${WINDOW_TITLE_IMAGE}    ${text}  ${tries}  ${strict}  ${img-width}
 
 Wait Until Dialogue With Title Appears
     [Documentation]  Expects the window to have no icon but close button on the right.
-    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
+    [Arguments]  ${text}  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True  ${img-width}=${IMAGE_WIDTH}
 
-    Find Dialogue With Title    ${DIALOGUE_TITLE_IMAGE}    ${text}  ${tries}  ${strict}
+    Find Dialogue With Title    ${DIALOGUE_TITLE_IMAGE}    ${text}  ${tries}  ${strict}  ${img-width}
 
 Wait Until Decision Dialogue Appears
     [Documentation]  Expects the window to have no icon but close button on the right.
-    [Arguments]  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True
+    [Arguments]  ${tries}=${GLOBAL_RETRY_TIME}  ${strict}=True  ${img-width}=${IMAGE_WIDTH}
 
-    Find Dialogue With Title    ${DECISION_TITLE_IMAGE}    Decision  ${tries}  ${strict}
+    Find Dialogue With Title    ${DECISION_TITLE_IMAGE}    Decision  ${tries}  ${strict}  ${img-width}
 
 Get User Input If Not Exists
     [Documentation]  Prompt user for input if the value is empty of the variable passed in.

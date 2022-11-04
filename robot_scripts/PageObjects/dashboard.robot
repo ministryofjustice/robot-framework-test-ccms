@@ -32,12 +32,11 @@ Start EBS merits
     IF    ${exists} == 0
         Log To Console    "EBS forms are not open, opening now."
         Ensure EBS Web Screen    ${login_username}    ${login_password}
-
         Click Merits Link When Visible
         Click Merits Case Search Link When Visible
     END
 
-    Wait For Active Window    Oracle Applications - UAT
+    Wait For Active Window    Oracle Applications
 
 Click Merits Link When Visible
     [Documentation]  Uses: Selenium. Retruns: none.
@@ -67,7 +66,7 @@ Open Batch Runner
     Click Link    CCMS Batch User
 
     Wait Until Element Is Visible
-    ...    ${requests_menu_item_locator
+    ...    ${requests_menu_item_locator}
     ...    ${GLOBAL_WAIT_TIMEOUT}
     ...    Expected to find Requests in the menu, but not found.
     Click Link    Requests
@@ -83,5 +82,4 @@ Open Batch Runner
     ...    ${GLOBAL_WAIT_TIMEOUT}
     ...    Expected to find Run in the requests menu, but not found.
     Click Link    Run
-
-    Wait Until Window With Title Appears    Submit a New Request    tries=10
+    Wait Until Window With Title Appears  Submit a New Request  tries=10   img-width=2

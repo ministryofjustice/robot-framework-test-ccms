@@ -17,6 +17,7 @@ ${DEBUG}                            False
 ${DEBUG_HIGHLIGHT_TIME}             1
 ${input_box_image}                  GenericInputBox.png
 ${GLOBAL_WAIT_TIMEOUT}              20
+${IMAGE_WIDTH}                      5
 ${GLOBAL_LONG_WAIT_TIMEOUT}         30
 ${GLOBAL_RETRY_TIME}                5
 ${GLOBAL_RETRY_WAIT_INTERVAL}       2
