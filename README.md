@@ -3,6 +3,11 @@ Introduction
 
 EBS automated tasks (RPA) to facilitate testing of EBS using Robot framework utilising SikuliX and AutoIT.
 
+Security Note
+-----
+
+Please ensure that no sensitive data (personally identifiable information, passwords) is captured in any form (text,screenshot) you wish to push to the git repository. This can become a security risk for the LAA.
+
 Issues
 ====
 
