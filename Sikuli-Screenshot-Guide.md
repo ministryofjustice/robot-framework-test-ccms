@@ -1,3 +1,12 @@
+A quick guide to taking screenshots for Sikuli.
+=====
+
+Security Note
+-----
+
+Please ensure that no sensitive data (personally identifiable information, passwords) is captured in any screenshot you wish to push to the git repository. This can become a security risk for the LAA.
+
+
 Q) How do I take a screenshot/snapshot of anything on Windows?
 ----
 
