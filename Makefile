@@ -34,7 +34,7 @@ command:
 	@echo robot --variablefile variables.py --outputdir results --task $(task) $(t) robot_scripts
 
 run:
-	robot --variablefile variables.py --outputdir results --task $(task) $(t) robot_scripts
+	robot --variablefile variables.py --outputdir results  --pythonpath  .  --listener D:\Users\vimal.suresh\projects\robot-framework-test-ccms\robot_scripts\Support\listener.py --console verbose  --task $(task) $(t) robot_scripts
 
 edit-variables:
 	notepad variables.py
