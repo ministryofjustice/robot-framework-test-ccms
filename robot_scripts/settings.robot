@@ -22,4 +22,5 @@ ${GLOBAL_LONG_WAIT_TIMEOUT}         30
 ${GLOBAL_RETRY_TIME}                5
 ${GLOBAL_RETRY_WAIT_INTERVAL}       2
 ${GLOBAL_BEFORE_SEND_KEYS_WAIT}     1
-${EXECUTION_MODE}                   Human    #Human/Machine
+${EXECUTION_MODE}                   Machine    #Human/Machine
+${OUTPUT}                           {exclude_keywords: ['Log', 'LogV', 'Log To Console', 'Say'], expose_keywords_where_in_path: ['Support', 'PageObjects', 'Tasks'], highlight_especially_in_path: 'Tasks'}
