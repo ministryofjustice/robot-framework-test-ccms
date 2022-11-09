@@ -1,5 +1,6 @@
 *** Settings ***
 Library     ../Support/speaker.py
+Library      ListenerLibrary
 Resource    ../settings.robot
 Resource    ../PageObjects/apply_client_details.robot
 Resource    ../PageObjects/apply_submit_application.robot
@@ -27,3 +28,5 @@ Create a Case
     apply_submit_application.Write Apply Caseid In File    apply_laa_reference.txt
     apply_submit_application.Write CCMS Caseid In File    ccms_case_reference.txt
     Close Browser
+    Register End Keyword listener      Log to Console   message form end keyword listener    level=TRACE
+
