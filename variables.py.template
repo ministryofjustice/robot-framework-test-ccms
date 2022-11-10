@@ -19,6 +19,9 @@ merits_proceeding_decision  =  'Grant'
 # Enable debugging mode
 DEBUG  =  False
 
+# Override execution mode in settings file.
+EXECUTION_MODE = 'Human'
+
 # Print keywords to the console.
 keyword_output = True
 

@@ -22,4 +22,4 @@ ${GLOBAL_LONG_WAIT_TIMEOUT}         30
 ${GLOBAL_RETRY_TIME}                5
 ${GLOBAL_RETRY_WAIT_INTERVAL}       2
 ${GLOBAL_BEFORE_SEND_KEYS_WAIT}     1
-${EXECUTION_MODE}                   Machine    #Human/Machine
+${EXECUTION_MODE}                   Human    #Human/Machine
