@@ -18,3 +18,30 @@ merits_proceeding_decision  =  'Grant'
 
 # Enable debugging mode
 DEBUG  =  False
+
+# Override execution mode in settings file.
+EXECUTION_MODE = 'Human'
+
+# Print keywords to the console.
+keyword_output = True
+
+# Colour configuration for the console.
+grey = 0x8
+dull_cyan = 0x3
+blue = 0x9
+purple = 0x5
+
+# Exlcude the following keywords where ever they appear.
+exlcude_keywords = ['Log', 'LogV', 'Log To Console', 'Say']
+
+# None is used for Hooks.
+expose_keywords_where_in_path = ['PageObjects', 'Tasks']
+
+# The keywords that exist in this path will be highlighted especially.
+highlight_especially_in_path = 'Tasks'
+
+# The color for special highlighting.
+highlight_special = purple
+
+# Output file path for keywords, values: all/none/fail_only
+output_file_path = 'fail_only'
