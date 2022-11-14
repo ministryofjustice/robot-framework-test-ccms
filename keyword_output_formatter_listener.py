@@ -7,7 +7,7 @@ class keyword_output_formatter_listener:
     ROBOT_LISTENER_API_VERSION = 2
 
     def end_keyword(self, name, attributes):
-        if not keyword_output:
+        if not 'keyword_output' in globals() or not keyword_output:
             return
 
         if self.is_excluded_keyword(
