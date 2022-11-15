@@ -4,7 +4,9 @@ help:
 	@echo list                         List all available tasks to run.
 	@echo command task/t=^<task^>        Generate a robot command for a task.
 	@echo run task/t=^<task^>            Run a task by name.
-	@echo variables                    Re-create the variables file from the existing template.
+	@echo secrets                      Create secrets file from template. WARNING, existing file will be overriden.
+	@echo edit-secrets                 Edit the secrets file.
+	@echo variables                    Create the variables file from the existing template.
 	@echo edit-variables               Edit variables that are fed into robot framework for different tasks.
 	@echo install-dependencies         Install software dependencies for this project (Elevated CMD).
 	@echo install                      Install dependencies for robot framework.
@@ -123,10 +125,10 @@ env-variables:
 	@rundll32 sysdm.cpl,EditEnvironmentVariables
 	$(MAKE) refresh
 
-edit-config:
+edit-secrets:
 	notepad robot_scripts\secrets.robot
 
-config:
+secrets:
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot
 
 verify:
