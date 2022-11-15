@@ -1,7 +1,7 @@
 Introduction
 ====
 
-EBS automated tasks (RPA) to facilitate testing of EBS using Robot framework utilising SikuliX and AutoIT.
+EBS automated tasks (RPA) to facilitate testing of EBS using Robot framework utilising Selenium, SikuliX and AutoIT.
 
 Security Note
 -----
