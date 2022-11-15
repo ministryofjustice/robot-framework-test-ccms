@@ -20,6 +20,8 @@ Other guides
 
 [Coding Standards For This CodeBase](Coding-Standards.md)
 
+[Saving your changes](Git-cheatsheet.md)
+
 [Sikuli Screenshot Guide](Sikuli-Screenshot-Guide.md)
 
 [Robot Core Libraries Keywords Guide](https://robotframework.org/robotframework/)
