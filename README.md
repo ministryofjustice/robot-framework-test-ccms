@@ -1,7 +1,7 @@
 Introduction
 ====
 
-EBS automated tasks (RPA) to facilitate testing of EBS using Robot framework utilising SikuliX and AutoIT.
+EBS automated tasks (RPA) to facilitate testing of EBS using Robot framework utilising Selenium, SikuliX and AutoIT.
 
 Security Note
 -----
@@ -19,6 +19,8 @@ Other guides
 [The EBS Robot Framework Documentation](https://ministryofjustice.github.io/robot-framework-test-ccms/Documentation/index.html)
 
 [Coding Standards For This CodeBase](Coding-Standards.md)
+
+[Saving your changes](Git-cheatsheet.md)
 
 [Sikuli Screenshot Guide](Sikuli-Screenshot-Guide.md)
 
