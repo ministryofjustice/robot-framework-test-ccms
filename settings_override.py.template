@@ -1,5 +1,5 @@
-# Use this file to setup all actions to be taken againt a case reference. This will be fed into the
-# tasks automatically when you trigger them.
+# This file serves as a global override to the framework and is fed from the very top level.
+# Any variable that exists within the framework can be redefined/reassigned from this file.
 
 # Task: Search case, Get Case Details
 case_reference = ''

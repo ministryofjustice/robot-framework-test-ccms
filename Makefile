@@ -4,26 +4,26 @@ help:
 	@echo list                         List all available tasks to run.
 	@echo command task/t=^<task^>        Generate a robot command for a task.
 	@echo run task/t=^<task^>            Run a task by name.
-	@echo secrets                      Create secrets file from template. WARNING, existing file will be overriden.
-	@echo edit-secrets                 Edit the secrets file.
-	@echo variables                    Create the variables file from the existing template.
-	@echo edit-variables               Edit variables that are fed into robot framework for different tasks.
-	@echo install-dependencies         Install software dependencies for this project (Elevated CMD).
-	@echo install                      Install dependencies for robot framework.
 	@echo view-report                  Open the html report for the last task run.
+	@echo install-dependencies         Install software dependencies for robot framework (Elevated CMD).
+	@echo install                      Install robot framework.
+	@echo env-variables                Open the Windows environment variables dialogue for configuration.
+	@echo override-settings            Re-create the override settings file from template. WARNING, existing file will be overwritten.
+	@echo edit-override-settings       Edit settings that are fed into robot framework for different tasks.
+	@echo secrets                      Re-create the secrets file from template. WARNING, existing file will be overwritten.
+	@echo edit-secrets                 Edit secrets that are fed into robot framework.
+	@echo lint                         Lints all robot files.
 	@echo find-stale-images            Will list stale images.
 	@echo find-stale-image-references  Will list stale image references.
-	@echo lint                         Lints all robot files.
 	@echo activate-pre-commit-hook     Activate automatic checks before commit.
 	@echo documentation                Regenerate documentation for all keywords.
-	@echo env-variables                Open the Windows environment variables dialogue for configuration.
 	@echo help                         This menu.
 	@echo.
 	@echo example usage: make run task=search_case
 
 e2e:
 	$(MAKE) run task=create_a_case
-	echo case_reference = '%case_reference%' > variables.py
+	echo case_reference = '%case_reference%' > settings_override.py
 	$(MAKE) run task=search_case  $case_reference
 	$(MAKE) run task=propagate_case_status
 
@@ -33,16 +33,10 @@ list:
 	@for /F "delims= eol=" %%A IN ('dir /A-D /B robot_scripts\Tasks\*.robot') do echo %%~nA
 
 command:
-	@echo robot --variablefile variables.py --outputdir results --task $(task) $(t) robot_scripts
+	@echo robot --variablefile settings_override.py --outputdir results --task $(task) $(t) robot_scripts
 
 run:
-	robot --variablefile variables.py --outputdir results --listener keyword_output_formatter_listener.py --task $(task) $(t) robot_scripts
-
-edit-variables:
-	notepad variables.py
-
-variables:
-	cmd /c copy variables.py.template variables.py
+	robot --variablefile settings_override.py --outputdir results --listener keyword_output_formatter_listener.py --task $(task) $(t) robot_scripts
 
 activate-pre-commit-hook:
 	copy helpers\pre-commit .git\hooks\pre-commit
@@ -109,8 +103,8 @@ install:
 	pip install --user robotframework-selenium2library==3.0.0
 	powershell -Command "Start-Process cmd \"/c pip install --user robotframework-autoitlibrary==1.2.8 & pause \" -Verb RunAs"
 
-	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot
-	cmd /c copy variables.py.template variables.py
+	$(MAKE) secrets
+	$(MAKE) override-settings
 
 	@echo.
 	@echo Add the robot.exe directory path to the PATH variables:
@@ -130,6 +124,12 @@ edit-secrets:
 
 secrets:
 	cmd /c copy robot_scripts\secrets.robot.template robot_scripts\secrets.robot
+
+edit-override-settings:
+	notepad settings_override.py
+
+override-settings:
+	cmd /c copy settings_override.py.template settings_override.py
 
 verify:
 	systeminfo |find "Memory"
@@ -153,7 +153,7 @@ verify:
 	@echo.
 	dir robot_scripts\secrets.robot
 	@echo.
-	python variables.py
+	python settings_override.py
 	@echo.
 
 view-report:
