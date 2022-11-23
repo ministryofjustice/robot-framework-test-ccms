@@ -234,11 +234,28 @@ The framework has 3 files that serve its settings.
 
 *Note: Any variable throughout the framework can be overriden from the override-settings file not just the settings necessarily.*
 
-To create/edit the templated files, use the provided make commands:
+Please note that the settings-override.py file is a python file, settings are expected to be declared using the python syntax as opposed to Robot syntax for the other two files. Example:
+
+```robot
+${BASE_URL}    https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/AppsLocalLogin.jsp
+```
+
+```python
+BASE_URL = 'https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/AppsLocalLogin.jsp'
+```
+
+To create the templated files, use the provided make commands:
 
 ```
-make (edit-)override-settings
-make (edit-)secrets
+make override-settings
+make secrets
+```
+
+To edit these settings
+
+```
+make edit-override-settings
+make edit-secrets
 ```
 
 Running a script
