@@ -138,19 +138,9 @@ verify:
 	@echo.
 	make --version
 	@echo.
-	choco --version
+
 	@echo.
-	python -m robot --version
-	@echo.
-	robot --version
-	@echo.
-	cmd /c IEDriverServer.exe --version
-	@echo.
-	java -version
-	where java
-	@echo.
-	pip freeze
-	@echo.
+	ruby --version
 
 	@echo.
 	dir robot_scripts\secrets.robot
