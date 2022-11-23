@@ -149,6 +149,8 @@ verify:
 	java -version
 	where java
 	@echo.
+	pip freeze
+	@echo.
 
 	@echo.
 	dir robot_scripts\secrets.robot
