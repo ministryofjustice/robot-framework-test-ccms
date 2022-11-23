@@ -12,4 +12,4 @@ Focus Browser
 Close IE
     [Documentation]  Uses: Robot, Returns: None
     ...  Closes all instances of internet explorer.
-    Task Kill  task=iexplore.exe
+    Task Kill  task=${BROWSER_PROCESS_NAME}

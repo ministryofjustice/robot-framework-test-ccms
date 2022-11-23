@@ -6,9 +6,9 @@ Resource    Support/hooks.robot
 *** Variables ***
 ${BASE_URL}                         https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/AppsLocalLogin.jsp
 ${EBS_BROWSER}                      ie
+${BROWSER_PROCESS_NAME}             iexplore.exe
 ${APPLY_URL}                        https://main-applyforlegalaid-uat.cloud-platform.service.justice.gov.uk/
 ${APPLY_BROWSER}                    chrome
-${APP_PATH}                         C:\\Program Files\\Internet Explorer\\iexplore.exe
 ${IMG_PATH}                         ${CURDIR}\\Images\\
 ${DIALOGUE_TITLE_IMAGE}             TitleBarWindow.png
 ${NAVIGATOR_TITLE_IMAGE}            TitleBarWindow.png
