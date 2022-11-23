@@ -237,10 +237,12 @@ The framework has 3 files that serve its settings.
 Please note that the settings-override.py file is a python file, settings are expected to be declared using the python syntax as opposed to Robot syntax for the other two files. Example:
 
 ```robot
+# settings.robot
 ${BASE_URL}    https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/AppsLocalLogin.jsp
 ```
 
 ```python
+# settings-override.py
 BASE_URL = 'https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/AppsLocalLogin.jsp'
 ```
 
