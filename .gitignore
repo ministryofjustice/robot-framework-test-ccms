@@ -9,7 +9,7 @@ screenshot*.jpg
 .idea/
 selenium-screenshot*png
 geckodriver*.log
-variables.py
+settings_override.py
 results/*
 .vscode/
 build/*

@@ -2,6 +2,7 @@
 Resource    secrets.robot
 Resource    Support/hooks.robot
 
+# To override these variables, please redefine the value in override-settings.py file.
 *** Variables ***
 ${BASE_URL}                         https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/AppsLocalLogin.jsp
 ${EBS_BROWSER}                      ie

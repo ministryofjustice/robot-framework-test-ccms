@@ -1,6 +1,6 @@
 from robot.libraries.BuiltIn import BuiltIn
 from robot.output.console.highlighting import Highlighter
-from variables import *
+from settings_override import *
 import sys
 
 class keyword_output_formatter_listener:

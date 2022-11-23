@@ -160,10 +160,10 @@ To proceed with installing robot framework and its dependencies, run the followi
 
 ```cmd
 make install
-make config
+make edit-secrets
 ```
 
-The last command will open a config file for you to fill:
+The last command will open the secrets file for you to fill:
 
 - secrets.robot
 
@@ -194,7 +194,7 @@ make -i verify
 Step by step
 ====
 
-Download and install Java 8 (tested with 1.8.0_251).    
+Download and install Java 8 (tested with 1.8.0_251).
 Download and install Python 3 (tested with 3.10).
 Download and install 32 bit IEDriverServer.exe (tested with 4.3.0.0 for IE version 1607)
 
@@ -212,6 +212,52 @@ As administrator
 
 ```
 pip install --user robotframework-autoitlibrary
+```
+
+General usage
+====
+
+The framework comes with its own CLI utility exposed through the make command. To enlist all commands available run:
+
+```
+make
+```
+
+Settings / Config
+====
+
+The framework has 3 files that serve its settings.
+
+1. settings.robot (Default distributed settings that ship as standard).
+2. settings-override.py (A templated custom override file that is not checked in, and can be modified).
+3. secrets.robot (A templated file that is not checked in, and holds all sensitive information such as passwords).
+
+*Note: Any variable throughout the framework can be overriden from the override-settings file not just the settings necessarily.*
+
+Please note that the settings-override.py file is a python file, settings are expected to be declared using the python syntax as opposed to Robot syntax for the other two files. Example:
+
+```robot
+# settings.robot
+${BASE_URL}    https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/AppsLocalLogin.jsp
+```
+
+```python
+# settings-override.py
+BASE_URL = 'https://ccmsebs.uat.legalservices.gov.uk/OA_HTML/AppsLocalLogin.jsp'
+```
+
+To create the templated files, use the provided make commands:
+
+```
+make override-settings
+make secrets
+```
+
+To edit these settings
+
+```
+make edit-override-settings
+make edit-secrets
 ```
 
 Running a script
