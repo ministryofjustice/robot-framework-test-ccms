@@ -6,7 +6,7 @@ Resource    navigator.robot
 *** Variables ***
 ${universal_search_screen}      UniversalSearchDialogue.png
 ${dialogue_title_bar}           ChooseRoleUserDialogue.png
-${organisation_input_box}       OrganisationSearchInputBox.png
+${organisation_input_box}       ChooseRoleUserDialogue.png
 ${search_button}                SearchButton.png
 ${search_ok_button}             OkButtonLarge.png
 ${search_results_dialogue}      SearchResultsDialogue.png
