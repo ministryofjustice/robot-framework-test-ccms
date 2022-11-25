@@ -19,6 +19,8 @@ ${savings_and_investments_option_no}                id:savings-amount-none-selec
 ${client_other_assets_declaration_option_no}        id:other-assets-declaration-none-selected-true-field
 ${client_restrictions_on_selling_option_no}         id:legal-aid-application-has-restrictions-field
 ${charities_option_no}                              id:policy-disregards-none-selected-true-field
+${applicant_ni_number}                              id:applicant-national-insurance-number-field
+${applicant_ni_number_input_text}                   JA293483A
 
 *** Keywords ***
 Apply Income Payments Assets
@@ -35,13 +37,13 @@ Apply Income Payments Assets
     Click Element    ${add_another_proceeding_no_option}
     Click Element    ${continue_button}
 
-    #What is your client’s role in this proceeding?
-    Click Element    ${applicant_claimant_petitioner_radio_button}
-    Click Element    ${continue_button}
+    # #What is your client’s role in this proceeding?
+    # Click Element    ${applicant_claimant_petitioner_radio_button}
+    # Click Element    ${continue_button}
 
     #Delegated Functions?
-    # Click Element    ${applicant_not_used_delegated_functions}
-    Click Element    ${used_delegated_functions_option_no}
+    Click Element    ${applicant_not_used_delegated_functions}
+    # Click Element    ${used_delegated_functions_option_no}
     Click Element    ${continue_button}
 
     #Do you want the default level of service?
@@ -49,6 +51,11 @@ Apply Income Payments Assets
     # Click Element    ${continue_button}
 
     #What you're applying for
+    Click Element    ${continue_button}
+
+    #Does client  have NI number
+    Click Element    id:applicant-has-national-insurance-number-true-field
+    Input Text    ${applicant_ni_number}    ${applicant_ni_number_input_text}
     Click Element    ${continue_button}
 
     #Check your answers

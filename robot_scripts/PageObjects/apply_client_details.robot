@@ -17,9 +17,6 @@ ${applicant_year_of_birth}                  id:applicant_date_of_birth_1i
 ${applicant_day_birth_input_text}           10
 ${applicant_month_of_birth_input_text}      1
 ${applicant_year_of_birth_input_text}       1980
-${applicant_ni_number}                      id:applicant-national-insurance-number-field
-${applicant_ni_number_input_text}           JA293483A
-
 ${enter_address_manually_link}              link:Enter address manually
 ${first_line_of_address}                    id:address-address-line-one-field
 ${first_line_address_input_text}            123 Test Stree
@@ -60,7 +57,6 @@ Apply Client Details
     Input Text    ${applicant_day_of_birth}    ${applicant_day_birth_input_text}
     Input Text    ${applicant_month_of_birth}    ${applicant_month_of_birth_input_text}
     Input Text    ${applicant_year_of_birth}    ${applicant_year_of_birth_input_text}
-    Input Text    ${applicant_ni_number}    ${applicant_ni_number_input_text}
     Click Element    ${continue_button}
 
     #Correspondence Address
