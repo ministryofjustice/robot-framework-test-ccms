@@ -13,6 +13,8 @@ ${file_menu_shortcut}   !f
 ${exit_option_shortcut}   x
 ${ok_button_shortcut}   !o
 ${close_button_shortcut}  {TAB}{ENTER}
+${open_window_context_menu_shortcut}  !{SPACE}
+${context_menu_maximise_shortcut}  x
 
 *** Keywords ***
 Ensure EBS Web Screen
@@ -47,7 +49,17 @@ Ensure EBS Forms Screen
     END
 
     Focus EBS Forms
+    Maximize EBS Browser Window
     sleep  1s
+
+Maximize EBS Browser Window
+    [Documentation]  The browser window in which the EBS applet opens.
+    Send Keys    ${open_window_context_menu_shortcut}
+    Send Keys    ${context_menu_maximise_shortcut}
+
+Maximise EBS Active Sub-Window
+    [Documentation]  The specific window screen that is currently active within the browser window.
+    Double Click    ${WINDOW_TITLE_IMAGE}
 
 Ensure EBusiness Center
     [Documentation]  Uses: Selenium/Sikuli/AutoIt Returns: None
@@ -93,6 +105,7 @@ Get EBS Window Dialogue Title Text
     IF  "${DEBUG}" == "True"
         Highlight Region    ${region}   ${DEBUG_HIGHLIGHT_TIME}
     END
+
     ${text}=  Read Text From Region     ${region}
 
     RETURN    ${text}

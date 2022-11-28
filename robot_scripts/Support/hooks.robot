@@ -13,6 +13,8 @@ Suite Setup Hook
     Start Sikuli Process
     Add Image Path      ${IMG_PATH}
     Auto It Set Option    WinTitleMatchMode    2
+    Set Ocr Language    eng
+    Set Ocr Text Read    True
 
 Test Failure Hook
     [Documentation]  Runs after a task fails to execute.

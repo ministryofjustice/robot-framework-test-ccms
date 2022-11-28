@@ -13,5 +13,6 @@ Search Case
     Universal_Search.Back To Case Search
     Say If Human    Searching for case
     Universal_Search.Search Case    ${case_reference}
+    Maximise EBS Active Sub-Window
     Say If Human    Showing case details now
     case_Details.Refresh Case
