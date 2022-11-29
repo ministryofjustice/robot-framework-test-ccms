@@ -69,6 +69,8 @@ Focus EBS Forms
     [Documentation]  Uses: AutoIt Returns: None
     ...   Focus the EBS forms.
     Win Activate  Oracle Applications - UAT
+    # nFlags=3 to maximise window
+    Win Set State    Oracle Applications - UAT  strText=${EMPTY}  nFlags=3
 
 If On EBS Forms
     [Documentation]  Uses: AutoIt Returns: Number
@@ -378,3 +380,8 @@ Get User Input If Not Exists
     END
 
     RETURN  ${input}
+
+Maximise Active EBS Subwindow
+    [Documentation]  Maximise the active EBS sub window. Works by double-clicking the blue title bar.
+    Double Click    ${WINDOW_TITLE_IMAGE}
+    
