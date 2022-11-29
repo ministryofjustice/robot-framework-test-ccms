@@ -48,7 +48,6 @@ Click Merits Link When Visible
 Click Merits Case Search Link When Visible
     [Documentation]  Uses: Selenium. Retruns: none.
     ...   Click on the cases and clients link.
-    #Wait Until Element Is Visible    css:li[id='CCMS Complex Merits Caseworker']
     Wait Until Page Contains    Cases and Clients
     Click Link    Cases and Clients
 
