@@ -1,5 +1,6 @@
 *** Settings ***
 Library    Selenium2Library
+Library    Collections
 Resource   ../settings.robot
 
 *** Variables ***
@@ -8,6 +9,9 @@ ${logged_in_screen}   EBSWebLoggedInScreen.png
 ${username_field_locator}  css:input[name=usernameField]
 ${password_field_locator}  css:input[name=passwordField]
 ${login_button_locator}    css:#SubmitButton
+${edgepath}    C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe
+
+
 
 *** Keywords ***
 Login
@@ -27,7 +31,11 @@ Login
 Open Web Login
     [Documentation]  Uses: Selenium. Retruns: none.
     ...   Opens the EBS login page.
-    Open Browser  ${BASE_URL}  ${EBS_BROWSER}
+    ${dic}=    Create Dictionary    ie.edgechromium=${True}   ie.edgepath=${edgepath}    ignoreProtectedModeSettings=${True}
+    ${ieoptions}=    Evaluate    sys.modules['selenium.webdriver'].DesiredCapabilities.INTERNETEXPLORER    sys, selenium.webdriver
+    Set To Dictionary    ${ieoptions}    se:ieOptions    ${dic}
+
+    Open Browser  ${BASE_URL}  ie  desired_capabilities=${ieoptions}
     Maximize Browser Window
 
 Navigate To Login
