@@ -36,7 +36,7 @@ Start EBS merits
         Click Merits Case Search Link When Visible
     END
 
-    Wait For Active Window    Oracle Applications
+    Wait For Active Window    ${EBS_WINDOW_TITLE}
 
 Click Merits Link When Visible
     [Documentation]  Uses: Selenium. Retruns: none.

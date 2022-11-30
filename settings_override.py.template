@@ -17,7 +17,7 @@ means_proceeding_task_status = 'Grant Decision'
 merits_proceeding_decision  =  'Grant'
 
 # Enable debugging mode
-DEBUG  =  False
+DEBUG  =  True
 
 # Override execution mode in settings file.
 EXECUTION_MODE = 'Human'
@@ -45,3 +45,7 @@ highlight_special = purple
 
 # Output file path for keywords, values: all/none/fail_only
 output_file_path = 'fail_only'
+
+# Uncomment to use the edge browser with IE compatbility mode.
+#EDGE_PATH = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'
+#EBS_BROWSER_OPTIONS = 'ignore_zoom_level=True; attach_to_edge_chrome=True; edge_executable_path="' + EDGE_PATH + '"'
