@@ -13,6 +13,7 @@ ${file_menu_shortcut}   !f
 ${exit_option_shortcut}   x
 ${ok_button_shortcut}   !o
 ${close_button_shortcut}  {TAB}{ENTER}
+${inactive_window_image}  InactiveWindowTitleBar.PNG
 
 *** Keywords ***
 Ensure EBS Web Screen
@@ -37,9 +38,7 @@ Ensure EBS Forms Screen
     ...   Ensure on ebs forms screen. Will re-login if needs to be.
     [Arguments]  ${login_username}  ${login_password}
 
-    ${exists}=  Win Exists  Oracle Applications - UAT
-
-    LogV    OracleApplicationsUAT - Value of exists is: ${exists}
+    ${exists}=  Win Exists  ${EBS_WINDOW_TITLE}
 
     IF  ${exists} == 0
         LogV    "EBS forms not open, starting up from beginning."
@@ -54,8 +53,6 @@ Ensure EBusiness Center
     ...   Closes IE and relogs in, land on the ebusiness center window.
     ${exists}=  Win Exists  eBusiness Center
 
-    LogV    eBusinessCenterWindow - Value of exists is: ${exists}
-
     IF  ${exists} == 0
         Log To Console    "We are not on eBusiness Center window, going to it now."
         Back To Choose Window
@@ -68,15 +65,15 @@ Ensure EBusiness Center
 Focus EBS Forms
     [Documentation]  Uses: AutoIt Returns: None
     ...   Focus the EBS forms.
-    Win Activate  Oracle Applications - UAT
+    Win Activate  ${EBS_WINDOW_TITLE}
     # nFlags=3 to maximise window
-    Win Set State    Oracle Applications - UAT  strText=${EMPTY}  nFlags=3
+    Win Set State    ${EBS_WINDOW_TITLE}  strText=${EMPTY}  nFlags=3
 
 If On EBS Forms
     [Documentation]  Uses: AutoIt Returns: Number
     ...   Check if EBS forms are open, returns 0 or 1.
 
-    ${exists}=  Win Exists  Oracle Applications - UAT
+    ${exists}=  Win Exists  ${EBS_WINDOW_TITLE}
 
     RETURN  ${exists}
 
@@ -258,7 +255,7 @@ Send Keys
     [Documentation]  Use to either fill inputs or press shortcut keys.
     [Arguments]  ${keys}  ${raw}=0
 
-    LogV  Sending keys ${keys}
+    Log  Sending keys ${keys}
     Sleep  ${GLOBAL_BEFORE_SEND_KEYS_WAIT}s
     Send  ${keys}  ${raw}
 
@@ -273,6 +270,10 @@ Click On
 
     Log  ${img}
     Log To Console  ${img}
+
+    IF  ${DEBUG} == "True"
+        Highlight    ${img}  1
+    END
 
     ${result}=  Set Variable  False
     FOR    ${i}    IN RANGE    ${tries}
@@ -385,3 +386,10 @@ Maximise Active EBS Subwindow
     [Documentation]  Maximise the active EBS sub window. Works by double-clicking the blue title bar.
     Double Click    ${WINDOW_TITLE_IMAGE}
     
+Activate Any Subwindow
+    [Documentation]  Check if there is an active subwindow, if not, then try and click on an inactive one.
+    ${exists}=  Exists    ${WINDOW_TITLE_IMAGE}
+
+    IF  "${exists}" == "False"
+        Click On    ${inactive_window_image}
+    END

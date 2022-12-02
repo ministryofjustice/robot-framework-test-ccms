@@ -26,8 +26,6 @@ Back To Case Search
     ...  Goes back to the universal search window.
     ${exists}=    If On Universal Search
 
-    Log To Console    UniversalSearch The value of exists is: ${exists}
-
     IF    "${exists}" == "False"
         Log To Console    "We are not on universal search dialogue, going to it now."
         Back To Navigator

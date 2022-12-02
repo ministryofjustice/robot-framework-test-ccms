@@ -1,5 +1,6 @@
 *** Settings ***
 Library    Selenium2Library
+Library    Collections
 Resource   ../settings.robot
 
 *** Variables ***
@@ -27,7 +28,8 @@ Login
 Open Web Login
     [Documentation]  Uses: Selenium. Retruns: none.
     ...   Opens the EBS login page.
-    Open Browser  ${BASE_URL}  ${EBS_BROWSER}
+    Open Browser  ${BASE_URL}  ${EBS_BROWSER}  options=${EBS_BROWSER_OPTIONS}
+
     Maximize Browser Window
 
 Navigate To Login
